@@ -7,6 +7,8 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const app = require('../../app');
 
+const {requireAuth} = require('../../utils')
+
 const validateLogin = [
     check('credential')
       .exists({ checkFalsy: true })
