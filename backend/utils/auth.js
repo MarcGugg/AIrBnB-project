@@ -5,6 +5,10 @@ const { User } = require('../db/models');
 
 const { secret, expiresIn } = jwtConfig;
 
+//import express to use middleware (not boilerplate)
+const express = require('express')
+const app = express()
+
 // Sends a JWT Cookie
 const setTokenCookie = (res, user) => {
     // Create the token.
@@ -60,5 +64,14 @@ const requireAuth = function (req, _res, next) {
     err.status = 401;
     return next(err);
 }
+
+
+//error middleware
+app.use((err, req, res, next) => {
+  res.status = err.statusCode || 500
+  res.send({
+    error: err
+  })
+})
 
 module.exports = { setTokenCookie, restoreUser, requireAuth };

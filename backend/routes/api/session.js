@@ -5,6 +5,7 @@ const { User } = require('../../db/models');
 const router = express.Router();
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
+const app = require('../../app');
 
 const validateLogin = [
     check('credential')
@@ -54,6 +55,34 @@ router.get('/', restoreUser, (req, res) => {
     } else {
         return res.json({user: null})
     }
+})
+
+//get current user
+router.get('/:currentUser', requireAuth, async(req, res, next) => {
+    try {
+        const {user} = req
+        if (user) {
+            return res.json({
+                currentUser: user
+            })
+        }
+    } catch{
+        // res.status(404)
+        const err = new Error('User not found')
+        err.statusCode = 404
+        next(err)
+    }
+    
+
+})
+
+
+//error middleware
+router.use((err, req, res, next) => {
+    res.status = err.statusCode || 500
+    res.send({
+        error: err
+    })
 })
 
 module.exports = router;
