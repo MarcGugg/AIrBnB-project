@@ -7,36 +7,32 @@ const { handleValidationErrors } = require('../../utils/validation');
 // const {app} = require('../../app');
 
 const {Spot} = require('../../db/models')
+const {SpotImage} = require('../../db/models')
 const {requireAuth} = require('../../utils/auth')
 
 //get spot details from id
 router.get('/:spotId', async (req, res, next) => {
+    // console.log('test')
     const spot = await Spot.findByPk(req.params.spotId, {
-        include: [
+        include: 
             {
                 model: SpotImage,
                 attributes: {
                     exclude: ['createdAt', 'updatedAt']
                 }
-            }
-            // ,
-            // {
-            //     model: User,
-            //     attributes: {
-            //         exclude: ['createdAt', 'updatedAt']
-            //     }
-            // }
-        ]
+            }        
     })
 
-    spot['Owner'] = await spot.getUser({
+    let spotJSON = spot.toJSON()
+
+    console.log(spot)
+    spotJSON['Owner'] = await spot.getUser({
         attributes: {
             exclude: ['createdAt', 'updatedAt']
         }
     })
-    
     if (spot) {
-        res.json(spot)
+        res.json(spotJSON)
     } else {
         err.message = new Error("Spot not found")
         err.statusCode = 404
@@ -49,7 +45,7 @@ router.get('/:spotId', async (req, res, next) => {
 router.use((err, req, res, next) => {
     res.status = err.statusCode || 500
     res.send({
-        error: err
+        error: err.message
     })
 })
 

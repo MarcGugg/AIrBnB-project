@@ -60,7 +60,7 @@ router.get('/', restoreUser, (req, res) => {
 })
 
 //get current user
-router.get('/:currentUser', requireAuth, async(req, res, next) => {
+router.get('/', requireAuth, async(req, res, next) => {
     try {
         const {user} = req
         if (user) {
