@@ -8,7 +8,8 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 const {Spot} = require('../../db/models')
 const {SpotImage} = require('../../db/models')
-const {requireAuth} = require('../../utils/auth')
+const {requireAuth} = require('../../utils/auth');
+const review = require('../../db/models/review');
 
 //get spot details from id
 router.get('/:spotId', async (req, res, next) => {
@@ -40,6 +41,20 @@ router.get('/:spotId', async (req, res, next) => {
     }
 })
 
+//get all spots
+router.get('/', async (req, res, next) => {
+    let spots = await Spot.findAll()
+
+    let spotsArr = []
+    for (let spot of spots) {
+        spotJSON = spot.toJSON()
+        spotJSON['avgRating'] = await spot.avgRating()
+        spotsArr.push(spotJSON)
+    }
+
+    res.json(spotsArr)
+
+})
 
 //error handling
 router.use((err, req, res, next) => {
