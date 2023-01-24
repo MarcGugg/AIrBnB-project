@@ -52,6 +52,17 @@ router.get('/', async (req, res, next) => {
         spotsArr.push(spotJSON)
     }
 
+    for (let spot of spotsArr) {
+       const previewImages = await SpotImage.findAll({
+        where: {
+            spotId: spot.id
+        }
+       })
+
+    //    console.log(previewImages[0])
+       spot['previewImage'] = previewImages[0].dataValues.url
+    }
+
     res.json(spotsArr)
 
 })
