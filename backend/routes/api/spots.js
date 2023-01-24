@@ -26,12 +26,13 @@ router.get('/:spotId', async (req, res, next) => {
 
     let spotJSON = spot.toJSON()
 
-    console.log(spot)
+    // console.log(spot)
     spotJSON['Owner'] = await spot.getUser({
         attributes: {
             exclude: ['createdAt', 'updatedAt', 'username']
         }
     })
+    spotJSON['avgStarRating'] = await spot.avgRating()
     if (spot) {
         res.json(spotJSON)
     } else {
