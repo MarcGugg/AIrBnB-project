@@ -9,7 +9,7 @@ const app = require('../../app');
 const {Spot} = require('../../db/models')
 const {requireAuth} = require('../../utils')
 
-
+//get spot details from id
 router.get('/:spotId', async (req, res, next) => {
     const spot = await Spot.findByPk(req.params.spotId, {
         include: [
