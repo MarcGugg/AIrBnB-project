@@ -5,9 +5,9 @@ const { User } = require('../../db/models');
 const router = express.Router();
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const app = require('../../app');
+// const {app} = require('../../app');
 
-const {requireAuth} = require('../../utils')
+const {requireAuth} = require('../../utils/auth')
 
 const validateLogin = [
     check('credential')
@@ -79,12 +79,5 @@ router.get('/:currentUser', requireAuth, async(req, res, next) => {
 })
 
 
-//error middleware
-router.use((err, req, res, next) => {
-    res.status = err.statusCode || 500
-    res.send({
-        error: err
-    })
-})
 
 module.exports = router;

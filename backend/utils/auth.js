@@ -6,7 +6,7 @@ const { User } = require('../db/models');
 const { secret, expiresIn } = jwtConfig;
 
 //import app to use middleware (not boilerplate)
-const app = require('../../app');
+// const app = require('../../app');
 
 // Sends a JWT Cookie
 const setTokenCookie = (res, user) => {
@@ -65,12 +65,5 @@ const requireAuth = function (req, _res, next) {
 }
 
 
-//error middleware
-app.use((err, req, res, next) => {
-  res.status = err.statusCode || 500
-  res.send({
-    error: err
-  })
-})
 
 module.exports = { setTokenCookie, restoreUser, requireAuth };

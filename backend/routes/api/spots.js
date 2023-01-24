@@ -4,10 +4,10 @@ const { User } = require('../../db/models');
 const router = express.Router();
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const app = require('../../app');
+// const {app} = require('../../app');
 
 const {Spot} = require('../../db/models')
-const {requireAuth} = require('../../utils')
+const {requireAuth} = require('../../utils/auth')
 
 //get spot details from id
 router.get('/:spotId', async (req, res, next) => {
