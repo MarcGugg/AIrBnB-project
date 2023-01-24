@@ -5,7 +5,9 @@ const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
+const { route } = require('./session');
 
+// const {app} = require('../../app')
 const validateSignup = [
     check('email')
       .exists({ checkFalsy: true })
