@@ -28,7 +28,7 @@ router.get('/:spotId', async (req, res, next) => {
     console.log(spot)
     spotJSON['Owner'] = await spot.getUser({
         attributes: {
-            exclude: ['createdAt', 'updatedAt']
+            exclude: ['createdAt', 'updatedAt', 'username']
         }
     })
     if (spot) {
