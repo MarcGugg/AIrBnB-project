@@ -13,9 +13,26 @@ const {requireAuth} = require('../../utils')
 router.get('/:spotId', async (req, res, next) => {
     const spot = await Spot.findByPk(req.params.spotId, {
         include: [
-            {model: SpotImage},
-            {model: Owner}
+            {
+                model: SpotImage,
+                attributes: {
+                    exclude: ['createdAt', 'updatedAt']
+                }
+            }
+            // ,
+            // {
+            //     model: User,
+            //     attributes: {
+            //         exclude: ['createdAt', 'updatedAt']
+            //     }
+            // }
         ]
+    })
+
+    spot['Owner'] = await spot.getUser({
+        attributes: {
+            exclude: ['createdAt', 'updatedAt']
+        }
     })
     
     if (spot) {
