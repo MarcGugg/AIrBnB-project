@@ -8,6 +8,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 const {Spot} = require('../../db/models')
 const {SpotImage} = require('../../db/models')
+const {Review} = require('../../db/models')
 const {requireAuth} = require('../../utils/auth');
 const review = require('../../db/models/review');
 
@@ -54,6 +55,51 @@ router.get('/current', requireAuth, async (req, res, next) => {
     }
 })
 
+//get reviews for spot by id
+router.get('/:spotId/reviews', async (req, res, next) => {
+    const spot = await Spot.findByPk(req.params.spotId)
+    if (!spot) {
+        let err = new Error('Spot couldn\'t be found')
+        err.statusCode = 404
+        return next(err)
+    }
+
+    let reviews = await Review.findAll({
+        where: {
+            spotId: req.params.spotId
+        },
+        include: {
+            model: User,
+            attributes: ['id', 'firstName', 'lastName']
+        }
+    })
+
+    if (!reviews.length) {
+        res.send("This spot doesn't have any reviews")
+        return
+    }
+
+    let reviewsArr = []
+    for (let review of reviews) {
+        let reviewJSON = review.toJSON()
+        let reviewImages = await review.getReviewImages({
+            attributes: ['id', 'url']
+        })
+
+        let imageArr = []
+        for (let image of reviewImages) {
+            let imageJSON = image.toJSON()
+            imageArr.push(imageJSON)
+        }
+
+        reviewJSON['ReviewImages'] = imageArr
+        reviewsArr.push(reviewJSON)
+    }
+    // let img = await reviews[0].getReviewImages()
+    // console.log(img)
+
+    res.json({"Reviews":reviewsArr})
+})
 
 //get spot details from id
 router.get('/:spotId', async (req, res, next) => {
