@@ -112,6 +112,42 @@ router.get('/', async (req, res, next) => {
 
 })
 
+//add image to spot
+router.post('/:spotId/images', requireAuth, async (req, res, next) => {
+    const {user} = req
+    const {url} = req.body
+    const spot = await Spot.findByPk(req.params.spotId)
+    if (!spot) {
+        let err = new Error('Spot not found')
+        err.statusCode = 404
+        return next(err)
+    }
+    if (spot.ownerId !== user.id) {
+        let err = new Error('User doesn\'t own this spot')
+        err.statusCode = 400
+        return next(err)
+    }
+
+    let newSpotImage = await SpotImage.create({
+        spotId: spot.id,
+        url: url,
+        preview: true
+    })
+
+    let findNewImage = await SpotImage.findOne({
+        where: {
+            url: url
+        },
+        attributes: ['id', 'url', 'preview']
+    })
+    res.json(findNewImage)
+    // let spotImages = await spot.getSpotImages()
+    // let spotImagesJSON = spotImages.toJSON()
+    // console.log(spotImagesJSON)
+    // spotImages.url.push(url)
+    // res.json(spot)
+})
+
 //create new spot
 router.post('/', requireAuth, async (req, res, next) => {
     const {address, city, state, country, lat, lng, name, description, price} = req.body
@@ -169,7 +205,8 @@ router.post('/', requireAuth, async (req, res, next) => {
 router.use((err, req, res, next) => {
     res.status = err.statusCode || 500
     res.send({
-        error: err.message
+        error: err.message,
+        statusCode: res.status
     })
 })
 
