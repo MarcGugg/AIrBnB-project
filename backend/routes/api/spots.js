@@ -11,6 +11,36 @@ const {SpotImage} = require('../../db/models')
 const {requireAuth} = require('../../utils/auth');
 const review = require('../../db/models/review');
 
+
+
+//get all spots owned by current user
+router.get('/current', requireAuth, async(req, res, next) => {
+    const {user} = req
+    if (user) {
+        console.log(user)
+        let userSpots = await Spot.findAll({
+            where: {
+                ownerId: user.id
+            }
+        })
+        console.log('user spots',userSpots)
+        if(!userSpots || userSpots.length === 0) {
+            let err = new Error('user doesn\'t seem to have spots')
+            err.statusCode = 400
+            next(err)
+            return
+        }
+
+        res.json(userSpots)
+        
+    } else {
+        err.statusCode = 404
+        err.message = new Error('user not found')
+        next(err)
+    }
+})
+
+
 //get spot details from id
 router.get('/:spotId', async (req, res, next) => {
     // console.log('test')
@@ -67,6 +97,32 @@ router.get('/', async (req, res, next) => {
     res.json(spotsArr)
 
 })
+
+// //get all spots owned by current user
+// router.get('/current', requireAuth, async(req, res, next) => {
+//     const {user} = req
+//     if (user) {
+//         let userSpots = await Spot.findAll({
+//             where: {
+//                 ownerId: user.id
+//             }
+//         })
+
+//         if(!userSpots) {
+//             err.statusCode = 400
+//             err.message = new Error('user doesn\'t seem to have spots')
+//             next(err)
+//             return
+//         }
+
+//         res.json(userSpots)
+
+//     } else {
+//         err.statusCode = 404
+//         err.message = new Error('user not found')
+//         next(err)
+//     }
+// })
 
 //error handling
 router.use((err, req, res, next) => {
