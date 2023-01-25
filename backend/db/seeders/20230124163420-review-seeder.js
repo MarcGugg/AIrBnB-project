@@ -37,6 +37,12 @@ module.exports = {
           review: "Not as close as advertised in the listing",
           stars: 3,
         },
+        {
+          spotId: 3,
+          userId: 4,
+          review: "I need to finish this project",
+          stars: 5
+        }
       ],
       {}
     );

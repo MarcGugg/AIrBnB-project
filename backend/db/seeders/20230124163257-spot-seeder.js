@@ -38,6 +38,19 @@ module.exports = {
             "Come party at this Vegas house. Here are some details about the house.",
           price: 250.0,
         },
+        {
+          ownerId: 3,
+          address: "321 Pixar Rd",
+          city: "Anaheim",
+          state: "CA",
+          country: "United States of America",
+          lat: 31.7645984,
+          lng: -142.47335627,
+          name: "Apartment Near The Void",
+          description:
+            "This is a sample description of what this building will be like",
+          price: 100.0,
+        }
       ],
       {}
     );
