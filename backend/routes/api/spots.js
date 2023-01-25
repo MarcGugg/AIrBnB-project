@@ -194,12 +194,46 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
     // res.json(spot)
 })
 
+//create a review for spot based on spot id
+router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
+    const {user} = req
+    const {review, stars} = req.body
+
+    const spot = await Spot.findByPk(req.params.spotId)
+
+    if (!spot) {
+        let err = new Error('Spot couldn\'t be found')
+        err.statusCode = 404
+        return next(err)
+    }
+
+    let errorArr = []
+    if (!review) errorArr.push('Review text is required')
+    if (!stars || stars < 1 || stars > 5) errorArr.push('Stars must be an integer from 1 to 5')
+    
+    if (errorArr.length > 0) {
+        let err = new Error('tsk tsk')
+        err.statusCode = 400
+        err.errors = errorArr
+        return next(err)
+    }
+
+    let newReview = await Review.create({
+        userId: user.id,
+        review: review,
+        stars: stars,
+        spotId: spot.id
+    })
+
+    res.json(newReview)
+})
+
 //create new spot
 router.post('/', requireAuth, async (req, res, next) => {
     const {address, city, state, country, lat, lng, name, description, price} = req.body
     const {user} = req
     
-    const errorArr = []
+    let errorArr = []
     if (!address) errorArr.push("Street address is required");
     if (!city) errorArr.push("City is required");
     if (!state) errorArr.push("State is required");
@@ -210,7 +244,7 @@ router.post('/', requireAuth, async (req, res, next) => {
     if (!description) errorArr.push("Description is required");
     if (!price) errorArr.push("Price per day is required");
 
-    if (errors.length > 0) {
+    if (errorArr.length > 0) {
         let err = new Error('oopsie')
         err.errors = errorArr
         err.statusCode = 400
@@ -250,7 +284,7 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
 
     const {user} = req
     
-    const errorArr = []
+    let errorArr = []
     if (!address) errorArr.push("Street address is required");
     if (!city) errorArr.push("City is required");
     if (!state) errorArr.push("State is required");
@@ -261,7 +295,7 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
     if (!description) errorArr.push("Description is required");
     if (!price) errorArr.push("Price per day is required");
 
-    if (errors.length > 0) {
+    if (errorArr.length > 0) {
         let err = new Error('oopsie')
         err.errors = errorArr
         err.statusCode = 400
@@ -321,13 +355,14 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
 })
 
 //error handling
-router.use((err, req, res, next) => {
-    res.status = err.statusCode || 500
-    res.send({
-        error: err.message,
-        statusCode: res.status
-    })
-})
+// router.use((err, req, res, next) => {
+//     res.status = err.statusCode || 500
+//     res.send({
+//         error: err.message,
+//         errors: err.errors,
+//         statusCode: res.status
+//     })
+// })
 
 
 module.exports = router;
