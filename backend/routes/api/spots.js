@@ -112,6 +112,59 @@ router.get('/', async (req, res, next) => {
 
 })
 
+//create new spot
+router.post('/', requireAuth, async (req, res, next) => {
+    const {address, city, state, country, lat, lng, name, description, price} = req.body
+    const {user} = req
+    
+    if(!address) {
+        let err = new Error('Street address is required')
+        err.statusCode = 400
+        return next(err)
+    }
+    if (!city) {
+        let err = new Error('City is required')
+        err.statusCode = 400
+        return next(err)
+    }
+    if(!state) {
+        let err = new Error('State is required')
+        err.statusCode = 400
+        return next(err)
+    }
+    if(!country) {
+        let err = new Error('Country is required')
+        err.statusCode = 400
+        return next(err)
+    }
+    if (!description) {
+        let err = new Error('Description is required')
+        err.statusCode = 400
+        return next(err)
+    }
+    if (!price) {
+        let err = new Error('Price per day is required')
+        err.statusCode = 400
+        return next(err)
+    }
+
+    let newSpot = await Spot.create({
+        ownerId: user.id,
+        address: address,
+        city: city,
+        state: state,
+        country: country,
+        lat: lat,
+        lng: lng,
+        name: name,
+        description: description,
+        price: price
+    })
+
+    res.json(newSpot)
+
+})
+
 //error handling
 router.use((err, req, res, next) => {
     res.status = err.statusCode || 500

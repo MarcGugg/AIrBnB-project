@@ -70,11 +70,38 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.STRING,
       allowNull: false
     },
-    lat: DataTypes.FLOAT,
-    lng: DataTypes.FLOAT,
+    lat: {
+      type: DataTypes.FLOAT,
+      validate: {
+        valid(val) {
+          let withoutDeci = Math.floor(val)
+          if (withoutDeci < -90 || withoutDeci > 90) {
+            throw new Error('Latitude is not valid')
+          }
+        }
+      }
+    },
+    lng: {
+      type: DataTypes.FLOAT,
+      validate: {
+        valid(val) {
+          let withoutDeci = Math.floor(val)
+          if (withoutDeci < -180 || withoutDeci > 180) {
+            throw new Error('Longitutde is not valid')
+          }
+        }
+      }
+    },
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        lessThan50chars(val) {
+          if (val.length > 50) {
+            throw new Error('Name must be less than 50 characters')
+          }
+        }
+      }
     },
     description: {
       type: DataTypes.STRING,
