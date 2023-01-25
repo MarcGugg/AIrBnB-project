@@ -249,6 +249,31 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
     res.json(spot)
 })
 
+//delete a spot
+router.delete('/:spotId', requireAuth, async (req, res, next) => {
+    const {user} = req
+    let spot = await Spot.findByPk(req.params.spotId)
+
+    if (!spot) {
+        let err = new Error('Spot not found')
+        err.statusCode = 404
+        return next(err)
+    }
+
+    if (spot.ownerId !== user.id) {
+        let err = new Error('user doesn\'t own this spot')
+        err.statusCode = 400
+        return next(err)
+    }
+
+    await spot.destroy()
+    await spot.save()
+    res.json({
+        "message": "Successfully deleted",
+        "statusCode": 200
+    })
+})
+
 //error handling
 router.use((err, req, res, next) => {
     res.status = err.statusCode || 500
