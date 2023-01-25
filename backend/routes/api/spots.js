@@ -23,6 +23,25 @@ router.get('/current', requireAuth, async(req, res, next) => {
                 ownerId: user.id
             }
         })
+
+        let Spots = []
+        for (let spot of userSpots) {
+            let spotJSON = spot.toJSON()
+            spotJSON['avgRating'] = await spot.avgRating()
+
+            Spots.push(spotJSON)
+        }
+
+        for (let spot of Spots) {
+            const previewImages = await SpotImage.findAll({
+                where: {
+                    spotId: spot.id
+                }
+            })
+        
+            //    console.log(previewImages[0])
+            spot['previewImage'] = previewImages[0].dataValues.url
+        }
         console.log('user spots',userSpots)
         if(!userSpots || userSpots.length === 0) {
             let err = new Error('user doesn\'t seem to have spots')
@@ -31,7 +50,7 @@ router.get('/current', requireAuth, async(req, res, next) => {
             return
         }
 
-        res.json(userSpots)
+        res.json(Spots)
         
     } else {
         err.statusCode = 404
@@ -98,31 +117,6 @@ router.get('/', async (req, res, next) => {
 
 })
 
-// //get all spots owned by current user
-// router.get('/current', requireAuth, async(req, res, next) => {
-//     const {user} = req
-//     if (user) {
-//         let userSpots = await Spot.findAll({
-//             where: {
-//                 ownerId: user.id
-//             }
-//         })
-
-//         if(!userSpots) {
-//             err.statusCode = 400
-//             err.message = new Error('user doesn\'t seem to have spots')
-//             next(err)
-//             return
-//         }
-
-//         res.json(userSpots)
-
-//     } else {
-//         err.statusCode = 404
-//         err.message = new Error('user not found')
-//         next(err)
-//     }
-// })
 
 //error handling
 router.use((err, req, res, next) => {
