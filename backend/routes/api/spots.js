@@ -153,33 +153,20 @@ router.post('/', requireAuth, async (req, res, next) => {
     const {address, city, state, country, lat, lng, name, description, price} = req.body
     const {user} = req
     
-    if(!address) {
-        let err = new Error('Street address is required')
-        err.statusCode = 400
-        return next(err)
-    }
-    if (!city) {
-        let err = new Error('City is required')
-        err.statusCode = 400
-        return next(err)
-    }
-    if(!state) {
-        let err = new Error('State is required')
-        err.statusCode = 400
-        return next(err)
-    }
-    if(!country) {
-        let err = new Error('Country is required')
-        err.statusCode = 400
-        return next(err)
-    }
-    if (!description) {
-        let err = new Error('Description is required')
-        err.statusCode = 400
-        return next(err)
-    }
-    if (!price) {
-        let err = new Error('Price per day is required')
+    const errorArr = []
+    if (!address) errorArr.push("Street address is required");
+    if (!city) errorArr.push("City is required");
+    if (!state) errorArr.push("State is required");
+    if (!country) errorArr.push("Country is required");
+    if (!lat) errorArr.push("Latitude is not valid");
+    if (!lng) errorArr.push("Longitude is not valid");
+    if (!name) errorArr.push("Name must be less than 50 characters");
+    if (!description) errorArr.push("Description is required");
+    if (!price) errorArr.push("Price per day is required");
+
+    if (errors.length > 0) {
+        let err = new Error('oopsie')
+        err.errors = errorArr
         err.statusCode = 400
         return next(err)
     }
@@ -199,6 +186,67 @@ router.post('/', requireAuth, async (req, res, next) => {
 
     res.json(newSpot)
 
+})
+
+//edit a spot
+router.put('/:spotId', requireAuth, async (req, res, next) => {
+    const {
+        address,
+        city,
+        state,
+        country,
+        lat,
+        lng,
+        name,
+        description,
+        price
+    } = req.body
+
+    const {user} = req
+    
+    const errorArr = []
+    if (!address) errorArr.push("Street address is required");
+    if (!city) errorArr.push("City is required");
+    if (!state) errorArr.push("State is required");
+    if (!country) errorArr.push("Country is required");
+    if (!lat) errorArr.push("Latitude is not valid");
+    if (!lng) errorArr.push("Longitude is not valid");
+    if (!name) errorArr.push("Name must be less than 50 characters");
+    if (!description) errorArr.push("Description is required");
+    if (!price) errorArr.push("Price per day is required");
+
+    if (errors.length > 0) {
+        let err = new Error('oopsie')
+        err.errors = errorArr
+        err.statusCode = 400
+        return next(err)
+    }
+
+    let spot = await Spot.findByPk(req.params.spotId)
+    
+    if (!spot) {
+        let err = new Error('Spot not found')
+        err.statusCode = 404
+        return next(err)
+    }
+
+    if (spot.ownerId !== user.id) {
+        let err = new Error('user doesn\'t own this spot')
+        err.statusCode = 404
+        return next(err)
+    }
+
+    spot.address = address
+    spot.city = city
+    spot.state = state
+    spot.country = country
+    spot.lat = lat
+    spot.lng = lng
+    spot.name = name
+    spot.description = description
+    spot.price = price
+
+    res.json(spot)
 })
 
 //error handling
