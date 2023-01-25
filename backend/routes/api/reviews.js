@@ -23,3 +23,5 @@ router.use((err, req, res, next) => {
         statusCode: res.status
     })
 })
+
+module.exports = router;
