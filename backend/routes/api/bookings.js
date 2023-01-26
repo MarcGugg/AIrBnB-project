@@ -70,6 +70,56 @@ router.get('/current', requireAuth, async (req, res, next) => {
     res.json({"Bookings": bookingsArr})
 })
 
+//edit a booking
+router.put('/:bookingId', requireAuth, async (req, res, next) => {
+    const {user} = req
+    let {startDate, endDate} = req.body
+    startDate = new Date(startDate)
+    endDate = new Date(endDate)
 
+    let booking = await Booking.findByPk(req.params.bookingId)
+
+    if (!booking) {
+        let err = new Error('Booking couldn\'t be found')
+        err.status = 404
+        return next(err)
+    }
+
+    if ((new Date()) > endDate) {
+        let err = new Error('Past bookings can\'t be edited')
+        err.status = 403
+        return next(err)
+    }
+
+
+    let spotBookings = await Booking.findAll({
+        where: {
+            spotId: booking.spotId
+        }
+    })
+    
+    let errorArr = []
+    for (let booking of spotBookings) {
+        if (startDate >= booking.toJSON().startDate && startDate < booking.toJSON().endDate) {
+            errorArr.push('Start date overlaps with another booking')
+        }
+        if (endDate > booking.toJSON().startDate && endDate <= booking.toJSON().endDate) {
+            errorArr.push('End date overlaps with another booking')
+        }
+    }
+    
+    if (errorArr.length) {
+        let err = new Error('Validation error')
+        err.errors = errorArr
+        err.statusCode = 400
+        return next(err)   
+    }
+
+    booking.startDate = startDate
+    booking.endDate = endDate
+
+    res.json(booking)
+
+})
 
 module.exports = router;
