@@ -11,6 +11,7 @@ const {SpotImage} = require('../../db/models')
 const {Review} = require('../../db/models')
 const {requireAuth} = require('../../utils/auth');
 const review = require('../../db/models/review');
+const {Booking} = require('../../db/models');
 
 //spots owned by current user
 router.get('/current', requireAuth, async (req, res, next) => {
@@ -53,6 +54,43 @@ router.get('/current', requireAuth, async (req, res, next) => {
         err.statusCode(404)
         next(err)
     }
+})
+
+//get bookings by spot id
+router.get('/:spotId/bookings', requireAuth, async (req, res, next) => {
+    const {user} = req
+    const spot = await Spot.findByPk(req.params.spotId)
+
+    if (!spot) {
+        let err = new Error('Spot couldn\'t be found')
+        err.status(404)
+        return next(err)
+    }
+
+    if (spot.ownerId !== user.id) {
+        let spotBookings = await Booking.findAll({
+            where: {
+                spotId: spot.id
+            },
+            attributes: ['spotId', 'startDate', 'endDate']
+        })
+
+        res.json({"Bookings":spotBookings})
+        return;
+    }
+
+    let spotBookings = await Booking.findAll({
+        where: {
+            spotId: user.id
+        },
+        include: {
+            model: User,
+            attributes: ['id', 'firstName', 'lastName']
+        }
+    })
+
+    res.json({"Bookings": spotBookings})
+
 })
 
 //get reviews for spot by id
