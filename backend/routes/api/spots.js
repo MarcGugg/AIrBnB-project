@@ -10,8 +10,9 @@ const {Spot} = require('../../db/models')
 const {SpotImage} = require('../../db/models')
 const {Review} = require('../../db/models')
 const {requireAuth} = require('../../utils/auth');
-const review = require('../../db/models/review');
+// const review = require('../../db/models/review');
 const {Booking} = require('../../db/models');
+const {Op} = require('sequelize')
 
 //spots owned by current user
 router.get('/current', requireAuth, async (req, res, next) => {
@@ -194,6 +195,54 @@ router.get('/', async (req, res, next) => {
 
     res.json(spotsArr)
 
+})
+
+//create booking by spot id
+router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
+    const {user} = req
+    let {startDate, endDate} = req.body
+    startDate = new Date(startDate)
+    endDate = new Date(endDate)
+
+    let spot = await Spot.findByPk(req.params.spotId)
+
+    if (!spot) {
+        let err = new Error('Spot couldn\'t be found')
+        err.status(404)
+        return next(err)
+    }
+
+    let spotBookings = await Booking.findAll({
+        where: {
+            spotId: spot.id
+        }
+    })
+    
+    let errorArr = []
+    for (let booking of spotBookings) {
+        if (startDate >= booking.dataValues.startDate && startDate < booking.dataValues.endDate) {
+            errorArr.push('Start date overlaps with another booking')
+        }
+        if (endDate > booking.dataValues.startDate && endDate <= booking.dataValues.endDate) {
+            errorArr.push('End date overlaps with another booking')
+        }
+    }
+    
+    if (errorArr.length) {
+        let err = new Error('Validation error')
+        err.errors = errorArr
+        err.statusCode = 400
+        return next(err)   
+    }
+
+    let newBooking = await Booking.create({
+        spotId: spot.id,
+        userId: user.id,
+        startDate: startDate,
+        endDate: endDate
+    }) 
+
+    res.json(newBooking)
 })
 
 //add image to spot
