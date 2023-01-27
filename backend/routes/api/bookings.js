@@ -63,8 +63,9 @@ router.get('/current', requireAuth, async (req, res, next) => {
         bookingsArr.push(bookingJSON)
     }
     if (!userBookings) {
-        res.json('user has no bookings')
-        return
+        let err = new Error('User has no bookings')
+        err.status = 404
+        return next(err)
     }
 
     res.json({"Bookings": bookingsArr})
@@ -117,7 +118,7 @@ router.put('/:bookingId', requireAuth, async (req, res, next) => {
     if (errorArr.length) {
         let err = new Error('Validation error')
         err.errors = errorArr
-        err.statusCode = 400
+        err.status = 400
         return next(err)   
     }
 

@@ -111,7 +111,7 @@ router.put('/:reviewId', requireAuth, async (req, res, next) => {
     if (!stars || stars < 1 || stars > 5) errorArr.push('Stars must be an integer from 1 to 5')
     if (errorArr.length) {
         let err = new Error('Validation error')
-        err.statusCode = 400
+        err.status = 400
         err.errors = errorArr
         return next(err)
     }
@@ -120,7 +120,7 @@ router.put('/:reviewId', requireAuth, async (req, res, next) => {
 
     if (!changedReview) {
         let err = new Error('Review couldn\'t be found')
-        err.statusCode = 404
+        err.status = 404
         return next(err)
     }
 
@@ -144,13 +144,13 @@ router.delete('/:reviewId', requireAuth, async (req, res, next) => {
 
     if (!review) {
         let err = new Error('Review couldn\'t be found')
-        err.statusCode = 404
+        err.status = 404
         return next(err)
     }
 
     if (review.userId !== user.id) {
         let err = new Error('user didn\'t write this review')
-        err.statusCode = 400
+        err.status = 400
         return next(err)
     }
 
