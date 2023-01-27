@@ -16,6 +16,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Booking.init({
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
+    },
     spotId: {
       type: DataTypes.INTEGER,
       references: {model: 'Spots', key: 'id'},
@@ -34,7 +40,14 @@ module.exports = (sequelize, DataTypes) => {
     },
     endDate: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notLessThanStart(val) {
+          if (val <= this.startDate) {
+            throw new Error('End date cannot be on or before start date')
+          }
+        }
+      }
     }
   }, {
     sequelize,

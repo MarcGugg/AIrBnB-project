@@ -15,34 +15,40 @@ module.exports = {
         {
           spotId: 1,
           userId: 3,
-          startDate: new Date(),
-          endDate: new Date(),
+          startDate: new Date(2022, 0, 3),
+          endDate: new Date(2022, 0, 6),
         },
         {
           spotId: 2,
           userId: 3,
-          startDate: new Date(),
-          endDate: new Date(),
+          startDate: new Date(2022, 0, 10),
+          endDate: new Date(2022, 0, 17),
         },
         {
           spotId: 1,
           userId: 2,
-          startDate: new Date(),
-          endDate: new Date(),
+          startDate: new Date(2022, 0, 10),
+          endDate: new Date(2022, 0, 15),
         },
         {
           spotId: 2,
           userId: 1,
-          startDate: new Date(),
-          endDate: new Date(),
+          startDate: new Date(2023, 1, 3),
+          endDate: new Date(2023, 1, 10),
         },
 
         {
           spotId: 1,
           userId: 3,
-          startDate: new Date(),
-          endDate: new Date(),
+          startDate: new Date(2023, 1, 15),
+          endDate: new Date(2023, 1, 16),
         },
+        {
+          spotId: 1,
+          userId: 1,
+          startDate: new Date(2023, 0, 24),
+          endDate: new Date(2023, 0, 28),
+        }
       ],
       {}
     );

@@ -10,6 +10,7 @@ const {Spot} = require('../../db/models')
 const {SpotImage} = require('../../db/models')
 const {requireAuth} = require('../../utils/auth');
 const {Review }= require('../../db/models');
+const {ReviewImage }= require('../../db/models');
 const spot = require('../../db/models/spot');
 
 
@@ -67,14 +68,99 @@ router.get('/current', requireAuth, async (req, res, next) => {
 
 })
 
+router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
+    const {url} = req.body
+    
+    const review = await Review.findByPk(req.params.reviewId)
 
-//error handling
-router.use((err, req, res, next) => {
-    res.status = err.statusCode || 500
-    res.send({
-        error: err.message,
-        statusCode: res.status
+    if (!review) {
+        let err = new Error("Review couldn\'t be found")
+        err.statusCode = 404
+        return next(err)
+    }
+    
+    let reviewImages = await review.getReviewImages()
+    if (reviewImages.length >=10) {
+        let err = new Error("Maximum number of images for this resource was reached")
+        err.statusCode = 403
+        return next(err)
+    }
+    
+    let newReviewImage = await ReviewImage.create({
+        reviewId: req.params.reviewId,
+        url: url
+    })
+
+    const mostRecentReviewImage = await ReviewImage.findAll({
+        where: {
+            reviewId: req.params.reviewId
+        },
+        attributes: ['id', 'url'],
+        order: [['id', 'DESC']],
+        limit: 1
+    })
+    res.json(mostRecentReviewImage)
+})
+
+router.put('/:reviewId', requireAuth, async (req, res, next) => {
+    const {review, stars} = req.body
+    
+    let errorArr = []
+    if (!review) errorArr.push('Review text is required')
+    if (!stars || stars < 1 || stars > 5) errorArr.push('Stars must be an integer from 1 to 5')
+    if (errorArr.length) {
+        let err = new Error('Validation error')
+        err.statusCode = 400
+        err.errors = errorArr
+        return next(err)
+    }
+
+    let changedReview = await Review.findByPk(req.params.reviewId)
+
+    if (!changedReview) {
+        let err = new Error('Review couldn\'t be found')
+        err.statusCode = 404
+        return next(err)
+    }
+
+    changedReview.review = review
+    changedReview.stars = stars
+
+    res.json(changedReview)
+})
+
+router.delete('/:reviewId', requireAuth, async (req, res, next) => {
+    const {user} = req
+    const review = await Review.findByPk(req.params.reviewId)
+
+    if (!review) {
+        let err = new Error('Review couldn\'t be found')
+        err.statusCode = 404
+        return next(err)
+    }
+
+    if (review.userId !== user.id) {
+        let err = new Error('user didn\'t write this review')
+        err.statusCode = 400
+        return next(err)
+    }
+
+    await review.destroy()
+    await review.save()
+
+    res.json({
+        "message": "Successfully deleted",
+        "statusCode": 200
     })
 })
+
+//error handling
+// router.use((err, req, res, next) => {
+//     res.status = err.statusCode || 500
+//     res.send({
+//         error: err.message,
+//         statusCode: res.status
+//     })
+// })
 
 module.exports = router;
