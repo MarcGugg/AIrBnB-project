@@ -104,6 +104,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
 
 router.put('/:reviewId', requireAuth, async (req, res, next) => {
     const {review, stars} = req.body
+    const {user} = req
     
     let errorArr = []
     if (!review) errorArr.push('Review text is required')
@@ -123,8 +124,16 @@ router.put('/:reviewId', requireAuth, async (req, res, next) => {
         return next(err)
     }
 
+    if (changedReview.userId !== user.id) {
+        let err = new Error('User didn\'t write this review')
+        err.status = 403
+        return next(err)
+    }
+
     changedReview.review = review
     changedReview.stars = stars
+
+    await changedReview.save()
 
     res.json(changedReview)
 })
