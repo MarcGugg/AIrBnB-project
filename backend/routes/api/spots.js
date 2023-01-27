@@ -26,7 +26,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
 
         if (!userSpots) {
             let err = new Error('user doesn\'t seem to have any spots')
-            err.statusCode = 400
+            err.status = 400
             next(err)
             return
         }
@@ -55,7 +55,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
 
     } else {
         let err = new Error('user not found')
-        err.statusCode(404)
+        err.status = 404
         next(err)
     }
 })
@@ -67,7 +67,7 @@ router.get('/:spotId/bookings', requireAuth, async (req, res, next) => {
 
     if (!spot) {
         let err = new Error('Spot couldn\'t be found')
-        err.status(404)
+        err.status = 404
         return next(err)
     }
 
@@ -102,7 +102,7 @@ router.get('/:spotId/reviews', async (req, res, next) => {
     const spot = await Spot.findByPk(req.params.spotId)
     if (!spot) {
         let err = new Error('Spot couldn\'t be found')
-        err.statusCode = 404
+        err.status = 404
         return next(err)
     }
 
@@ -169,7 +169,7 @@ router.get('/:spotId', async (req, res, next) => {
         res.json(spotJSON)
     } else {
         err.message = new Error("Spot not found")
-        err.statusCode = 404
+        err.status = 404
         next(err) 
     }
 })
@@ -247,7 +247,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
 
     if (!spot) {
         let err = new Error('Spot couldn\'t be found')
-        err.status(404)
+        err.status = 404
         return next(err)
     }
 
@@ -270,7 +270,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
     if (errorArr.length) {
         let err = new Error('Validation error')
         err.errors = errorArr
-        err.statusCode = 400
+        err.status = 400
         return next(err)   
     }
 
@@ -291,12 +291,12 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
     const spot = await Spot.findByPk(req.params.spotId)
     if (!spot) {
         let err = new Error('Spot not found')
-        err.statusCode = 404
+        err.status = 404
         return next(err)
     }
     if (spot.ownerId !== user.id) {
         let err = new Error('User doesn\'t own this spot')
-        err.statusCode = 400
+        err.status = 400
         return next(err)
     }
 
@@ -329,7 +329,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
 
     if (!spot) {
         let err = new Error('Spot couldn\'t be found')
-        err.statusCode = 404
+        err.status = 404
         return next(err)
     }
 
@@ -339,7 +339,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
     
     if (errorArr.length > 0) {
         let err = new Error('tsk tsk')
-        err.statusCode = 400
+        err.status = 400
         err.errors = errorArr
         return next(err)
     }
@@ -373,7 +373,7 @@ router.post('/', requireAuth, async (req, res, next) => {
     if (errorArr.length > 0) {
         let err = new Error('oopsie')
         err.errors = errorArr
-        err.statusCode = 400
+        err.status = 400
         return next(err)
     }
 
@@ -424,7 +424,7 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
     if (errorArr.length > 0) {
         let err = new Error('oopsie')
         err.errors = errorArr
-        err.statusCode = 400
+        err.status = 400
         return next(err)
     }
 
@@ -432,13 +432,13 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
     
     if (!spot) {
         let err = new Error('Spot not found')
-        err.statusCode = 404
+        err.status = 404
         return next(err)
     }
 
     if (spot.ownerId !== user.id) {
         let err = new Error('user doesn\'t own this spot')
-        err.statusCode = 404
+        err.status = 404
         return next(err)
     }
 
@@ -462,13 +462,13 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
 
     if (!spot) {
         let err = new Error('Spot not found')
-        err.statusCode = 404
+        err.status = 404
         return next(err)
     }
 
     if (spot.ownerId !== user.id) {
         let err = new Error('user doesn\'t own this spot')
-        err.statusCode = 400
+        err.status = 400
         return next(err)
     }
 

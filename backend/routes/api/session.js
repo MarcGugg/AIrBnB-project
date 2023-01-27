@@ -71,7 +71,7 @@ router.get('/', requireAuth, async(req, res, next) => {
     } catch{
         // res.status(404)
         const err = new Error('User not found')
-        err.statusCode = 404
+        err.status = 404
         next(err)
     }
     

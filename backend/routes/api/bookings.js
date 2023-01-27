@@ -63,8 +63,9 @@ router.get('/current', requireAuth, async (req, res, next) => {
         bookingsArr.push(bookingJSON)
     }
     if (!userBookings) {
-        res.json('user has no bookings')
-        return
+        let err = new Error('User has no bookings')
+        err.status = 404
+        return next(err)
     }
 
     res.json({"Bookings": bookingsArr})
@@ -82,6 +83,12 @@ router.put('/:bookingId', requireAuth, async (req, res, next) => {
     if (!booking) {
         let err = new Error('Booking couldn\'t be found')
         err.status = 404
+        return next(err)
+    }
+
+    if (booking.userId !== user.id) {
+        let err = new Error('User didn\'t make this booking')
+        err.status = 403
         return next(err)
     }
 
@@ -111,12 +118,14 @@ router.put('/:bookingId', requireAuth, async (req, res, next) => {
     if (errorArr.length) {
         let err = new Error('Validation error')
         err.errors = errorArr
-        err.statusCode = 400
+        err.status = 400
         return next(err)   
     }
 
     booking.startDate = startDate
     booking.endDate = endDate
+
+    await booking.save()
 
     res.json(booking)
 
@@ -141,7 +150,7 @@ router.delete('/:bookingId', requireAuth, async (req, res, next) => {
     let bookingSpot = await booking.getSpot()
     // console.log(bookingSpot)
 
-    if (booking.userId !== user.id && bookingSpot.dataValues.ownerId !== user.id) {
+    if (booking.userId !== user.id && bookingSpot.toJSON().ownerId !== user.id) {
         let err = new Error('user cannot delete this booking')
         err.status = 403
         return next(err)
