@@ -56,9 +56,13 @@ router.get('/current', requireAuth, async (req, res, next) => {
 
         let previewImages = await booking.Spot.getSpotImages()
         // console.log(previewImages)
-        let imageJSON = previewImages[0].toJSON()
-        // console.log(imageJSON)
-        bookingJSON.Spot['previewImage'] = imageJSON.url
+        if (previewImages) {
+            let imageJSON = previewImages[0].toJSON()
+            // console.log(imageJSON)
+            bookingJSON.Spot['previewImage'] = imageJSON.url
+        } else {
+            bookingJSON.Spot['previewImage'] = null
+        }
 
         bookingsArr.push(bookingJSON)
     }
