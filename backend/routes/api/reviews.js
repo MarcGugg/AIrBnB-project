@@ -103,7 +103,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
         order: [['id', 'DESC']],
         limit: 1
     })
-    res.json(mostRecentReviewImage)
+    res.json(mostRecentReviewImage[0])
 })
 
 router.put('/:reviewId', requireAuth, async (req, res, next) => {
