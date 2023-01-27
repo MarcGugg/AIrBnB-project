@@ -39,13 +39,16 @@ router.get('/current', requireAuth, async (req, res, next) => {
         }
         
         for (let spot of Spots) {
-            let previewImages = await SpotImage.findAll({
+            let previewImage = await SpotImage.findOne({
                 where: {
                     spotId: spot.id
+                    // preview: true
                 }
             })
 
-            spot['previewImage'] = previewImages[0].dataValues.url
+            // if (previewImage) {
+                spot['previewImage'] = previewImage.toJSON().url
+            // }
         }
         
         res.json({"Spots":Spots})
