@@ -338,7 +338,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
     if (!stars || stars < 1 || stars > 5) errorArr.push('Stars must be an integer from 1 to 5')
     
     if (errorArr.length > 0) {
-        let err = new Error('tsk tsk')
+        let err = new Error('Validation error')
         err.status = 400
         err.errors = errorArr
         return next(err)
@@ -366,12 +366,12 @@ router.post('/', requireAuth, async (req, res, next) => {
     if (!country) errorArr.push("Country is required");
     if (!lat) errorArr.push("Latitude is not valid");
     if (!lng) errorArr.push("Longitude is not valid");
-    if (!name) errorArr.push("Name must be less than 50 characters");
+    if (!name) errorArr.push("Name is required");
     if (!description) errorArr.push("Description is required");
     if (!price) errorArr.push("Price per day is required");
 
     if (errorArr.length > 0) {
-        let err = new Error('oopsie')
+        let err = new Error('Validation error')
         err.errors = errorArr
         err.status = 400
         return next(err)
