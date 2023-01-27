@@ -20,6 +20,10 @@ router.get('/current', requireAuth, async (req, res, next) => {
     const userReviews = await Review.findAll({
         where: {
             userId: user.id
+        },
+        include: {
+            model: User,
+            attributes: ['id', 'firstName', 'lastName']
         }
     })
 
