@@ -186,8 +186,8 @@ router.get('/', async (req, res, next) => {
         return next(err)
     }
     
-    if (!size) size = 20
-    if (!page) page = 1
+    if (!size || size > 20) size = 20
+    if (!page || page > 10) page = 1
 
     pagination.limit = size
     pagination.offset = (page - 1) * size
