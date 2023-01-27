@@ -149,7 +149,7 @@ router.delete('/:bookingId', requireAuth, async (req, res, next) => {
     let bookingSpot = await booking.getSpot()
     // console.log(bookingSpot)
 
-    if (booking.userId !== user.id && bookingSpot.dataValues.ownerId !== user.id) {
+    if (booking.userId !== user.id && bookingSpot.toJSON().ownerId !== user.id) {
         let err = new Error('user cannot delete this booking')
         err.status = 403
         return next(err)
