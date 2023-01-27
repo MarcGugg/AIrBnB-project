@@ -173,7 +173,28 @@ router.get('/:spotId', async (req, res, next) => {
 
 //get all spots
 router.get('/', async (req, res, next) => {
-    let spots = await Spot.findAll()
+    let {page, size} = req.query
+    let pagination = {}
+    if (size < 0) {
+        let err = new Error('size can\'t be less than 0')
+        err.status = 403
+        return next(err)
+    }
+    if (page < 0) {
+        let err = new Error('page can\'t be less than 0')
+        err.status = 403
+        return next(err)
+    }
+    
+    if (!size) size = 20
+    if (!page) page = 1
+
+    pagination.limit = size
+    pagination.offset = (page - 1) * size
+
+    let spots = await Spot.findAll({
+        ...pagination
+    })
 
     let spotsArr = []
     for (let spot of spots) {
@@ -183,15 +204,30 @@ router.get('/', async (req, res, next) => {
     }
 
     for (let spot of spotsArr) {
-       const previewImages = await SpotImage.findAll({
-        where: {
-            spotId: spot.id
+        let previewImage = await SpotImage.findOne({
+            where: {
+                spotId: spot.id,
+                preview: true
+            }
+        })
+        if (previewImage) {
+            spot['previewImage'] = previewImage.toJSON().url
         }
-       })
-
-    //    console.log(previewImages[0])
-       spot['previewImage'] = previewImages[0].dataValues.url
     }
+
+    // for (let spot of spotsArr) {
+    //    const previewImages = await SpotImage.findAll({
+    //     where: {
+    //         spotId: spot.id
+    //     }
+    //    })
+    // //    let imageJSON = previewImages[0].toJSON()
+    // //    spot['previewImage'] = imageJSON.url
+    //    if (previewImages[0].dataValues) {
+    //        console.log(previewImages[0])
+    //        spot['previewImage'] = previewImages[0].dataValues.url
+    //    }
+    // }
 
     res.json(spotsArr)
 
