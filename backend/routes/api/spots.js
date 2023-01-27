@@ -164,7 +164,7 @@ router.get('/:spotId', async (req, res, next) => {
             exclude: ['createdAt', 'updatedAt', 'username']
         }
     })
-    spotJSON['avgStarRating'] = await spot.avgRating()
+    spotJSON['avgRating'] = await spot.avgRating()
     if (spot) {
         res.json(spotJSON)
     } else {
@@ -215,6 +215,8 @@ router.get('/', async (req, res, next) => {
         })
         if (previewImage) {
             spot['previewImage'] = previewImage.toJSON().url
+        } else {
+            spot['previewImage'] = null
         }
     }
 
