@@ -60,9 +60,8 @@ module.exports = {
     return queryInterface.bulkDelete(
       options,
       {
-        startDate: {
-          [Op.startsWith]: ['20%'],
-        },
+        spotId: 
+          [1, 2],
       },
       {}
     );
