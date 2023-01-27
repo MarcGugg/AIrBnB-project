@@ -85,6 +85,12 @@ router.put('/:bookingId', requireAuth, async (req, res, next) => {
         return next(err)
     }
 
+    if (booking.userId !== user.id) {
+        let err = new Error('User didn\'t make this booking')
+        err.status = 403
+        return next(err)
+    }
+
     if ((new Date()) > endDate) {
         let err = new Error('Past bookings can\'t be edited')
         err.status = 403
