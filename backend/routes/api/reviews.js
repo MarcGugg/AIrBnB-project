@@ -46,7 +46,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
         reviewJSON['Spot'] = spot.toJSON()
         if (spotImages.length) {
             let spotImagesJSON = spotImages[0].toJSON()
-            console.log(reviewJSON['Spot'])
+            // console.log(reviewJSON['Spot'])
             reviewJSON.Spot['previewImage'] = spotImagesJSON.url
         }
         
