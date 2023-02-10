@@ -55,7 +55,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
         // console.log(bookingJSON)
 
         let previewImages = await booking.Spot.getSpotImages()
-        console.log(previewImages[0])
+        // console.log(previewImages[0])
         if (previewImages[0] === undefined) {
             bookingJSON.Spot['previewImage'] = null
         } else {
