@@ -11,6 +11,7 @@ function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
   return (
+    <div>
     <ul>
       <li>
         <NavLink exact to="/">Home</NavLink>
@@ -21,6 +22,8 @@ function Navigation({ isLoaded }){
         </li>
       )}
     </ul>
+    <NavLink to='/spots'>Create new Spot</NavLink>
+    </div> //ul is boilerplate. div is not
   );
 }
 

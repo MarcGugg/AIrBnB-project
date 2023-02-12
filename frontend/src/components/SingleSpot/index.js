@@ -13,7 +13,7 @@ export default function SingleSpot() {
         dispatch(getSingleSpot(spotId))
     }, [dispatch])
     
-
+    if (Object.keys(spot).length === 0) return null
     return (
         <>
         <div>

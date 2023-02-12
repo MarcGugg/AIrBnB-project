@@ -5,6 +5,8 @@ import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import CreateNewSpot from "../CreateNewSpot";
+import { Link } from "react-router-dom";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -42,6 +44,11 @@ function ProfileButton({ user }) {
 
   return (
     <>
+    {/*  */}
+    {user? (
+      <Link to='/spots'>Create a new spot</Link>
+    ) : (<></>)}
+    {/*  */}
       <button onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>
