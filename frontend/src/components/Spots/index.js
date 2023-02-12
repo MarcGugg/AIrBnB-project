@@ -16,6 +16,7 @@ export default function Spots() {
         dispatch(getAllSpots())
     }, [dispatch])
 
+
     return (
         <>
         <div>Spots</div>
