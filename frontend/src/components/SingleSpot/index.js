@@ -9,6 +9,7 @@ import './SingleSpot.css'
 export default function SingleSpot() {
     const {spotId} = useParams()
     const spot = useSelector((state) => state.spots.singleSpot)
+    debugger
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -22,9 +23,11 @@ export default function SingleSpot() {
             <div className='spotName'>
             {spot.name}
             </div>
-            <img src={spot.SpotImages[0].url} style={{width: 700, height: 500}} className='image'/>
+            <div className='image'>
+            <img src={spot.SpotImages[0].url} style={{width: 700, height: 500}}/>
+            </div>
             <div className='spotOwner'>
-            {spot.owner}
+            hosted by: {spot.Owner.firstName} {spot.Owner.lastName}
             </div>
             <div className='spotDescription'>
             {spot.description}
