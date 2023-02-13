@@ -14,28 +14,28 @@ module.exports = {
       [
         {
           ownerId: 1,
-          address: "123 Disney Lane",
+          address: "123 House Lane",
           city: "Anaheim",
           state: "CA",
           country: "United States of America",
           lat: 37.7645358,
           lng: -122.4730327,
-          name: "Apartment Near Disneyland",
+          name: "Totally Safe House",
           description:
-            "This is a sample description of what this building will be like",
+            "There is nothing suspicious about this house please come stay here.",
           price: 100.0,
         },
         {
           ownerId: 2,
-          address: "456 Gamble St",
-          city: "Las Vegas",
-          state: "NV",
+          address: "90 5th Ave",
+          city: "NYC",
+          state: "NY",
           country: "United States of America",
           lat: 40.7645358,
           lng: -60.4730327,
-          name: "House Near The Strip",
+          name: "App Academy",
           description:
-            "Come party at this Vegas house. Here are some details about the house.",
+            "Abandon hope all ye who enter here.",
           price: 250.0,
         },
         {
@@ -46,7 +46,7 @@ module.exports = {
           country: "United States of America",
           lat: 31.7645984,
           lng: -142.47335627,
-          name: "Apartment Near The Void",
+          name: "House Near The Void",
           description:
             "This is a sample description of what this building will be like",
           price: 100.0,

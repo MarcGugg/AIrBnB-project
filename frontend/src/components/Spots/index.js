@@ -16,7 +16,7 @@ export default function Spots() {
         dispatch(getAllSpots())
     }, [dispatch])
 
-
+    if(!Object.values(spots).length) return null
     return (
         <>
         <div>Spots</div>

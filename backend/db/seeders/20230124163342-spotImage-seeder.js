@@ -14,33 +14,48 @@ module.exports = {
       [
         {
           spotId: 1,
-          url: "www.picture1spot1.com",
+          url: "https://charlotte.axios.com/wp-content/uploads/2022/11/435-Beaumont-Ave-exterior.jpg",
           preview: true,
         },
         {
           spotId: 1,
-          url: "www.picture2spot1.com",
+          url: "https://charlotte.axios.com/wp-content/uploads/2022/11/435-Beaumont-Ave-living-room.jpg",
           preview: false,
         },
         {
           spotId: 1,
-          url: "www.picture3spot1.com",
+          url: "https://charlotte.axios.com/wp-content/uploads/2022/11/435-Beaumont-Ave-kitchen.jpg",
           preview: false,
         },
         {
           spotId: 2,
-          url: "www.picture1spot2.com",
+          url: "https://s3-media0.fl.yelpcdn.com/bphoto/eRV3EtGh3sdmhslYqSacyg/o.jpg",
           preview: true,
         },
         {
           spotId: 2,
-          url: "www.picture2spot2.com",
+          url: "https://s3-media0.fl.yelpcdn.com/bphoto/u3RjQ0E6K8viHxse8qkKjw/o.jpg",
           preview: false,
         },
         {
           spotId: 2,
-          url: "www.picture3spot2.com",
+          url: "https://commercialobserver.com/wp-content/uploads/sites/3/2015/04/90-fifth-avenue.jpg?quality=80&w=370",
           preview: false,
+        },
+        {
+          spotId: 3,
+          url: 'https://charlotte.axios.com/wp-content/uploads/2022/11/1820-Herrin-Ave-exterior.jpg',
+          preview: true,
+        },
+        {
+          spotId: 3,
+          url: 'https://charlotte.axios.com/wp-content/uploads/2022/11/1820-Herrin-Ave-living-room.jpg',
+          preview: true,
+        },
+        {
+          spotId: 3,
+          url: 'https://charlotte.axios.com/wp-content/uploads/2022/11/1820-Herrin-Ave-kitchen.jpgg',
+          preview: true,
         },
       ],
       {}
