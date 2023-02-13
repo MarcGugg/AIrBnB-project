@@ -54,7 +54,7 @@ export const createNewSpot = (newSpotDetails) => async (dispatch) => {
 
     if (res.ok) {
         const newSpot = await res.json()
-
+        dispatch(createSpot(newSpot))
     }
 
 
