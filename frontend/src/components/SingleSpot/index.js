@@ -18,7 +18,7 @@ export default function SingleSpot() {
         <>
         <div>
             {spot.name}
-            <img src={spot.SpotImages[0].url}/>
+            <img src={spot.SpotImages[0].url} style={{width: 700, height: 500}}/>
             {spot.owner}
             {spot.description}
         </div>

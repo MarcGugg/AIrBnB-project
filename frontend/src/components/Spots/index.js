@@ -21,7 +21,7 @@ export default function Spots() {
         <>
         <div>Spots</div>
         {spots && Object.values(spots).map(spot => (<Link key={spot.id} to={`spots/${spot.id}`}>{spot.name} 
-            <img src={spot.previewImage}/>
+            <img src={spot.previewImage} style={{width: 300, height: 300}}/>
             <p>{spot.price}/Night</p>
             <p>{spot.address}</p>
             <p>{spot.city}</p>
