@@ -12,17 +12,17 @@ function Navigation({ isLoaded }){
 
   return (
     <div>
-    <ul>
-      <li>
+    <ul className='navBar'>
+      <li className='homeButton'>
         <NavLink exact to="/">Home</NavLink>
       </li>
       {isLoaded && (
-        <li>
+        <li className='profileButton'>
           <ProfileButton user={sessionUser} />
         </li>
       )}
     </ul>
-    <NavLink to='/spots'>Create new Spot</NavLink>
+    {/* <NavLink className='createSpotButton' to='/spots'>Create new Spot</NavLink> */}
     </div> //ul is boilerplate. div is not
   );
 }

@@ -8,6 +8,8 @@ import SignupFormModal from '../SignupFormModal';
 import CreateNewSpot from "../CreateNewSpot";
 import { Link } from "react-router-dom";
 
+import './Navigation.css'
+
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
@@ -46,7 +48,7 @@ function ProfileButton({ user }) {
     <>
     {/*  */}
     {user? (
-      <Link to='/spots'>Create a new spot</Link>
+      <Link className="createSpotButton" to='/spots'>Create a new spot</Link>
     ) : (<></>)}
     {/*  */}
       <button onClick={openMenu}>
