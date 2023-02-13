@@ -28,7 +28,7 @@ export default function UserSpots() {
                         <img src={spot.previewImage} style={{width: 700, height: 500}}/>
                     </p>
                     <p>{spot.address}</p>
-                    <p>{spot.city}</p>
+                    <p>{spot.city}, {spot.state}</p>
                     <p>{spot.description}</p>
                     <p>{spot.price} /night</p>
                     </li>)}
