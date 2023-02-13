@@ -3,7 +3,7 @@ import { csrfFetch } from "./csrf"
 const GET_ALL_SPOTS = 'spots/getAllSpots'
 const GET_SINGLE_SPOT = 'spots/getOneSpot'
 const CREATE_SPOT = 'spots/createSpot'
-const ASSOCIATE_IMAGE = 'spots/associateImage'
+
 
 const loadSpots = (spots) => {
     return {
@@ -26,12 +26,6 @@ const createSpot = (newSpot) => {
     }
 }
 
-const associateImage = (data) => {
-    return {
-        type: ASSOCIATE_IMAGE,
-        data
-    }
-}
 
 export const getAllSpots = () => async (dispatch) => {
     const res = await csrfFetch('/api/spots')
@@ -53,18 +47,21 @@ export const getSingleSpot = (spotId) => async (dispatch) => {
     }
 }
 
-export const associateImageToSpot = (spot) => async (dispatch) => {
-    const res = await csrfFetch(`/api/spots/${spot.id}/images`, {
+export const associateImageToSpot = (newSpotDetails, newSpotId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/spots/${newSpotId}/images`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-            "url": spot.imageURL,
+            "url": newSpotDetails.imageURL,
             "preview": true
         })
     })
 
     if (res.ok) {
-        dispatch(associateImage(spot))
+        dispatch(getSingleSpot(newSpotId))
+        newSpotDetails.avgRating = 0
+        newSpotDetails.previewImage = newSpotDetails.imageURL
+        dispatch(createSpot(newSpotDetails))
     }
 }
 
@@ -79,8 +76,8 @@ export const createNewSpot = (newSpotDetails) => async (dispatch) => {
 
     if (res.ok) {
         const newSpot = await res.json()
-        dispatch(associateImageToSpot(newSpot))
-        dispatch(createSpot(newSpot))
+        dispatch(associateImageToSpot(newSpotDetails, newSpot.id))
+        // dispatch(createSpot(newSpot))
     }
 
 
@@ -105,13 +102,9 @@ export default function spotsReducer(state=initialState, action) {
             return newState2
         }
         case CREATE_SPOT: {
-            const newState3 = {...state}
+            const newState3 = {...state, allSpots: {...state.allSpots}}
             newState3.allSpots[action.newSpot.id] = action.newSpot
             return newState3
-        }
-        case ASSOCIATE_IMAGE: {
-            const newState4 = {...state}
-            newState4.imageURL = action.imageURL
         }
         default:
             return state
