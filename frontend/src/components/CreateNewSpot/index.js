@@ -9,21 +9,21 @@ import { createNewSpot } from '../../store/spots';
 export default function CreateNewSpot() {
     const [validationErrors, setValidationErrors] = useState([])
     const [country, setCountry] = useState('')
-    const [streetAddress, setStreetAddress] = useState('')
+    const [address, setAddress] = useState('')
     const [city, setCity] = useState('')
     const [state, setState] = useState('')
     const [description, setDescription] = useState('')
-    const [title, setTitle] = useState('')
+    const [name, setName] = useState('')
     const [price, setPrice] = useState('')
     const [imageURL, setImageURL] = useState('')
     
     const spot = {
         country,
-        streetAddress,
+        address,
         city,
         state,
         description,
-        title,
+        name,
         price,
         imageURL
     }
@@ -32,6 +32,7 @@ export default function CreateNewSpot() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        console.log('spot', spot)
 
         const errs = []
 
@@ -55,7 +56,7 @@ export default function CreateNewSpot() {
 
             <div>
             <label>Street Address
-            <input value={streetAddress} onChange={(e) => setStreetAddress(e.target.value)} type='text'/>
+            <input value={address} onChange={(e) => setAddress(e.target.value)} type='text'/>
             </label>
             </div>
 
@@ -76,7 +77,7 @@ export default function CreateNewSpot() {
 
             <div>
             <label>Title
-                <input value={title} onChange={(e) => setTitle(e.target.value)} type='text'/>
+                <input value={name} onChange={(e) => setName(e.target.value)} type='text'/>
             </label>
             </div>
 

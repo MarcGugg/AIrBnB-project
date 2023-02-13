@@ -290,6 +290,9 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
 router.post('/:spotId/images', requireAuth, async (req, res, next) => {
     const {user} = req
     const {url} = req.body
+
+    console.log('\n \n req body', req.body, '\n \n')
+
     const spot = await Spot.findByPk(req.params.spotId)
     if (!spot) {
         let err = new Error('Spot not found')
@@ -361,13 +364,15 @@ router.post('/', requireAuth, async (req, res, next) => {
     const {address, city, state, country, lat, lng, name, description, price} = req.body
     const {user} = req
     
+    // console.log('\n \n req body', req.body, '\n \n')
+
     let errorArr = []
     if (!address) errorArr.push("Street address is required");
     if (!city) errorArr.push("City is required");
     if (!state) errorArr.push("State is required");
     if (!country) errorArr.push("Country is required");
-    if (!lat) errorArr.push("Latitude is not valid");
-    if (!lng) errorArr.push("Longitude is not valid");
+    // if (!lat) errorArr.push("Latitude is not valid");
+    // if (!lng) errorArr.push("Longitude is not valid");
     if (!name) errorArr.push("Name is required");
     if (!description) errorArr.push("Description is required");
     if (!price) errorArr.push("Price per day is required");
