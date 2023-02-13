@@ -24,14 +24,14 @@ function App() {
           <Route exact path='/'>
             <Spots />
           </Route>
-          <Route path='/spots/:spotId'>
-            <SingleSpot />
-          </Route>
-          <Route path='/spots'>
+          <Route exact path='/spots'>
             <CreateNewSpot />
           </Route>
-          <Route path='/spots/current'>
+          <Route exact path='/spots/current'>
               <UserSpots />
+          </Route>
+          <Route exact path='/spots/:spotId'>
+            <SingleSpot />
           </Route>
         </Switch>
       )}

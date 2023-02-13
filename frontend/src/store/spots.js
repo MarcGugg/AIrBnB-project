@@ -3,7 +3,7 @@ import { csrfFetch } from "./csrf"
 const GET_ALL_SPOTS = 'spots/getAllSpots'
 const GET_SINGLE_SPOT = 'spots/getOneSpot'
 const CREATE_SPOT = 'spots/createSpot'
-
+const GET_USER_SPOTS = 'spots/getUserSpots'
 
 const loadSpots = (spots) => {
     return {
@@ -26,6 +26,12 @@ const createSpot = (newSpot) => {
     }
 }
 
+const userSpots = (currUserSpots) => {
+    return {
+        type: GET_USER_SPOTS,
+        currUserSpots
+    }
+}
 
 export const getAllSpots = () => async (dispatch) => {
     const res = await csrfFetch('/api/spots')
@@ -35,6 +41,15 @@ export const getAllSpots = () => async (dispatch) => {
         // const spots = Object.values(spotsObj)
         dispatch(loadSpots(spotsObj))
         // return spotsObj
+    }
+}
+
+export const getUserSpots = () => async (dispatch) => {
+    const res = await csrfFetch('/api/spots/current')
+
+    if (res.ok) {
+        const currUserSpots = await res.json()
+        dispatch(userSpots(currUserSpots))
     }
 }
 
@@ -86,7 +101,8 @@ export const createNewSpot = (newSpotDetails) => async (dispatch) => {
 
 let initialState = {
     allSpots: {},
-    singleSpot: {}
+    singleSpot: {},
+    userSpots: {}
 }
 export default function spotsReducer(state=initialState, action) {
     switch(action.type) {
@@ -105,6 +121,12 @@ export default function spotsReducer(state=initialState, action) {
             const newState3 = {...state, allSpots: {...state.allSpots}}
             newState3.allSpots[action.newSpot.id] = action.newSpot
             return newState3
+        }
+        case GET_USER_SPOTS: {
+            const newState4 = {...state, userSpots: {...state.userSpots}}
+            newState4.userSpots = {}
+            action.currUserSpots.Spots.map(spot => newState4.userSpots[spot.id] = spot)
+            return newState4
         }
         default:
             return state

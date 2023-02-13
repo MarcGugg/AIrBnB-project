@@ -9,7 +9,6 @@ import './SingleSpot.css'
 export default function SingleSpot() {
     const {spotId} = useParams()
     const spot = useSelector((state) => state.spots.singleSpot)
-    debugger
     const dispatch = useDispatch()
 
     useEffect(() => {
