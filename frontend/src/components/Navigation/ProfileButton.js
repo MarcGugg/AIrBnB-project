@@ -61,6 +61,11 @@ function ProfileButton({ user }) {
             <li>{user.firstName} {user.lastName}</li>
             <li>{user.email}</li>
             <li>
+              <button className="manageUserSpots">
+                <Link to='spots/current'>Manage Your Spots</Link>
+              </button>
+            </li>
+            <li>
               <button onClick={logout}>Log Out</button>
             </li>
           </>

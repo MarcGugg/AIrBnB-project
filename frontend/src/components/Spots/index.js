@@ -20,13 +20,15 @@ export default function Spots() {
     return (
         <>
         <div>Spots</div>
-        {spots && Object.values(spots).map(spot => (<Link key={spot.id} to={`spots/${spot.id}`}>{spot.name} 
+        {spots && Object.values(spots).map(spot => (<Link key={spot.id} to={`spots/${spot.id}`}>{spot.name}
+            <div className='spotCard'>                
             <img src={spot.previewImage} style={{width: 300, height: 300}}/>
             <p>{spot.price}/Night</p>
             <p>{spot.address}</p>
             <p>{spot.city}</p>
             <p>{spot.country}</p>
             <p>average rating: {spot.avgRating}</p>
+            </div> 
         </Link>))}
         </>
     )
