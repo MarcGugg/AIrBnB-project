@@ -1,11 +1,19 @@
 import { csrfFetch } from "./csrf"
 
 const GET_SPOT_REVIEWS = 'reviews/getSpotReview'
+const CREATE_REVIEW = 'reviews/createReview'
 
 const getReviews = (reviews) => {
     return {
         type: GET_SPOT_REVIEWS,
         reviews
+    }
+}
+
+const createReview = (review) => {
+    return {
+        type: CREATE_REVIEW,
+        review
     }
 }
 
@@ -17,6 +25,22 @@ export const getSpotReviews = (spotId) => async(dispatch) => {
         dispatch(getReviews(reviews))
     }
 } 
+
+export const postReview = (review, spotId) => async(dispatch) => {
+    const res = csrfFetch(`/api/spots/${spotId}/reviews`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            "review": review.review,
+            "stars": review.stars
+        })
+    })
+
+    if (res.ok) {
+        const review = await res.json()
+        dispatch(createReview(review))
+    }
+}
 
 
 const initialState = {
@@ -32,6 +56,11 @@ export default function reviewsReducer(state=initialState, action) {
             newState.spot = action.reviews
             // console.log('newstate spot', newState.spot)
             return newState
+        }
+        case CREATE_REVIEW: {
+            const newState2 = {...state, spot: {...state.spot}}
+            newState2.spot[action.review.id] = action.review
+            return newState2
         }
         default:
             return state

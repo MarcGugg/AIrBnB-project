@@ -4,17 +4,23 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getAllSpots, getSingleSpot } from '../../store/spots';
 
+import OpenModalButton from '../OpenModalButton'
+
 import './SingleSpot.css'
 import { getSpotReviews } from '../../store/reviews';
+import CreateReviewModal from '../CreateReviewModal';
 
 export default function SingleSpot() {
     const {spotId} = useParams()
     const spot = useSelector((state) => state.spots.singleSpot)
     const reviews = useSelector((state) => state.reviews.spot)
+    const user = useSelector((state) => state.session.user)
     const dispatch = useDispatch()
 
     console.log('spot', spot)
+    console.log('spot owner', spot.Owner)
     console.log('reviews og', reviews)
+    console.log('user', user)
     
     useEffect(() => {
         dispatch(getSingleSpot(spotId))
@@ -48,6 +54,10 @@ export default function SingleSpot() {
             </div>
             <div className='spotDescription'>
             {spot.description}
+            </div>
+            <div>
+                {/* put modal component into ternary */}
+                {user && spot.Owner.id !== user.id ? <OpenModalButton modalComponent={<CreateReviewModal spotId={spotId}/>} buttonText={'Post Your Review'} onButtonClick={() => console.log(spotId)} />: ''} 
             </div>
             <div>
                 {reviews && Object.values(reviews.Reviews).map(review => <li>
