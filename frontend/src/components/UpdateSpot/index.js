@@ -18,6 +18,7 @@ export default function UpdateSpot() {
     const [imageURL, setImageURL] = useState('')
     
     const {spotId} = useParams()
+    console.log('spotId',spotId)
 
     const updatedSpotDetails = {
         country,
@@ -34,16 +35,17 @@ export default function UpdateSpot() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        // console.log('spot', spot)
-
+        
         const errs = []
-
+        
         if (typeof updatedSpotDetails.price !== 'number') {
             errs.push('price must be a number')
             setValidationErrors(errs)
         } else {
             const spotDetails = {...updatedSpotDetails}
-            dispatch(updateSpot(updateSpot(spotDetails, spotId)))
+            console.log('spot', spotDetails)
+            // return null
+            dispatch(updateSpot(spotDetails, spotId))
         }
 
     }

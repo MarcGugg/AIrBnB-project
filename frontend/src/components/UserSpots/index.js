@@ -31,12 +31,12 @@ export default function UserSpots() {
                     <p>{spot.city}, {spot.state}</p>
                     <p>{spot.description}</p>
                     <p>{spot.price} /night</p>
-                    </li>)}
                     <div className='editButton'>
-                        <Link to='/spots/:spotId'>
+                        <Link to={`/spots/${spot.id}/edit`}>
                         <button>Update Spot</button>
                         </Link>
                     </div>
+                    </li>)}
             </div>
         </div>
         </>

@@ -422,8 +422,8 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
     if (!city) errorArr.push("City is required");
     if (!state) errorArr.push("State is required");
     if (!country) errorArr.push("Country is required");
-    if (!lat) errorArr.push("Latitude is not valid");
-    if (!lng) errorArr.push("Longitude is not valid");
+    // if (!lat) errorArr.push("Latitude is not valid");
+    // if (!lng) errorArr.push("Longitude is not valid");
     if (!name) errorArr.push("Name is required");
     if (!description) errorArr.push("Description is required");
     if (!price) errorArr.push("Price per day is required");
