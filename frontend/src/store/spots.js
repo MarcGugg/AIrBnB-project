@@ -4,6 +4,7 @@ const GET_ALL_SPOTS = 'spots/getAllSpots'
 const GET_SINGLE_SPOT = 'spots/getOneSpot'
 const CREATE_SPOT = 'spots/createSpot'
 const GET_USER_SPOTS = 'spots/getUserSpots'
+const UPDATE_SPOT = 'spots/updateSpot'
 
 const loadSpots = (spots) => {
     return {
@@ -30,6 +31,13 @@ const userSpots = (currUserSpots) => {
     return {
         type: GET_USER_SPOTS,
         currUserSpots
+    }
+}
+
+const editSpot = (spot) => {
+    return {
+        type: UPDATE_SPOT,
+        spot
     }
 }
 
@@ -113,6 +121,13 @@ export const updateSpot = (spotDetails, spotId) => async (dispatch) => {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(spotDetails)
     })
+
+    if (res.ok) {
+        const updatedSpot = await res.json()
+        updatedSpot.imageURL = spotDetails.imageURL
+        dispatch(editSpot(updatedSpot))
+    }
+
 }
 
 let initialState = {
@@ -143,6 +158,11 @@ export default function spotsReducer(state=initialState, action) {
             newState4.userSpots = {}
             action.currUserSpots.Spots.map(spot => newState4.userSpots[spot.id] = spot)
             return newState4
+        }
+        case UPDATE_SPOT: {
+            const newState5 = {...state}
+            newState5.singleSpot = {...action.spot}
+            return newState5
         }
         default:
             return state
