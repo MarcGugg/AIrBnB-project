@@ -14,10 +14,12 @@ export default function SingleSpot() {
     const dispatch = useDispatch()
 
     console.log('spot', spot)
+    console.log('reviews og', reviews)
     
     useEffect(() => {
         dispatch(getSingleSpot(spotId))
         dispatch(getSpotReviews(spotId))
+        
     }, [dispatch])
     
     // let reviewsArr
@@ -28,10 +30,10 @@ export default function SingleSpot() {
 
     
     // console.log('reviews og', reviews.Reviews)
-    // console.log('reviews', Object.values(reviews))
+    // console.log('reviews array', Object.values(reviews))
     // for (let review of Object.values(reviews))
     
-    if (Object.keys(spot).length === 0) return null
+    if (Object.keys(spot).length === 0 || !reviews.Reviews) return null
     return (
         <>
         <div>
@@ -49,6 +51,9 @@ export default function SingleSpot() {
             </div>
             <div>
                 {reviews && Object.values(reviews.Reviews).map(review => <li>
+                    <div>
+                        {review.User.firstName} {review.User.lastName}
+                    </div>
                     {review.review}
                 </li>)}
             </div>
