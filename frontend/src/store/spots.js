@@ -107,6 +107,13 @@ export const createNewSpot = (newSpotDetails) => async (dispatch) => {
 
 }
 
+export const updateSpot = (spotDetails, spotId) => async (dispatch) => {
+    const res = csrfFetch(`/api/spots/${spotId}`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(spotDetails)
+    })
+}
 
 let initialState = {
     allSpots: {},

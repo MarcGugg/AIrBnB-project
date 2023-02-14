@@ -32,6 +32,11 @@ export default function UserSpots() {
                     <p>{spot.description}</p>
                     <p>{spot.price} /night</p>
                     </li>)}
+                    <div className='editButton'>
+                        <Link to='/spots/:spotId'>
+                        <button>Update Spot</button>
+                        </Link>
+                    </div>
             </div>
         </div>
         </>
