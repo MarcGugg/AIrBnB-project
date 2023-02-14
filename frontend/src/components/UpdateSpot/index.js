@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Link, useParams } from 'react-router-dom';
+import { NavLink, Link, useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getAllSpots, updateSpot } from '../../store/spots';
@@ -19,6 +19,7 @@ export default function UpdateSpot() {
     
     const {spotId} = useParams()
     console.log('spotId',spotId)
+    const history = useHistory()
 
     const updatedSpotDetails = {
         country,
@@ -27,8 +28,7 @@ export default function UpdateSpot() {
         state,
         description,
         name,
-        price,
-        imageURL
+        price
     }
 
     const dispatch = useDispatch()
@@ -45,7 +45,8 @@ export default function UpdateSpot() {
             const spotDetails = {...updatedSpotDetails}
             console.log('spot', spotDetails)
             // return null
-            dispatch(updateSpot(spotDetails, spotId))
+            dispatch(updateSpot(spotDetails, imageURL, spotId))
+            history.push(`/spots/current`)
         }
 
     }

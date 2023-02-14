@@ -449,15 +449,16 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
         return next(err)
     }
 
-    spot.address = address
-    spot.city = city
-    spot.state = state
-    spot.country = country
-    spot.lat = lat
-    spot.lng = lng
-    spot.name = name
-    spot.description = description
-    spot.price = price
+    // spot.address = address
+    // spot.city = city
+    // spot.state = state
+    // spot.country = country
+    // spot.lat = lat
+    // spot.lng = lng
+    // spot.name = name
+    // spot.description = description
+    // spot.price = price
+    await spot.update(req.body)
 
     res.json(spot)
 })

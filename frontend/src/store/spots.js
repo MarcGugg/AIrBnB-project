@@ -115,8 +115,8 @@ export const createNewSpot = (newSpotDetails) => async (dispatch) => {
 
 }
 
-export const updateSpot = (spotDetails, spotId) => async (dispatch) => {
-    console.log('spot details $$$$', spotDetails)
+export const updateSpot = (spotDetails, imageURL, spotId) => async (dispatch) => {
+    // console.log('spot details $$$$', spotDetails)
     const res = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
@@ -125,8 +125,9 @@ export const updateSpot = (spotDetails, spotId) => async (dispatch) => {
 
     if (res.ok) {
         const updatedSpot = await res.json()
+        console.log('updated spot', updatedSpot)
+        // updatedSpot.imageURL = imageURL
         dispatch(editSpot(updatedSpot))
-        updatedSpot.imageURL = spotDetails.imageURL
     }
 
 }
@@ -139,9 +140,9 @@ let initialState = {
 export default function spotsReducer(state=initialState, action) {
     switch(action.type) {
         case GET_ALL_SPOTS: {
-            const newState = {...state}
-            // action.spots.Spots.map((spot) => {newState.allSpots[spot.id] = spot})
-            newState.allSpots = action.spots.Spots
+            const newState = {...state, allSpots: {}}
+            action.spots.Spots.map((spot) => {newState.allSpots[spot.id] = spot})
+            // newState.allSpots = action.spots.Spots
             return newState
         }
         case GET_SINGLE_SPOT: {
@@ -161,8 +162,8 @@ export default function spotsReducer(state=initialState, action) {
             return newState4
         }
         case UPDATE_SPOT: {
-            const newState5 = {...state}
-            newState5.singleSpot = {...action.spot}
+            const newState5 = {...state, userSpots: {...state.userSpots}}
+            newState5.userSpots[action.spot.id] = {...action.spot}
             return newState5
         }
         default:

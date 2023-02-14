@@ -62,7 +62,7 @@ function ProfileButton({ user }) {
             <li>{user.email}</li>
             <li>
               <button className="manageUserSpots">
-                <Link to='spots/current'>Manage Your Spots</Link>
+                <Link to='/spots/current'>Manage Your Spots</Link>
               </button>
             </li>
             <li>
