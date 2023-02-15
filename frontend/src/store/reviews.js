@@ -51,7 +51,7 @@ const initialState = {
 export default function reviewsReducer(state=initialState, action) {
     switch (action.type) {
         case GET_SPOT_REVIEWS: {
-            const newState = {...state, spot: {...state.spot}}
+            const newState = {...state, spot: {}}
 
             newState.spot = action.reviews
             // console.log('newstate spot', newState.spot)

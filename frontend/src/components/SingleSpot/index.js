@@ -48,6 +48,9 @@ export default function SingleSpot() {
             <div className='spotName'>
             {spot.name}
             </div>
+            <div className='spotLocation'>
+                {spot.state}, {spot.country}
+            </div>
             <div className='image'>
             <img src={spot.SpotImages[0].url} style={{width: 700, height: 500}}/>
             </div>

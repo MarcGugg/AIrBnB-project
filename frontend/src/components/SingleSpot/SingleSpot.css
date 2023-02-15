@@ -2,6 +2,12 @@
     display: flex;
     justify-content: center;
 }
+
+.spotLocation {
+    display: flex;
+    justify-content: center;
+}
+
 .image {
     display: flex;
     justify-content: center;
