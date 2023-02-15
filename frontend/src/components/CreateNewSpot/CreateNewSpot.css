@@ -1,0 +1,190 @@
+ /* .formParent {
+    border: 2px solid red;
+    display: flex;
+    justify-content: center;
+}
+
+.form {
+    display: grid;
+    width: 50vw;
+    grid-template-areas: 
+    "a a a a a a"
+    "b b b b b b"
+    "c c c c c c"
+    "e e e e e e"
+    "g g g g g g"
+    "g g g g g g"
+    "g g g g g g"
+    "g g g g g g"
+    "h h h h h h"
+    "i i i i i i"
+    "j j j j j j"
+    "k k k k k k"
+    ;
+}  */
+
+/* .country {
+    grid-area: a;
+    margin: 20px;
+}
+.countryInput {
+    display: block;
+    width: 300px;
+}
+
+.address {
+    grid-area: b;
+    margin: 20px;
+}
+.addressInput {
+    display: block;
+} */
+
+/* .cityState {
+    display: flex;
+    grid-area: c;
+}
+.cityInput {
+    display: block;
+    margin: 5px;
+}
+.stateInput {
+    display: block;
+    margin: 5px;
+}
+
+.description {
+    grid-area: g;
+     height: 300px; 
+     margin: 20px;
+}
+.descriptionInput {
+    display: block;
+}
+
+.title {
+    grid-area: h;
+    margin: 10px;
+} */
+/* .titleInput {
+    display: block;
+}
+
+.price {
+    grid-area: i;
+    margin: 10px;
+}
+.priceInput {
+    display: block;
+}
+
+.imageURL {
+    grid-area: j;
+}
+.imageURLinput {
+    display: block;
+}
+
+.submitButton {
+    grid-area: k;
+    margin: 10px;
+}  */
+
+.formParent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1000px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 1000px;
+    padding: 40px;
+    /* border: 2px solid #ccc; */
+    /* border-radius: 8px; */
+    /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); */
+  }
+  
+  .form label {
+    font-weight: bold;
+  }
+  
+  .form input,
+  .form textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border: 2px solid black;
+    background-color: lightblue;
+    /* border-radius: 4px; */
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+  
+  /* .form input:focus,
+  .form textarea:focus {
+    border: 2px solid #008CBA;
+  } */
+  
+  .form .country,
+  .form .address,
+  .form .cityState,
+  .form .description,
+  .form .title,
+  .form .price,
+  .form .imageURL,
+  .form .submitButton {
+    margin: 10px 0;
+  }
+  
+ .cityState {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .form .cityDiv,
+  .form .stateDiv {
+    width: 48%;
+  }
+  .submitButton {
+    display: flex;
+    justify-content: center;
+  }
+  .form .submitButton button {
+    /* background-color: #008CBA; */
+    background-color: red;
+    box-shadow: 4px 10px black;
+    width: 100px;
+    color: white;
+    padding: 10px;
+    border: none;
+    /* border-radius: 4px; */
+    cursor: pointer;
+  }
+  
+  .form .submitButton button:hover {
+    /* background-color: #007AA3; */
+    background-color: red;
+  }
+
+  .title {
+    border-top: 3px solid black;
+  }
+
+  .price {
+    border-top: 3px solid black;
+  }
+
+  .description {
+    border-top: 3px solid black;
+  }
+  .descriptionInput {
+    height: 400px;
+  }
+
+  .imageURL {
+    border-top: 3px solid black;
+  }

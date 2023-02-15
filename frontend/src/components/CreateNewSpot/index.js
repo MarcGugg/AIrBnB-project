@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { getAllSpots } from '../../store/spots';
 
 import { createNewSpot } from '../../store/spots';
+import './CreateNewSpot.css'
 
 export default function CreateNewSpot() {
     const [validationErrors, setValidationErrors] = useState([])
@@ -47,56 +48,73 @@ export default function CreateNewSpot() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>    
+        <div className='formParent'>
+        <form onSubmit={handleSubmit} className='form'>
+            <div className='country'>    
             <label>Country
-            <input value={country} onChange={(e) => setCountry(e.target.value)} type='text'/>
+            <input className='countryInput' value={country} onChange={(e) => setCountry(e.target.value)} type='text'/>
             </label>
             </div>
 
-            <div>
+            <div className='address'>
             <label>Street Address
-            <input value={address} onChange={(e) => setAddress(e.target.value)} type='text'/>
+            <input className='addressInput' value={address} onChange={(e) => setAddress(e.target.value)} type='text'/>
             </label>
             </div>
 
-            <div>
+            <div className='cityState'>
+                <div className='cityDiv'>
             <label>City
-            <input value={city} onChange={(e) => setCity(e.target.value)} type='text'/>
+            <input className='cityInput' value={city} onChange={(e) => setCity(e.target.value)} type='text'/>
             </label>
+                </div>
+                <div className='stateDiv'>
             <label>State
-            <input value={state} onChange={(e) => setState(e.target.value)} type='text'/>
+            <input className='stateInput' value={state} onChange={(e) => setState(e.target.value)} type='text'/>
+            </label>
+                </div>
+            </div>
+
+            <div className='description'>
+                <h2>Describe your place to guests</h2>
+                <h4>Mention the best features of your space, any special amentities like
+fast wifi or parking, and what you love about the neighborhood.</h4>
+            <label>
+                <textarea className='descriptionInput' value={description} onChange={(e) => setDescription(e.target.value)} name='description'/>
             </label>
             </div>
 
-            <div>
-            <label>Description
-                <textarea value={description} onChange={(e) => setDescription(e.target.value)} name='description'/>
+            <div className='title'>
+                <h2>Create a title for your spot</h2>
+                <h4>Catch guests' attention with a spot title that highlights what makes
+your place special.</h4>
+            <label>
+                <input className='titleInput' value={name} onChange={(e) => setName(e.target.value)} type='text'/>
             </label>
             </div>
 
-            <div>
-            <label>Title
-                <input value={name} onChange={(e) => setName(e.target.value)} type='text'/>
+            <div className='price'>
+                <h2>Set a base price for your spot</h2>
+                <h4>Competitive pricing can help your listing stand out and rank higher
+in search results.</h4>
+            <label>
+                <input className='priceInput' value={price} onChange={(e) => setPrice(Number(e.target.value))} type='text'/>
             </label>
             </div>
 
-            <div>
-            <label>Price per Night
-                <input value={price} onChange={(e) => setPrice(Number(e.target.value))} type='text'/>
-            </label>
-            </div>
-
-            <div>
-            <label>Image URL
-                <input value={imageURL} onChange={(e) => setImageURL(e.target.value)} type='text'/>
+            <div className='imageURL'>
+                <h2>Liven up your spot with photos</h2>
+                <h4>Submit a link to at least one photo to publish your spot.</h4>
+            <label>
+                <input className='imageURLinput' value={imageURL} onChange={(e) => setImageURL(e.target.value)} type='text'/>
             </label>
             </div>
             
-            <div>
+            <div className='submitButton'>
                 <button type='submit'>Create Spot</button>
             </div>
 
         </form>
+        </div>
     )
 }
