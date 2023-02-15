@@ -11,7 +11,7 @@ export default function Spots() {
     const dispatch = useDispatch()
     const spots = useSelector((state) => state.spots.allSpots)
 
-    // console.log('spots',spots)
+    console.log('spots',spots)
 
     useEffect(() => {
         dispatch(getAllSpots())
@@ -28,7 +28,7 @@ export default function Spots() {
             <img src={spot.previewImage} style={{width: 270, height: 250}}/>
             <div className='cityStateRating'>
             <p>{spot.city}, {spot.state}</p>
-            <p>average rating: {spot.avgRating}</p>
+            <p>average rating: {!spot.avgRating ? 'New': spot.avgRating}</p>
             </div>
             <div>
             <p className='spotPrice'>{spot.price}/Night</p>
