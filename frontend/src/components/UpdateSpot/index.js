@@ -166,7 +166,7 @@ in search results.</h4>
             </div>
             
             <div className='submitButton'>
-                <button type='submit'>Create Spot</button>
+                <button type='submit'>Update Spot</button>
             </div>
 
         </form>
