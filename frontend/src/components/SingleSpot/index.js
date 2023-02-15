@@ -62,7 +62,7 @@ export default function SingleSpot() {
             </div>
             <div>
                 {/* put modal component into ternary */}
-                {user && spot.Owner.id !== user.id ? <OpenModalButton modalComponent={<CreateReviewModal spotId={spotId}/>} buttonText={'Post Your Review'} onButtonClick={() => console.log(spotId)} />: ''} 
+                {user && spot.Owner.id !== user.id ? <OpenModalButton modalComponent={<CreateReviewModal spotId={spotId}/>} buttonText={'Post Your Review'} />: ''} 
             </div>
             <div>
                 {reviews && Object.values(reviews.Reviews).map(review => <li>
