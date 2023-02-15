@@ -13,6 +13,7 @@ export default function DeleteSpotModal({spotId}) {
     const handleClick = (e) => {
         e.preventDefault()
         dispatch(deleteSpot(spotId))
+        .then(closeModal)
     }
 
     return (

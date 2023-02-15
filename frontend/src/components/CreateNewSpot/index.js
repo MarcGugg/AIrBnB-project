@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getAllSpots } from '../../store/spots';
@@ -30,10 +30,12 @@ export default function CreateNewSpot() {
     }
 
     const dispatch = useDispatch()
+    
+    const history = useHistory()
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log('spot', spot)
+        // console.log('spot', spot)
 
         const errs = []
 
@@ -43,6 +45,7 @@ export default function CreateNewSpot() {
         } else {
             const newSpotObj = {...spot}
             dispatch(createNewSpot(newSpotObj))
+            history.push('spots/current')
         }
 
     }

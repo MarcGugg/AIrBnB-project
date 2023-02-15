@@ -116,10 +116,12 @@ router.get('/:spotId/reviews', async (req, res, next) => {
         }
     })
 
-    if (!reviews.length) {
-        res.send("This spot doesn't have any reviews")
-        return
-    }
+    // console.log('\n\n\n reviews', reviews, '\n\n\n')
+
+    // if (!reviews.length) {
+    //     res.json({message: "This spot doesn't have any reviews"})
+    //     return
+    // }
 
     let reviewsArr = []
     for (let review of reviews) {

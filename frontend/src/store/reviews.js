@@ -19,9 +19,10 @@ const createReview = (review) => {
 
 export const getSpotReviews = (spotId) => async(dispatch) => {
     const res = await csrfFetch(`/api/spots/${spotId}/reviews`)
-
+    // console.log('thunk hit')
     if (res.ok) {
         const reviews = await res.json()
+        console.log('reviews thunk', reviews)
         dispatch(getReviews(reviews))
     }
 } 
@@ -52,7 +53,7 @@ export default function reviewsReducer(state=initialState, action) {
     switch (action.type) {
         case GET_SPOT_REVIEWS: {
             const newState = {...state, spot: {}}
-
+            // console.log('action reviews', action.reviews)
             newState.spot = action.reviews
             // console.log('newstate spot', newState.spot)
             return newState

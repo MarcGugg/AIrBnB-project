@@ -19,14 +19,12 @@ export default function SingleSpot() {
 
     // console.log('spot', spot)
     // console.log('spot owner', spot.Owner)
-    // console.log('reviews og', reviews)
+    console.log('reviews og', reviews)
     // console.log('user', user)
     
     useEffect(() => {
         dispatch(getSingleSpot(spotId))
-        if (reviews) {
-            dispatch(getSpotReviews(spotId))
-        }
+        dispatch(getSpotReviews(spotId))
         
     }, [dispatch])
     
