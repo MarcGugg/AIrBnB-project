@@ -43,11 +43,13 @@ export default function SingleSpot() {
     return (
         <>
         <div>
+            <header className='spotNameParent'>             
             <div className='spotName'>
             {spot.name}
             </div>
+            </header>
             <div className='spotLocation'>
-                {spot.state}, {spot.country}
+                {spot.city}, {spot.state}, {spot.country}
             </div>
             <div className='image'>
             <img src={spot.SpotImages[0].url} style={{width: 700, height: 500}}/>
@@ -70,6 +72,21 @@ export default function SingleSpot() {
                     {review.review}
                 </li>)}
             </div>
+        </div>
+        <div className='calloutInfoBoxParent'>
+        <div className='calloutInfoBox'>
+            <div className='priceRatingParent'>
+            <div className='price'>
+                ${spot.price} night
+            </div>
+            <div className='rating'>
+                Rating: {!spot.avgRating ? 'New': spot.avgRating}
+            </div>
+            </div>
+            <div className='reserveButtonParent'>
+                <button className='reserveButton'>Reserve</button>
+            </div>
+        </div>
         </div>
         </>
     );
