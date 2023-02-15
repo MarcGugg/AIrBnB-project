@@ -33,7 +33,7 @@ export default function CreateNewSpot() {
     
     const history = useHistory()
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         // console.log('spot', spot)
 
@@ -45,7 +45,8 @@ export default function CreateNewSpot() {
         // } 
         // else {
             const newSpotObj = {...spot}
-            const newSpot = dispatch(createNewSpot(newSpotObj))
+            const newSpot = await dispatch(createNewSpot(newSpotObj))
+            console.log('new spot',newSpot)
             history.push(`spots/${newSpot.id}`)
         // }
 

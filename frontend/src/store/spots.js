@@ -117,8 +117,9 @@ export const createNewSpot = (newSpotDetails) => async (dispatch) => {
 
     if (res.ok) {
         const newSpot = await res.json()
-        dispatch(associateImageToSpot(newSpotDetails, newSpot.id))
+        await dispatch(associateImageToSpot(newSpotDetails, newSpot.id))
         // dispatch(createSpot(newSpot))
+        return newSpot
     }
 
 
