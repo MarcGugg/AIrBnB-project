@@ -5,6 +5,7 @@ const GET_SINGLE_SPOT = 'spots/getOneSpot'
 const CREATE_SPOT = 'spots/createSpot'
 const GET_USER_SPOTS = 'spots/getUserSpots'
 const UPDATE_SPOT = 'spots/updateSpot'
+const DELETE_SPOT = 'spots/deleteSpot'
 
 const loadSpots = (spots) => {
     return {
@@ -38,6 +39,13 @@ const editSpot = (spot) => {
     return {
         type: UPDATE_SPOT,
         spot
+    }
+}
+
+const removeSpot = (spotId) => {
+    return {
+        type: DELETE_SPOT,
+        spotId
     }
 }
 
@@ -132,6 +140,17 @@ export const updateSpot = (spotDetails, imageURL, spotId) => async (dispatch) =>
 
 }
 
+export const deleteSpot = (spotId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/spots/${spotId}`, {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'}
+    })
+
+    if (res.ok) {
+        dispatch(removeSpot(spotId))
+    }
+}
+
 let initialState = {
     allSpots: {},
     singleSpot: {},
@@ -165,6 +184,13 @@ export default function spotsReducer(state=initialState, action) {
             const newState5 = {...state, userSpots: {...state.userSpots}}
             newState5.userSpots[action.spot.id] = {...action.spot}
             return newState5
+        }
+        case DELETE_SPOT: {
+            const newState6 = {...state, allSpots: {...state.allSpots}}
+            
+            delete newState6.allSpots[action.spotId]
+
+            return newState6
         }
         default:
             return state
