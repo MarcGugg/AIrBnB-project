@@ -11,7 +11,7 @@ export default function Spots() {
     const dispatch = useDispatch()
     const spots = useSelector((state) => state.spots.allSpots)
 
-    console.log('spots',spots)
+    // console.log('spots',spots)
 
     useEffect(() => {
         dispatch(getAllSpots())
