@@ -1,0 +1,28 @@
+.spotsDisplayParent {
+    display: flex;
+    /* width: 100vw; */
+    justify-content: center;
+    /* border: 2px solid red; */
+}
+
+.spotsDisplay {
+    display: flex;
+    width: 1175px;
+    flex-wrap: wrap;
+    /* width: 100vw; */
+}
+
+.spotCard {
+    margin: 5px;
+    /* display: grid; */
+}
+
+.spotCard:hover {
+    background-color: gray;
+}
+
+.cityStateRating {
+    /* border: 2px solid black; */
+    display: flex;
+    justify-content: space-between;
+}

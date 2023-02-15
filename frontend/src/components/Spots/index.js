@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getAllSpots } from '../../store/spots';
 
+import './Spots.css'
 
 
 export default function Spots() {
@@ -19,17 +20,28 @@ export default function Spots() {
     if(!Object.values(spots).length) return null
     return (
         <>
-        <div>Spots</div>
-        {spots && Object.values(spots).map(spot => (<Link key={spot.id} to={`spots/${spot.id}`}>{spot.name}
+        {/* <div>Spots</div> */}
+        <div className='spotsDisplayParent'>
+        <div className='spotsDisplay'>
+        {spots && Object.values(spots).map(spot => (<Link key={spot.id} to={`spots/${spot.id}`}>
             <div className='spotCard'>                
-            <img src={spot.previewImage} style={{width: 300, height: 300}}/>
-            <p>{spot.price}/Night</p>
-            <p>{spot.address}</p>
-            <p>{spot.city}</p>
-            <p>{spot.country}</p>
+            <img src={spot.previewImage} style={{width: 270, height: 250}}/>
+            <div className='cityStateRating'>
+            <p>{spot.city}, {spot.state}</p>
             <p>average rating: {spot.avgRating}</p>
+            </div>
+            <div>
+            <p className='spotPrice'>{spot.price}/Night</p>
+            </div>
+            {/* <p>{spot.address}</p> */}
+            {/* <p>{spot.country}</p> */}
+
+            {/* <p className='spotAvgRating'>average rating: {spot.avgRating}</p> */}
             </div> 
+            {/* style={{width: 300, height: 300}} */}
         </Link>))}
+        </div>
+        </div>
         </>
     )
 }
