@@ -17,14 +17,16 @@ export default function SingleSpot() {
     const user = useSelector((state) => state.session.user)
     const dispatch = useDispatch()
 
-    console.log('spot', spot)
-    console.log('spot owner', spot.Owner)
-    console.log('reviews og', reviews)
-    console.log('user', user)
+    // console.log('spot', spot)
+    // console.log('spot owner', spot.Owner)
+    // console.log('reviews og', reviews)
+    // console.log('user', user)
     
     useEffect(() => {
         dispatch(getSingleSpot(spotId))
-        dispatch(getSpotReviews(spotId))
+        if (reviews) {
+            dispatch(getSpotReviews(spotId))
+        }
         
     }, [dispatch])
     

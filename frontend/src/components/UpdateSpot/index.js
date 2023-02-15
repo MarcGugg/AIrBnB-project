@@ -18,7 +18,7 @@ export default function UpdateSpot() {
     const [imageURL, setImageURL] = useState('')
     
     const {spotId} = useParams()
-    console.log('spotId',spotId)
+    // console.log('spotId',spotId)
     const history = useHistory()
 
     const updatedSpotDetails = {
