@@ -39,14 +39,15 @@ export default function CreateNewSpot() {
 
         const errs = []
 
-        if (typeof spot.price !== 'number') {
-            errs.push('price must be a number')
-            setValidationErrors(errs)
-        } else {
+        // if (typeof spot.price !== 'number') {
+        //     errs.push('price must be a number')
+        //     setValidationErrors(errs)
+        // } 
+        // else {
             const newSpotObj = {...spot}
-            dispatch(createNewSpot(newSpotObj))
-            history.push('spots/current')
-        }
+            const newSpot = dispatch(createNewSpot(newSpotObj))
+            history.push(`spots/${newSpot.id}`)
+        // }
 
     }
 

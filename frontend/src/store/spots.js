@@ -102,6 +102,7 @@ export const associateImageToSpot = (newSpotDetails, newSpotId) => async (dispat
         newSpotDetails.avgRating = 0
         newSpotDetails.previewImage = newSpotDetails.imageURL
         dispatch(createSpot(newSpotDetails))
+        // return newSpotDetails
     }
 }
 
@@ -186,9 +187,10 @@ export default function spotsReducer(state=initialState, action) {
             return newState5
         }
         case DELETE_SPOT: {
-            const newState6 = {...state, allSpots: {}} //...state.allSpots
+            const newState6 = {...state, allSpots: {}, userSpots: {...state.userSpots}} //...state.allSpots
             
             delete newState6.allSpots[action.spotId]
+            delete newState6.userSpots[action.spotId]
 
             return newState6
         }
