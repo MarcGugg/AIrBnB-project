@@ -2,23 +2,33 @@ import React from 'react';
 import { NavLink, Link, useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { getAllSpots, updateSpot } from '../../store/spots';
+import { getAllSpots, getSingleSpot, updateSpot } from '../../store/spots';
 
 // import 
 
 export default function UpdateSpot() {
+    const spot = useSelector((state) => state.spots.singleSpot)
+    
     const [validationErrors, setValidationErrors] = useState([])
-    const [country, setCountry] = useState('')
-    const [address, setAddress] = useState('')
-    const [city, setCity] = useState('')
-    const [state, setState] = useState('')
-    const [description, setDescription] = useState('')
-    const [name, setName] = useState('')
-    const [price, setPrice] = useState('')
-    const [imageURL, setImageURL] = useState('')
+    const [country, setCountry] = useState(spot.country)
+    const [address, setAddress] = useState(spot.address)
+    const [city, setCity] = useState(spot.city)
+    const [state, setState] = useState(spot.state)
+    const [description, setDescription] = useState(spot.description)
+    const [name, setName] = useState(spot.name)
+    const [price, setPrice] = useState(spot.price)
+    const [imageURL, setImageURL] = useState(spot.imageURL)
     
     const {spotId} = useParams()
+
     // console.log('spotId',spotId)
+
+    // useEffect(() => {
+    //     dispatch(getSingleSpot(spotId))   
+    // }, [dispatch])
+    
+    console.log('spot', spot)
+
     const history = useHistory()
 
     const updatedSpotDetails = {
