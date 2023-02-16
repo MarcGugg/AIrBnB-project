@@ -27,6 +27,7 @@ export default function CreateReviewModal({spotId}) {
         const reviewToSubmit = {...reviewObj}
         const newReview = await dispatch(postReview(reviewToSubmit, spotId))
         console.log('new review', newReview)
+        // dispatch(getSingleSpot(spotId))
         closeModal()
     }
 
