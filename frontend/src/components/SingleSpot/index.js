@@ -74,7 +74,7 @@ export default function SingleSpot() {
                     {review.review}
                     </div>
                     <div>
-                        {user && review.userId === user.id ? <OpenModalButton modalComponent={<UpdateReviewModal reviewId={review.id} />} buttonText={'Edit Your Review'}/>: ''}
+                        {user && review.userId === user.id ? <OpenModalButton modalComponent={<UpdateReviewModal reviewId={review.id} user={user}/>} buttonText={'Edit Your Review'}/>: ''}
                     </div>
                 </li>)}
             </div>

@@ -54,7 +54,8 @@ export const postReview = (review, user, spotId) => async(dispatch) => {
     }
 }
 
-export const editReview = (reviewDetails, reviewId) => async (dispatch) => {
+export const editReview = (reviewDetails, user, reviewId) => async (dispatch) => {
+    console.log('review details', reviewDetails)
     const res = await csrfFetch(`/api/reviews/${reviewId}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
@@ -66,7 +67,10 @@ export const editReview = (reviewDetails, reviewId) => async (dispatch) => {
 
     if (res.ok) {
         const updatedReview = await res.json()
+        console.log('thunk res hit. UPDATED REVIEW: ', updatedReview)
+        updatedReview.User = user
         dispatch(updateReview(updatedReview))
+        return updatedReview
     }
 }
 
@@ -79,7 +83,7 @@ export default function reviewsReducer(state=initialState, action) {
     switch (action.type) {
         case GET_SPOT_REVIEWS: {
             const newState = {...state, spot: {}}
-            console.log('action reviews AAAA', action.reviews)
+            // console.log('action reviews AAAA', action.reviews)
             newState.spot = {...action.reviews}
             // console.log('newstate spot', newState.spot)
             return newState
@@ -91,7 +95,11 @@ export default function reviewsReducer(state=initialState, action) {
         }
         case EDIT_REVIEW: {
             const newState3 = {...state, spot: {...state.spot}, spot: {Reviews: [...state.spot.Reviews]}}
-            newState3.spot.Reviews[action.updatedReview.id] = {...action.updatedReview}
+            console.log('newstate reviews', newState3.spot.Reviews)
+            console.log('action review', action.updatedReview.review)
+            // newState3.spot.Reviews[action.updatedReview.id] = {...action.updatedReview}
+            // newState3.spot.Reviews[action.updatedReview.id].stars = {...action.updatedReview.stars}
+            return newState3
         }
         default:
             return state
