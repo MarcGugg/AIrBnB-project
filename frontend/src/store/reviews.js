@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf"
 const GET_SPOT_REVIEWS = 'reviews/getSpotReview'
 const CREATE_REVIEW = 'reviews/createReview'
 const EDIT_REVIEW = 'reviews/editReview'
+const DELETE_REVIEW = 'reviews/deleteReview'
 
 const getReviews = (reviews) => {
     return {
@@ -22,6 +23,13 @@ const updateReview = (updatedReview) => {
     return {
         type: EDIT_REVIEW,
         updatedReview
+    }
+}
+
+const removeReview = (reviewId) => {
+    return {
+        type: DELETE_REVIEW,
+        reviewId
     }
 }
 
@@ -74,6 +82,17 @@ export const editReview = (reviewDetails, user, reviewId) => async (dispatch) =>
     }
 }
 
+export const deleteReview = (reviewId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/reviews/${reviewId}`, {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'}
+    })
+
+    if (res.ok) {
+        dispatch(removeReview(reviewId))
+    }
+}
+
 const initialState = {
     spot: {},
     user: {}
@@ -96,10 +115,18 @@ export default function reviewsReducer(state=initialState, action) {
         case EDIT_REVIEW: {
             const newState3 = {...state, spot: {...state.spot}, spot: {Reviews: [...state.spot.Reviews]}}
             console.log('newstate reviews', newState3.spot.Reviews)
-            console.log('action review', action.updatedReview.review)
+            console.log('action review', action.updatedReview)
             // newState3.spot.Reviews[action.updatedReview.id] = {...action.updatedReview}
             // newState3.spot.Reviews[action.updatedReview.id].stars = {...action.updatedReview.stars}
             return newState3
+        }
+        case DELETE_REVIEW: {
+            const newState4 = {...state, spot: {...state.spot}}
+
+            const val = newState4.spot.Reviews.find(review => review.id === action.reviewId)
+            const index = newState4.spot.Reviews.indexOf(val)
+            newState4.spot.Reviews.splice(index, 1)
+
         }
         default:
             return state

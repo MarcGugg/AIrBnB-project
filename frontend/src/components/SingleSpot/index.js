@@ -7,7 +7,7 @@ import { getAllSpots, getSingleSpot } from '../../store/spots';
 import OpenModalButton from '../OpenModalButton'
 
 import './SingleSpot.css'
-import { getSpotReviews } from '../../store/reviews';
+import { deleteReview, getSpotReviews } from '../../store/reviews';
 import CreateReviewModal from '../CreateReviewModal';
 import UpdateReviewModal from '../UpdateReviewModal';
 
@@ -29,6 +29,10 @@ export default function SingleSpot() {
         
     }, [dispatch])
     
+    const handleClick = (reviewId) => {
+        dispatch(deleteReview(reviewId))
+    }
+
     // let reviewsArr
     // if (reviews) {
     //     // reviews = null
@@ -75,6 +79,9 @@ export default function SingleSpot() {
                     </div>
                     <div>
                         {user && review.userId === user.id ? <OpenModalButton modalComponent={<UpdateReviewModal reviewId={review.id} user={user}/>} buttonText={'Edit Your Review'}/>: ''}
+                    </div>
+                    <div>
+                        {user && review.userId === user.id ? <button onClick={handleClick(review.id)}>Delete Review</button>: ''}
                     </div>
                 </li>)}
             </div>
