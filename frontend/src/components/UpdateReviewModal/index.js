@@ -10,17 +10,19 @@ import { editReview, postReview } from '../../store/reviews';
 
 
 export default function UpdateReviewModal({reviewId, user}) {
-    const reviewRetrieve = useSelector((state) => state.reviews.spot.Reviews)
-    console.log('review retrieve', reviewRetrieve)
+    const reviewRetrieve = useSelector((state) => state.reviews.spot)
+    // console.log('review retrieve', reviewRetrieve)
+    // console.log(reviewId)
 
     let reviewToEdit
-    for (let currReview of reviewRetrieve) {
+    for (let currReview of Object.values(reviewRetrieve)) {
         if (currReview.id === reviewId) {
-            reviewToEdit = currReview
+            reviewToEdit = {...currReview}
+
         }
     }
 
-    console.log('target review', reviewToEdit)
+    // console.log('target review', reviewToEdit)
 
     const [review, setReview] = useState(reviewToEdit.review)
     const [stars, setStars] = useState(reviewToEdit.stars)

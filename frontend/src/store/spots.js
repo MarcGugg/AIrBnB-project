@@ -79,7 +79,7 @@ export const getSpotReviews = (spotId) => async (dispatch) => {
 
 export const getSingleSpot = (spotId) => async (dispatch) => {
     const res = await csrfFetch(`/api/spots/${spotId}`)
-    console.log('res', res)
+    // console.log('res', res)
     if (res.ok) {
         const spot = await res.json()
         // spot.reviews = dispatch(getSpotReviews(spot.id))
@@ -135,7 +135,7 @@ export const updateSpot = (spotDetails, imageURL, spotId) => async (dispatch) =>
 
     if (res.ok) {
         const updatedSpot = await res.json()
-        console.log('updated spot', updatedSpot)
+        // console.log('updated spot', updatedSpot)
         // updatedSpot.imageURL = imageURL
         dispatch(editSpot(updatedSpot))
     }

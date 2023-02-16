@@ -27,7 +27,7 @@ export default function UpdateSpot() {
     //     dispatch(getSingleSpot(spotId))   
     // }, [dispatch])
     
-    console.log('spot', spot)
+    // console.log('spot', spot)
 
     const history = useHistory()
 
@@ -53,7 +53,7 @@ export default function UpdateSpot() {
             setValidationErrors(errs)
         } else {
             const spotDetails = {...updatedSpotDetails}
-            console.log('spot', spotDetails)
+            // console.log('spot', spotDetails)
             // return null
             dispatch(updateSpot(spotDetails, imageURL, spotId))
             history.push(`/spots/current`)

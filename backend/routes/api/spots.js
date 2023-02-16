@@ -293,7 +293,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
     const {user} = req
     const {url} = req.body
 
-    console.log('\n \n req body', req.body, '\n \n')
+    // console.log('\n \n req body', req.body, '\n \n')
 
     const spot = await Spot.findByPk(req.params.spotId)
     if (!spot) {

@@ -46,7 +46,7 @@ export default function CreateNewSpot() {
         // else {
             const newSpotObj = {...spot}
             const newSpot = await dispatch(createNewSpot(newSpotObj))
-            console.log('new spot',newSpot)
+            // console.log('new spot',newSpot)
             history.push(`spots/${newSpot.id}`)
         // }
 

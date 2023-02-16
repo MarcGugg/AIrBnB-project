@@ -38,7 +38,7 @@ export const getSpotReviews = (spotId) => async(dispatch) => {
     // console.log('thunk hit')
     if (res.ok) {
         const reviews = await res.json()
-        console.log('reviews thunk', reviews)
+        // console.log('reviews thunk', reviews)
         dispatch(getReviews(reviews))
     }
 } 
@@ -55,7 +55,7 @@ export const postReview = (review, user, spotId) => async(dispatch) => {
 
     if (res.ok) {
         const review = await res.json()
-        console.log('review thunk', review)
+        // console.log('review thunk', review)
         review.User = user
         await dispatch(createReview(review))
         return review
@@ -63,7 +63,7 @@ export const postReview = (review, user, spotId) => async(dispatch) => {
 }
 
 export const editReview = (reviewDetails, user, reviewId) => async (dispatch) => {
-    console.log('review details', reviewDetails)
+    // console.log('review details', reviewDetails)
     const res = await csrfFetch(`/api/reviews/${reviewId}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
@@ -75,7 +75,7 @@ export const editReview = (reviewDetails, user, reviewId) => async (dispatch) =>
 
     if (res.ok) {
         const updatedReview = await res.json()
-        console.log('thunk res hit. UPDATED REVIEW: ', updatedReview)
+        // console.log('thunk res hit. UPDATED REVIEW: ', updatedReview)
         updatedReview.User = user
         dispatch(updateReview(updatedReview))
         return updatedReview
@@ -102,7 +102,7 @@ export default function reviewsReducer(state=initialState, action) {
     switch (action.type) {
         case GET_SPOT_REVIEWS: {
             const newState = {...state, spot: {}}
-            console.log('action reviews AAAA', action.reviews.Reviews)
+            // console.log('action reviews AAAA', action.reviews.Reviews)
             for (let review of action.reviews.Reviews) {
                 newState.spot[review.id] = review
             }
@@ -116,10 +116,11 @@ export default function reviewsReducer(state=initialState, action) {
         }
         case EDIT_REVIEW: {
             const newState3 = {...state, spot: {...state.spot}}
-            console.log('newstate reviews', newState3.spot.Reviews)
-            console.log('action review', action.updatedReview)
+            // console.log('newstate reviews', newState3.spot.Reviews)
+            // console.log('action review', action.updatedReview)
             // newState3.spot.Reviews[action.updatedReview.id] = {...action.updatedReview}
             // newState3.spot.Reviews[action.updatedReview.id].stars = {...action.updatedReview.stars}
+            newState3.spot[action.updatedReview.id] = action.updatedReview
             return newState3
         }
         case DELETE_REVIEW: {

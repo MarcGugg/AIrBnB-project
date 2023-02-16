@@ -20,7 +20,7 @@ export default function SingleSpot() {
 
     // console.log('spot', spot)
     // console.log('spot owner', spot.Owner)
-    console.log('reviews og', reviews)
+    // console.log('reviews og', reviews)
     // console.log('user', user)
     
     useEffect(() => {
@@ -30,7 +30,7 @@ export default function SingleSpot() {
     }, [dispatch])
     
     const handleClick = (reviewId) => {
-        console.log('review id', reviewId)
+        // console.log('review id', reviewId)
         dispatch(deleteReview(reviewId))
     }
 
