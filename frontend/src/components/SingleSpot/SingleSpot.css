@@ -172,20 +172,12 @@
   .reviews li div:nth-child(2) {
     margin-bottom: 0.5rem;
   }
-  .editReview {
-    padding: 0.5rem 1rem;
-    background-color: #007aff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    margin-right: 1rem;
-  }
   .deleteReview {
     padding: 0.5rem 1rem;
     background-color: gray;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    /* box-shadow: ; */
+    /* border-radius: 5px; */
     font-size: 1rem;
   }
