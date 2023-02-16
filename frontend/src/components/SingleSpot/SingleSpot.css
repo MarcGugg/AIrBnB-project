@@ -1,34 +1,186 @@
-.spotName {
+/* .imageParent { */
+    /* border: 3px solid red; */
+    /* display: flex; */
+    /* justify-content: center; */
+/* } */
+/*  */
+/* .hostDescCallout { */
+    /* border: 3px solid orange; */
+    /* display: flex; */
+    /* justify-content: space-between; */
+    /* border-bottom: solid black; */
+/* } */
+/* .hostAndDesc { */
+    /* border: 3px solid blue; */
+/* } */
+/* .calloutInfoBoxParent { */
+    /* border: 2px solid black; */
+    /* box-shadow: 3px 3px 3px black; */
+    /* height: 200px; */
+/* } */
+/*  */
+/* .priceRatingParent { */
+    /* border: 3px solid red; */
+    /* display: flex; */
+    /* justify-content: space-between; */
+/* } */
+/* .price { */
+    /* margin-left: 20px; */
+    /* margin-right: 20px; */
+    /* margin-bottom: 100px; */
+/* } */
+/* .rating { */
+    /* margin-left: 20px; */
+    /* margin-bottom: 100px; */
+    /* margin-right: 20px; */
+/* } */
+/*  */
+/* .spotOwner { */
+    /* border: 3px solid black; */
+/* } */
+/* .spotDescription { */
+    /* border: 3px solid yellow; */
+/* } */
+/*  */
+/* .reviews { */
+    /* border: 3px solid purple; */
+/* } */
+
+/* Styles for name and location */
+/* .nameLocationParent { */
+    /* display: flex; */
+    /* justify-content: space-between; */
+    /* align-items: center; */
+    /* margin-bottom: 1rem; */
+  /* } */
+   .spotName { 
+     font-size: 2rem; 
+     font-weight: bold; 
+  } 
+  /* .spotLocation { */
+    /* font-size: 1.5rem; */
+  /* } */
+  
+  /* Styles for image */
+  .imageParent {
     display: flex;
     justify-content: center;
-}
-
-.spotLocation {
+    margin-bottom: 2rem;
+  }
+  .image img {
+    object-fit: cover;
+  }
+  
+  /* Styles for host and description */
+  .hostDescCallout {
     display: flex;
-    justify-content: center;
-}
-
-.image {
-    display: flex;
-    justify-content: center;
-    /* margin-right: 0%; */
-}
-
-.calloutInfoBoxParent {
-    border: 3px solid purple;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.calloutInfoBox {
-    border: 3px solid red;
-    width: 300px;
-    /* display: flex;
-    justify-content: space-between; */
-}
-
-.priceRatingParent {
-    border: 2px solid black;
-    display: flex;
+    /* flex-direction: column; */
+    /* align-items: center; */
     justify-content: space-between;
-}
+    margin-bottom: 2rem;
+  }
+  .hostAndDesc {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    margin-bottom: 2rem;
+  }
+  .spotOwner h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .spotDescription h4 {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+  .reviewButton {
+    /* padding: 0.5rem 1rem; */
+    /* background-color: #007aff; */
+    /* color: #fff; */
+    /* border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-top: 1rem; */
+
+    padding: 0.5rem 1rem;
+    background-color: red;
+    color: #fff;
+    /* border: none; */
+    /* border-radius: 5px; */
+    font-size: 1rem;
+  }
+  
+  /* Styles for callout information */
+  .calloutInfoBoxParent {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+  .calloutInfoBox {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    align-items: center;
+    padding: 1.5rem;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    /* width: 25rem; */
+  }
+  .priceRatingParent {
+    display: flex;
+    /* justify-content: space-between; */
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-right: 40px;
+  }
+  .rating {
+    font-size: 1.2rem;
+  }
+  .reserveButton {
+    padding: 0.5rem 1rem;
+    background-color: red;
+    color: #fff;
+    /* border: none; */
+    /* border-radius: 5px; */
+    font-size: 1rem;
+  }
+  
+  /* Styles for reviews */
+  .reviews {
+    border-top: 2px solid black;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+  }
+  .reviews li {
+    list-style: none;
+    margin-bottom: 1rem;
+  }
+  .reviews li div:first-child {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  .reviews li div:nth-child(2) {
+    margin-bottom: 0.5rem;
+  }
+  .editReviewButton {
+    padding: 0.5rem 1rem;
+    background-color: #007aff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-right: 1rem;
+  }
+  .deleteReviewButton {
+    padding: 0.5rem 1rem;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
