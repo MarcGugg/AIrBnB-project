@@ -89,7 +89,7 @@ export const deleteReview = (reviewId) => async (dispatch) => {
     })
 
     if (res.ok) {
-        dispatch(removeReview(reviewId))
+        await dispatch(removeReview(reviewId))
     }
 }
 
@@ -102,18 +102,20 @@ export default function reviewsReducer(state=initialState, action) {
     switch (action.type) {
         case GET_SPOT_REVIEWS: {
             const newState = {...state, spot: {}}
-            // console.log('action reviews AAAA', action.reviews)
-            newState.spot = {...action.reviews}
+            console.log('action reviews AAAA', action.reviews.Reviews)
+            for (let review of action.reviews.Reviews) {
+                newState.spot[review.id] = review
+            }
             // console.log('newstate spot', newState.spot)
             return newState
         }
         case CREATE_REVIEW: {
-            const newState2 = {...state, spot: {...state.spot}, spot: {Reviews: [...state.spot.Reviews]}} //...state.spot
-            newState2.spot.Reviews.push(action.review)
+            const newState2 = {...state, spot: {...state.spot}} //...state.spot
+            newState2.spot[action.review.id] = action.review
             return newState2
         }
         case EDIT_REVIEW: {
-            const newState3 = {...state, spot: {...state.spot}, spot: {Reviews: [...state.spot.Reviews]}}
+            const newState3 = {...state, spot: {...state.spot}}
             console.log('newstate reviews', newState3.spot.Reviews)
             console.log('action review', action.updatedReview)
             // newState3.spot.Reviews[action.updatedReview.id] = {...action.updatedReview}
@@ -123,9 +125,9 @@ export default function reviewsReducer(state=initialState, action) {
         case DELETE_REVIEW: {
             const newState4 = {...state, spot: {...state.spot}}
 
-            const val = newState4.spot.Reviews.find(review => review.id === action.reviewId)
-            const index = newState4.spot.Reviews.indexOf(val)
-            newState4.spot.Reviews.splice(index, 1)
+            delete newState4[action.reviewId]
+
+            return newState4
 
         }
         default:

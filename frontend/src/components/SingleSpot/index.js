@@ -30,6 +30,7 @@ export default function SingleSpot() {
     }, [dispatch])
     
     const handleClick = (reviewId) => {
+        console.log('review id', reviewId)
         dispatch(deleteReview(reviewId))
     }
 
@@ -44,7 +45,7 @@ export default function SingleSpot() {
     // console.log('reviews array', Object.values(reviews))
     // for (let review of Object.values(reviews))
     
-    if (Object.keys(spot).length === 0 || !reviews.Reviews) return null
+    if (Object.keys(spot).length === 0 || !reviews) return null
     return (
         <>
         <div>
@@ -70,7 +71,7 @@ export default function SingleSpot() {
                 {user && spot.Owner.id !== user.id ? <OpenModalButton modalComponent={<CreateReviewModal spotId={spotId} user={user}/>} buttonText={'Post Your Review'} />: ''} 
             </div>
             <div>
-                {reviews && Object.values(reviews.Reviews).map(review => <li>
+                {reviews && Object.values(reviews).map(review => <li>
                     <div>
                         {review.User.firstName} {review.User.lastName}
                     </div>
@@ -81,7 +82,7 @@ export default function SingleSpot() {
                         {user && review.userId === user.id ? <OpenModalButton modalComponent={<UpdateReviewModal reviewId={review.id} user={user}/>} buttonText={'Edit Your Review'}/>: ''}
                     </div>
                     <div>
-                        {user && review.userId === user.id ? <button onClick={handleClick(review.id)}>Delete Review</button>: ''}
+                        {user && review.userId === user.id ? <button onClick={() => handleClick(review.id)}>Delete Review</button>: ''}
                     </div>
                 </li>)}
             </div>
