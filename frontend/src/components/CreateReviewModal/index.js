@@ -9,7 +9,7 @@ import { postReview } from '../../store/reviews';
 
 import './Review.css'
 
-export default function CreateReviewModal({spotId}) {
+export default function CreateReviewModal({spotId, user}) {
     const [review, setReview] = useState('')
     const [stars, setStars] = useState(1)
 
@@ -25,10 +25,12 @@ export default function CreateReviewModal({spotId}) {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const reviewToSubmit = {...reviewObj}
-        const newReview = await dispatch(postReview(reviewToSubmit, spotId))
-        console.log('new review', newReview)
+        // const newReview = await dispatch(postReview(reviewToSubmit, spotId))
+        // console.log('new review', newReview)
         // dispatch(getSingleSpot(spotId))
-        closeModal()
+        return dispatch(postReview(reviewToSubmit, user, spotId))
+        .then(closeModal)
+        // closeModal()
     }
 
 
