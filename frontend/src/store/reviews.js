@@ -125,7 +125,7 @@ export default function reviewsReducer(state=initialState, action) {
         case DELETE_REVIEW: {
             const newState4 = {...state, spot: {...state.spot}}
 
-            delete newState4[action.reviewId]
+            delete newState4.spot[action.reviewId]
 
             return newState4
 
