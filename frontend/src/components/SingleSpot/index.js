@@ -20,7 +20,7 @@ export default function SingleSpot() {
 
     // console.log('spot', spot)
     // console.log('spot owner', spot.Owner)
-    // console.log('reviews og', reviews)
+    console.log('reviews og', reviews)
     // console.log('user', user)
     
     useEffect(() => {
@@ -88,6 +88,11 @@ export default function SingleSpot() {
             <div className='rating'>
                 Rating: {!spot.avgRating ? 'New': spot.avgRating}
             </div>
+            <div className='reviewCountParent'>
+                <div className='reviewCount'>
+                    {Object.values(reviews).length} review(s)
+                </div>
+            </div>
             </div>
             <div className='reserveButtonParent'>
                 <button className='reserveButton'>Reserve</button>
@@ -113,7 +118,7 @@ export default function SingleSpot() {
                         {user && review.userId === user.id ? <OpenModalButton modalComponent={<UpdateReviewModal reviewId={review.id} user={user}/>} buttonText={'Edit Your Review'}/>: ''}
                     </div>
                     <div>
-                        {user && review.userId === user.id ? <button onClick={() => handleClick(review.id)}>Delete Review</button>: ''}
+                        {user && review.userId === user.id ? <button className='deleteReview' onClick={() => handleClick(review.id)}>Delete Review</button>: ''}
                     </div>
                 </li>)}
             </div>

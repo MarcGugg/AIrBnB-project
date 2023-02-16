@@ -103,7 +103,7 @@
     margin-top: 1rem; */
 
     padding: 0.5rem 1rem;
-    background-color: red;
+    /* background-color: red; */
     color: #fff;
     /* border: none; */
     /* border-radius: 5px; */
@@ -113,9 +113,14 @@
   /* Styles for callout information */
   .calloutInfoBoxParent {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     margin-bottom: 2rem;
   }
+
+  .reviewCountParent {
+    margin-left: 20px;
+  }
+
   .calloutInfoBox {
     display: flex;
     flex-direction: column;
@@ -152,8 +157,8 @@
   /* Styles for reviews */
   .reviews {
     border-top: 2px solid black;
-    margin-top: 2rem;
-    font-size: 1.2rem;
+    /* margin-top: 2rem; */
+    /* font-size: 1.2rem; */
   }
   .reviews li {
     list-style: none;
@@ -167,7 +172,7 @@
   .reviews li div:nth-child(2) {
     margin-bottom: 0.5rem;
   }
-  .editReviewButton {
+  .editReview {
     padding: 0.5rem 1rem;
     background-color: #007aff;
     color: #fff;
@@ -176,9 +181,9 @@
     font-size: 1rem;
     margin-right: 1rem;
   }
-  .deleteReviewButton {
+  .deleteReview {
     padding: 0.5rem 1rem;
-    background-color: #dc3545;
+    background-color: gray;
     color: #fff;
     border: none;
     border-radius: 5px;
