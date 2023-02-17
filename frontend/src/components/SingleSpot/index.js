@@ -48,7 +48,7 @@ export default function SingleSpot() {
     if (Object.keys(spot).length === 0 || !reviews) return null
     return (
         <>
-        <div>
+        <div className='aboveReviews'>
             <div className='nameLocationParent'>
             <div className='spotName'>
             {spot.name}
@@ -57,11 +57,11 @@ export default function SingleSpot() {
                 {spot.city}, {spot.state}, {spot.country}
             </div>
             </div>
-            <div className='imageParent'>                
+            {/* <div className='imageParent'>                
             <div className='image'>
+            </div>
+            </div> */}
             <img src={spot.SpotImages[0].url} style={{width: 700, height: 500}}/>
-            </div>
-            </div>
             <div className='hostDescCallout'>
             <div className='hostAndDesc'>                
             <div className='spotOwner'>
@@ -74,12 +74,12 @@ export default function SingleSpot() {
             {spot.description}
                 </h4>
             </div>
-            {/* <div className='reviewButton'> */}
+            <div className='reviewButton'>
                 {/* put modal component into ternary */}
                 {/* {user && spot.Owner.id !== user.id ? <OpenModalButton modalComponent={<CreateReviewModal spotId={spotId} user={user}/>} buttonText={'Post Your Review'} />: ''}  */}
-            {/* </div> */}
+            </div>
             </div>           
-        <div className='calloutInfoBoxParent'>
+        {/* <div className='calloutInfoBoxParent'> */}
         <div className='calloutInfoBox'>
             <div className='priceRatingParent'>
             <div className='price'>
@@ -98,13 +98,15 @@ export default function SingleSpot() {
                 <button className='reserveButton'>Reserve</button>
             </div>
         </div>
-        </div>
+        {/* </div> */}
 
             </div>
         </div>
         <div className='reviewButton'>
                 {/* put modal component into ternary */}
+                <div className='submitReview'>
                 {user && spot.Owner.id !== user.id ? <OpenModalButton modalComponent={<CreateReviewModal spotId={spotId} user={user}/>} buttonText={'Post Your Review'} />: ''} 
+                </div>
             </div>
             <div className='reviews'>
                 {reviews && Object.values(reviews).map(review => <li>
