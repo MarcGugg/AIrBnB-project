@@ -1,65 +1,10 @@
-/* .imageParent { */
-    /* border: 3px solid red; */
-    /* display: flex; */
-    /* justify-content: center; */
-/* } */
-/*  */
-/* .hostDescCallout { */
-    /* border: 3px solid orange; */
-    /* display: flex; */
-    /* justify-content: space-between; */
-    /* border-bottom: solid black; */
-/* } */
-/* .hostAndDesc { */
-    /* border: 3px solid blue; */
-/* } */
-/* .calloutInfoBoxParent { */
-    /* border: 2px solid black; */
-    /* box-shadow: 3px 3px 3px black; */
-    /* height: 200px; */
-/* } */
-/*  */
-/* .priceRatingParent { */
-    /* border: 3px solid red; */
-    /* display: flex; */
-    /* justify-content: space-between; */
-/* } */
-/* .price { */
-    /* margin-left: 20px; */
-    /* margin-right: 20px; */
-    /* margin-bottom: 100px; */
-/* } */
-/* .rating { */
-    /* margin-left: 20px; */
-    /* margin-bottom: 100px; */
-    /* margin-right: 20px; */
-/* } */
-/*  */
-/* .spotOwner { */
-    /* border: 3px solid black; */
-/* } */
-/* .spotDescription { */
-    /* border: 3px solid yellow; */
-/* } */
-/*  */
-/* .reviews { */
-    /* border: 3px solid purple; */
-/* } */
 
 /* Styles for name and location */
-/* .nameLocationParent { */
-    /* display: flex; */
-    /* justify-content: space-between; */
-    /* align-items: center; */
-    /* margin-bottom: 1rem; */
-  /* } */
    .spotName { 
      font-size: 2rem; 
      font-weight: bold; 
   } 
-  /* .spotLocation { */
-    /* font-size: 1.5rem; */
-  /* } */
+
   
   /* Styles for image */
   .imageParent {
@@ -114,7 +59,7 @@
     /* justify-content: space-between; */
     align-items: center;
     padding: 40px;
-    border: 1px solid #d3d3d3;
+    border: 1px solid lightgrey;
     border-radius: 5px;
   }
   .priceRatingParent {
@@ -127,6 +72,7 @@
     font-size: 1.5rem;
     font-weight: bold;
     margin-right: 40px;
+    border: none;
   }
   .rating {
     font-size: 1.2rem;
@@ -137,6 +83,10 @@
     color: #fff;
 
     font-size: 1rem;
+  }
+  .reserveButton:hover {
+    background-color: darkred;
+    cursor: pointer;
   }
   
   /* Styles for reviews */
@@ -158,6 +108,9 @@
     color: white;
     border: none;
     box-shadow: 2px 2px 2px black;
-    /* border-radius: 5px; */
-    font-size: 1rem;
+    font-size: large;
+  }
+  .deleteReview:hover {
+    background-color: darkgray;
+    cursor: pointer;
   }
