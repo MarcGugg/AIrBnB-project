@@ -108,7 +108,7 @@ export default function SingleSpot() {
             </div>
             <div className='reviews'>
                 {reviews && Object.values(reviews).map(review => <li>
-                    <div>
+                    <div className='name'>
                         {review.User.firstName} {review.User.lastName}
                     </div>
                     <div>
