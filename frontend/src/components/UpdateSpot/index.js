@@ -8,26 +8,36 @@ import { getAllSpots, getSingleSpot, updateSpot } from '../../store/spots';
 
 export default function UpdateSpot() {
     const spot = useSelector((state) => state.spots.singleSpot)
-    
-    const [validationErrors, setValidationErrors] = useState([])
-    const [country, setCountry] = useState(spot.country)
-    const [address, setAddress] = useState(spot.address)
-    const [city, setCity] = useState(spot.city)
-    const [state, setState] = useState(spot.state)
-    const [description, setDescription] = useState(spot.description)
-    const [name, setName] = useState(spot.name)
-    const [price, setPrice] = useState(spot.price)
-    const [imageURL, setImageURL] = useState(spot.imageURL)
-    
+
+    const dispatch = useDispatch()
+
     const {spotId} = useParams()
 
     // console.log('spotId',spotId)
 
-    // useEffect(() => {
-    //     dispatch(getSingleSpot(spotId))   
+    // // console.log('spot', spot)
+    // let spotToEdit
+    // useEffect( async () => {
+    //    spotToEdit = dispatch(getSingleSpot(spotId))   
     // }, [dispatch])
     
-    // console.log('spot', spot)
+    // console.log('spotToEdit', spotToEdit)
+    
+    
+    const [validationErrors, setValidationErrors] = useState([])
+    const [country, setCountry] = useState(spot.country || '')
+    const [address, setAddress] = useState(spot.address || '')
+    const [city, setCity] = useState(spot.city || '')
+    const [state, setState] = useState(spot.state || '')
+    const [description, setDescription] = useState(spot.description || '')
+    const [name, setName] = useState(spot.name || '')
+    const [price, setPrice] = useState(spot.price || '')
+    const [imageURL, setImageURL] = useState(spot.imageURL || '')
+
+
+    // console.log('spotId',spotId)
+
+
 
     const history = useHistory()
 
@@ -41,7 +51,6 @@ export default function UpdateSpot() {
         price
     }
 
-    const dispatch = useDispatch()
 
     const handleSubmit = (e) => {
         e.preventDefault()

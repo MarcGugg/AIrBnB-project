@@ -83,7 +83,8 @@ export const getSingleSpot = (spotId) => async (dispatch) => {
     if (res.ok) {
         const spot = await res.json()
         // spot.reviews = dispatch(getSpotReviews(spot.id))
-        dispatch(oneSpot(spot))
+        await dispatch(oneSpot(spot))
+        return spot
     }
 }
 
@@ -183,6 +184,7 @@ export default function spotsReducer(state=initialState, action) {
             return newState4
         }
         case UPDATE_SPOT: {
+            console.log('reducer')
             const newState5 = {...state, userSpots: {...state.userSpots}}
             newState5.userSpots[action.spot.id] = {...action.spot}
             return newState5
