@@ -35,8 +35,8 @@
     margin-bottom: 10px;
   }
   .spotDescription h4 {
-    font-size: 1.2rem;
-    text-align: center;
+    font-size: large;
+    /* text-align: center; */
   }
   .reviewButton {
     padding-bottom: 3px;
