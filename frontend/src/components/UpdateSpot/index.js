@@ -14,16 +14,6 @@ export default function UpdateSpot() {
     const {spotId} = useParams()
 
     // console.log('spotId',spotId)
-
-    // // console.log('spot', spot)
-    // let spotToEdit
-    useEffect(() => {
-       dispatch(getSingleSpot(spotId))   
-    }, [dispatch])
-    
-    // console.log('spotToEdit', spotToEdit)
-    
-    
     const [validationErrors, setValidationErrors] = useState([])
     const [country, setCountry] = useState(spot.country)
     const [address, setAddress] = useState(spot.address)
@@ -32,7 +22,29 @@ export default function UpdateSpot() {
     const [description, setDescription] = useState(spot.description)
     const [name, setName] = useState(spot.name)
     const [price, setPrice] = useState(spot.price)
-    const [imageURL, setImageURL] = useState(spot.imageURL)
+    const [imageURL, setImageURL] = useState(spot.SpotImages[0].url)
+
+    // // console.log('spot', spot)
+    // let spotToEdit
+    useEffect(() => {
+       dispatch(getSingleSpot(spotId))   
+    }, [dispatch])
+    
+    useEffect(() => {
+        if (Object.values(spot).length) {
+            setCountry(spot.country)
+            setCity(spot.city)
+            setState(spot.state)
+            setAddress(spot.address)
+            setDescription(spot.description)
+            setName(spot.name)
+            setImageURL(spot.SpotImages[0].url)
+            setPrice(spot.price)
+        }
+    }, [spot])
+    // console.log('spotToEdit', spotToEdit)
+    
+    
 
     // console.log('spotId',spotId)
 
@@ -69,7 +81,7 @@ export default function UpdateSpot() {
 
     }
 
-    if (!Object.values(spot).length) return null
+    // if (!Object.values(spot).length) return null
     
     return (
         <div className='formParent'>
