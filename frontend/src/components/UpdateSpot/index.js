@@ -17,23 +17,22 @@ export default function UpdateSpot() {
 
     // // console.log('spot', spot)
     // let spotToEdit
-    // useEffect( async () => {
-    //    spotToEdit = dispatch(getSingleSpot(spotId))   
-    // }, [dispatch])
+    useEffect(() => {
+       dispatch(getSingleSpot(spotId))   
+    }, [dispatch])
     
     // console.log('spotToEdit', spotToEdit)
     
     
     const [validationErrors, setValidationErrors] = useState([])
-    const [country, setCountry] = useState(spot.country || '')
-    const [address, setAddress] = useState(spot.address || '')
-    const [city, setCity] = useState(spot.city || '')
-    const [state, setState] = useState(spot.state || '')
-    const [description, setDescription] = useState(spot.description || '')
-    const [name, setName] = useState(spot.name || '')
-    const [price, setPrice] = useState(spot.price || '')
-    const [imageURL, setImageURL] = useState(spot.imageURL || '')
-
+    const [country, setCountry] = useState(spot.country)
+    const [address, setAddress] = useState(spot.address)
+    const [city, setCity] = useState(spot.city)
+    const [state, setState] = useState(spot.state)
+    const [description, setDescription] = useState(spot.description)
+    const [name, setName] = useState(spot.name)
+    const [price, setPrice] = useState(spot.price)
+    const [imageURL, setImageURL] = useState(spot.imageURL)
 
     // console.log('spotId',spotId)
 
@@ -70,59 +69,10 @@ export default function UpdateSpot() {
 
     }
 
+    if (!Object.values(spot).length) return null
+    
     return (
-        // <form onSubmit={handleSubmit}>
-        //     <div>    
-        //     <label>Country
-        //     <input value={country} onChange={(e) => setCountry(e.target.value)} type='text'/>
-        //     </label>
-        //     </div>
-
-        //     <div>
-        //     <label>Street Address
-        //     <input value={address} onChange={(e) => setAddress(e.target.value)} type='text'/>
-        //     </label>
-        //     </div>
-
-        //     <div>
-        //     <label>City
-        //     <input value={city} onChange={(e) => setCity(e.target.value)} type='text'/>
-        //     </label>
-        //     <label>State
-        //     <input value={state} onChange={(e) => setState(e.target.value)} type='text'/>
-        //     </label>
-        //     </div>
-
-        //     <div>
-        //     <label>Description
-        //         <textarea value={description} onChange={(e) => setDescription(e.target.value)} name='description'/>
-        //     </label>
-        //     </div>
-
-        //     <div>
-        //     <label>Title
-        //         <input value={name} onChange={(e) => setName(e.target.value)} type='text'/>
-        //     </label>
-        //     </div>
-
-        //     <div>
-        //     <label>Price per Night
-        //         <input value={price} onChange={(e) => setPrice(Number(e.target.value))} type='text'/>
-        //     </label>
-        //     </div>
-
-        //     <div>
-        //     <label>Image URL
-        //         <input value={imageURL} onChange={(e) => setImageURL(e.target.value)} type='text'/>
-        //     </label>
-        //     </div>
-            
-        //     <div>
-        //         <button type='submit'>Update Spot</button>
-        //     </div>
-
-        // </form>
-                <div className='formParent'>
+        <div className='formParent'>
         <form onSubmit={handleSubmit} className='form'>
             <div className='country'>    
             <label>Country
