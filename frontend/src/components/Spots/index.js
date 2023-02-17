@@ -7,6 +7,9 @@ import './Spots.css'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
+
 export default function Spots() {
     const dispatch = useDispatch()
     const spots = useSelector((state) => state.spots.allSpots)
@@ -28,7 +31,7 @@ export default function Spots() {
             <img src={spot.previewImage} style={{width: 270, height: 250}}/>
             <div className='cityStateRating'>
             <p>{spot.city}, {spot.state}</p>
-            <p>Rating: <FontAwesomeIcon icon="fa-solid fa-star" />{!spot.avgRating ? 'New': spot.avgRating}</p>
+            <p>Rating: <FontAwesomeIcon icon={faStar} />{!spot.avgRating ? 'New': spot.avgRating}</p>
             </div>
             <div>
             <p className='spotPrice'>{spot.price}/Night</p>
