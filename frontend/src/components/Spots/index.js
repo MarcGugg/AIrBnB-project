@@ -3,9 +3,9 @@ import { NavLink, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getAllSpots } from '../../store/spots';
-
 import './Spots.css'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function Spots() {
     const dispatch = useDispatch()
@@ -28,7 +28,7 @@ export default function Spots() {
             <img src={spot.previewImage} style={{width: 270, height: 250}}/>
             <div className='cityStateRating'>
             <p>{spot.city}, {spot.state}</p>
-            <p>Rating: {!spot.avgRating ? 'New': spot.avgRating}</p>
+            <p>Rating: <FontAwesomeIcon icon="fa-solid fa-star" />{!spot.avgRating ? 'New': spot.avgRating}</p>
             </div>
             <div>
             <p className='spotPrice'>{spot.price}/Night</p>
