@@ -39,10 +39,17 @@ export default function CreateNewSpot() {
 
         const errs = []
 
-        // if (typeof spot.price !== 'number') {
-        //     errs.push('price must be a number')
-        //     setValidationErrors(errs)
-        // } 
+        if (typeof spot.price !== 'number') errs.push('Price must be a number')
+        if (!price.length) errs.push('Price is required')
+        if (!country.length) errs.push('Country is required')
+        if (!address.length) errs.push('Address is required')
+        if (!city.length) errs.push('City is required')
+        if (!state.length) errs.push('State is required')
+        if (!description.length) errs.push('Description is required')
+        if (!name.length) errs.push('Title is required')
+        setValidationErrors(errs)
+
+        
         // else {
             const newSpotObj = {...spot}
             const newSpot = await dispatch(createNewSpot(newSpotObj))
@@ -116,7 +123,7 @@ in search results.</h4>
             </div>
             
             <div className='submitButton'>
-                <button type='submit'>Create Spot</button>
+                <button type='submit' disabled={validationErrors.length > 0}>Create Spot</button>
             </div>
 
         </form>
