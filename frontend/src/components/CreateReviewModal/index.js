@@ -11,7 +11,7 @@ import './Review.css'
 
 export default function CreateReviewModal({spotId, user}) {
     const [review, setReview] = useState('')
-    const [stars, setStars] = useState(1)
+    const [stars, setStars] = useState(0)
 
     const {closeModal} = useModal()
 
@@ -56,7 +56,7 @@ export default function CreateReviewModal({spotId, user}) {
                 </div>
             </div>
             <div className='submitButtonParent'>
-                <button type='submit' className='submitButton'>Submit Your Review</button>
+                <button type='submit' className='submitButton' disabled={review.length < 10 || stars < 1}>Submit Your Review</button>
             </div>
         </form>
     );
