@@ -35,9 +35,10 @@ export default function CreateReviewModal({spotId, user}) {
 
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='wholeForm'>
             <div>
-                <textarea name='review' value={review} onChange={(e) => setReview(e.target.value)}/>
+                <div className='topText'>How was your stay?</div>
+                <textarea name='review' className='reviewText' value={review} onChange={(e) => setReview(e.target.value)}/>
             </div>
             <div>
                 Stars
@@ -54,8 +55,8 @@ export default function CreateReviewModal({spotId, user}) {
                   <label htmlFor="star1" title="text">1 star</label>
                 </div>
             </div>
-            <div>
-                <button type='submit'>Submit Your Review</button>
+            <div className='submitButtonParent'>
+                <button type='submit' className='submitButton'>Submit Your Review</button>
             </div>
         </form>
     );
