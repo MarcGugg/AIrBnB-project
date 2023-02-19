@@ -7,7 +7,7 @@ import { getAllSpots, getSingleSpot, getSpotReviews } from '../../store/spots';
 import { useModal } from '../../context/Modal';
 import { editReview, postReview } from '../../store/reviews';
 
-
+import './UpdateReview.css'
 
 export default function UpdateReviewModal({reviewId, user}) {
     const reviewRetrieve = useSelector((state) => state.reviews.spot)
@@ -49,9 +49,10 @@ export default function UpdateReviewModal({reviewId, user}) {
 
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='wholeForm'>
             <div>
-                <textarea name='review' value={review} onChange={(e) => setReview(e.target.value)}/>
+                <div className='topText'>How was your stay?</div>
+                <textarea name='review' value={review} className='reviewText' onChange={(e) => setReview(e.target.value)}/>
             </div>
             <div>
                 Stars
@@ -68,8 +69,8 @@ export default function UpdateReviewModal({reviewId, user}) {
                   <label htmlFor="star1" title="text">1 star</label>
                 </div>
             </div>
-            <div>
-                <button type='submit'>Update Your Review</button>
+            <div className='submitButtonParent'>
+                <button type='submit' className='submitButton' disabled={review.length < 10 || stars < 1}>Update Your Review</button>
             </div>
         </form>
     );
