@@ -31,67 +31,82 @@ function SignupFormModal() {
 
   return (
     <>
+    <div className="signup-allForm">
       <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='input-container'>
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
+        <div className="signup-input">
         <label>
           Email
+        </label>
           <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </label>
+        </div>
+        <div className="signup-input">
+
         <label>
           Username
+        </label>
           <input
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
-        </label>
+        </div>
+        <div className="signup-input">
         <label>
           First Name
+          </label>
           <input
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             required
           />
-        </label>
+        </div>
+        <div className="signup-input">
         <label>
           Last Name
+          </label>
           <input
             type="text"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             required
           />
-        </label>
+        </div>
+        <div className="signup-input">
         <label>
           Password
+          </label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
+        </div>
+        <div className="signup-input">
         <label>
           Confirm Password
+          </label>
           <input
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
-        </label>
-        <button type="submit">Sign Up</button>
+        </div>
+        <button type="submit" className="signup-button">Sign Up</button>
       </form>
+    </div>
     </>
   );
 }

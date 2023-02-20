@@ -1,0 +1,33 @@
+.wholeForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+}
+.inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.login-topText {
+    text-align: center;
+    /* margin-left: 0.5em; */
+    /* border: 2px solid red; */
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+}
+
+.loginButton {
+    background-color: white;
+    margin: 1em;
+    padding: 1em;
+    color: gray;
+}
+.loginButton:hover {
+    background-color: lightGray;
+    color: black;
+}
