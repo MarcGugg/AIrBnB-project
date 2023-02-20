@@ -26,7 +26,7 @@
 }
 
 .rating {
-    margin-left: 2.5em;
+    margin-left: 1em;
 }
 
 .updateSpotButton {
@@ -38,4 +38,26 @@
     font-size: large;
     margin: 0.06rem;
     margin-bottom: 0.02rem;
+}
+
+.manageSpots-Header{
+    margin-bottom: 10px;
+}
+
+.createSpotButton-2 {
+    /* position: relative; */
+    left:-10%;
+    right:110%;
+    bottom:5%;
+    top:-10%;
+    background-color: #A0A0A0;
+    color: white;
+    padding: 0.5rem;
+    /* margin-top: 10px; */
+    border-radius: 3px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.19), 0px 1px 0px rgba(0, 0, 0, 0.23);
+}
+.createSpotButton-2:hover {
+    background-color: darkgray;
+    color: black;
 }

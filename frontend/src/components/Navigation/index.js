@@ -22,7 +22,7 @@ function Navigation({ isLoaded }){
         </li>
       )}
     </ul>
-    {/* <NavLink className='createSpotButton' to='/spots'>Create new Spot</NavLink> */}
+    <NavLink className='createSpotButton' to='/spots'>Create new Spot</NavLink>
     </div> //ul is boilerplate. div is not
   );
 }

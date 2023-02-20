@@ -28,7 +28,10 @@ export default function UserSpots() {
     return (
         <>
         <div>
-            <h1>Manage Your Spots</h1>
+            <h1 className='manageSpots-Header'>Manage Your Spots</h1>
+            <div>
+            <NavLink className='createSpotButton-2' to='/spots'>Create new Spot</NavLink>
+            </div>
             <div className='userSpotsList'>
                 {userSpots && Object.values(userSpots).map(spot => <li key={spot.name} className='user-spotCard'>
                     {/* <p>{spot.name}</p> */}
