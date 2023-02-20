@@ -5,7 +5,11 @@ import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import CreateNewSpot from "../CreateNewSpot";
+import { Link } from "react-router-dom";
 
+import './Navigation.css'
+// import './ProfileButton.css'
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
@@ -42,6 +46,11 @@ function ProfileButton({ user }) {
 
   return (
     <>
+    {/*  */}
+    {user? (
+      <Link className="createSpotButton" to='/spots'>Create a new spot</Link>
+    ) : (<></>)}
+    {/*  */}
       <button onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>
@@ -51,6 +60,11 @@ function ProfileButton({ user }) {
             <li>{user.username}</li>
             <li>{user.firstName} {user.lastName}</li>
             <li>{user.email}</li>
+            <li>
+              <button className="manageUserSpots">
+                <Link to='/spots/current'>Manage Your Spots</Link>
+              </button>
+            </li>
             <li>
               <button onClick={logout}>Log Out</button>
             </li>

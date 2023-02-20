@@ -1,0 +1,26 @@
+.signup-allForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.signup-button {
+    margin: 1em;
+    padding: 1em;
+    background-color: white;
+    color: gray;
+}
+.signup-button:hover {
+    background-color: gray;
+    color: black;
+}

@@ -11,16 +11,19 @@ function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
+    <div className='navBarParent'>
+    <ul className='navBar'>
+      <li className='homeButton'>
+        <NavLink className={'homeNav'} exact to="/">FullStackBnB</NavLink>
       </li>
       {isLoaded && (
-        <li>
+        <li className='profileButton'>
           <ProfileButton user={sessionUser} />
         </li>
       )}
     </ul>
+    <NavLink className='createSpotButton' to='/spots'>Create new Spot</NavLink>
+    </div> //ul is boilerplate. div is not
   );
 }
 

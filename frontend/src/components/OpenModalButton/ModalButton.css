@@ -1,0 +1,16 @@
+.modalButton {
+    /* background-color: gray;
+    padding: 0.5rem; */
+    padding: 0.5rem 1rem;
+    background-color: gray;
+    color: white;
+    border: none;
+    box-shadow: 2px 2px 2px black;
+    font-size: large;
+    margin: 0.06rem;
+    margin-bottom: 0.02rem;
+}
+.modalButton:hover {
+    cursor: pointer;
+    background-color: darkgray;
+}

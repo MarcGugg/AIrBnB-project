@@ -1,3 +1,54 @@
+* {
+    text-decoration: none; 
+}
+
 .hidden {
     display: none;
+}
+
+.navBarParent {
+    height: 4rem;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.19), 0px 1px 0px rgba(0, 0, 0, 0.23); 
+}
+
+.navBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style-type: none;
+}
+
+.profileButton {
+    height: 20px;
+    /* border: 10px solid red; */
+    border-radius: 100px;
+    margin: 1rem;
+}
+
+.createSpotButton {
+    /* border: 3px solid red; */
+    position: relative;
+    left:-10%;
+    right:110%;
+    bottom:5%;
+    top:-10%;
+    background-color: red;
+    color: black;
+    padding: 0.5rem;
+    border-radius: 3px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.19), 0px 1px 0px rgba(0, 0, 0, 0.23);
+    /* text-decoration: none;    */
+}
+.createSpotButton:hover {
+    background-color: darkred;
+    cursor: pointer;
+}
+.homeButton {
+    margin: 1rem;
+    margin-top: 0.5rem;
+}
+.homeNav {
+    color: darkgreen;
+    font-weight: bolder;
+    font-size: xx-large;
 }
