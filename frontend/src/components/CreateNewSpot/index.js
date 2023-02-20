@@ -39,7 +39,7 @@ export default function CreateNewSpot() {
 
         const errs = []
 
-        if (typeof spot.price !== 'number') errs.push('Price must be a number')
+        if (typeof spot.price !== 'number') errs.push({numMessage:'Price must be a number'})
         if (!price.length) errs.push('Price is required')
         if (!country.length) errs.push('Country is required')
         if (!address.length) errs.push('Address is required')
@@ -51,25 +51,38 @@ export default function CreateNewSpot() {
 
         
         // else {
-            const newSpotObj = {...spot}
-            const newSpot = await dispatch(createNewSpot(newSpotObj))
-            // console.log('new spot',newSpot)
-            history.push(`spots/${newSpot.id}`)
+            if (!validationErrors.length) {
+                const newSpotObj = {...spot}
+                const newSpot = await dispatch(createNewSpot(newSpotObj))
+                // console.log('new spot',newSpot)
+                history.push(`spots/${newSpot.id}`)
+            }
         // }
 
     }
+    
 
     return (
         <div className='formParent'>
         <form onSubmit={handleSubmit} className='form'>
             <div className='country'>    
             <label>Country
+                <p>
+                    {validationErrors.length > 0 ? <p className='error'>
+                        {validationErrors[2]}
+                    </p> : ''}
+                </p>
             <input className='countryInput' value={country} onChange={(e) => setCountry(e.target.value)} type='text'/>
             </label>
             </div>
 
             <div className='address'>
             <label>Street Address
+                <p>
+                   {validationErrors.length > 0 ? <p className='error'>
+                    {validationErrors[3]}
+                   </p>: ''} 
+                </p>
             <input className='addressInput' value={address} onChange={(e) => setAddress(e.target.value)} type='text'/>
             </label>
             </div>
@@ -77,11 +90,21 @@ export default function CreateNewSpot() {
             <div className='cityState'>
                 <div className='cityDiv'>
             <label>City
+            <p>
+                   {validationErrors.length > 0 ? <p className='error'>
+                    {validationErrors[4]}
+                   </p>: ''} 
+                </p>
             <input className='cityInput' value={city} onChange={(e) => setCity(e.target.value)} type='text'/>
             </label>
                 </div>
                 <div className='stateDiv'>
             <label>State
+            <p>
+                   {validationErrors.length > 0 ? <p className='error'>
+                    {validationErrors[5]}
+                   </p>: ''} 
+                </p>
             <input className='stateInput' value={state} onChange={(e) => setState(e.target.value)} type='text'/>
             </label>
                 </div>
@@ -92,6 +115,11 @@ export default function CreateNewSpot() {
                 <h4>Mention the best features of your space, any special amentities like
 fast wifi or parking, and what you love about the neighborhood.</h4>
             <label>
+            <p>
+                   {validationErrors.length > 0 ? <p className='error'>
+                    {validationErrors[6]}
+                   </p>: ''} 
+                </p>
                 <textarea className='descriptionInput' value={description} onChange={(e) => setDescription(e.target.value)} name='description'/>
             </label>
             </div>
@@ -101,6 +129,11 @@ fast wifi or parking, and what you love about the neighborhood.</h4>
                 <h4>Catch guests' attention with a spot title that highlights what makes
 your place special.</h4>
             <label>
+            <p>
+                   {validationErrors.length > 0 ? <p className='error'>
+                    {validationErrors[7]}
+                   </p>: ''} 
+                </p>
                 <input className='titleInput' value={name} onChange={(e) => setName(e.target.value)} type='text'/>
             </label>
             </div>
@@ -110,6 +143,14 @@ your place special.</h4>
                 <h4>Competitive pricing can help your listing stand out and rank higher
 in search results.</h4>
             <label>
+            <p>
+                   {validationErrors.length > 0 ? <p className='error'>
+                    {validationErrors[1]}
+                   </p>: ''}
+                   {/* {price === 'NaN' ? <p>
+                    {validationErrors[0]}
+                   </p>: ''}  */}
+                </p>
                 <input className='priceInput' value={price} onChange={(e) => setPrice(Number(e.target.value))} type='text'/>
             </label>
             </div>
@@ -123,7 +164,7 @@ in search results.</h4>
             </div>
             
             <div className='submitButton'>
-                <button type='submit' disabled={validationErrors.length > 0}>Create Spot</button>
+                <button type='submit' >Create Spot</button>
             </div>
 
         </form>

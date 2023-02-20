@@ -49,8 +49,8 @@
 .wholeForm {
     display: flex;
     flex-direction: column;
-    border: 3px solid black;
-    border-radius: 20px;
+    /* border: 3px solid black; */
+    /* border-radius: 20px; */
 }
 .reviewText {
     height: 150px;

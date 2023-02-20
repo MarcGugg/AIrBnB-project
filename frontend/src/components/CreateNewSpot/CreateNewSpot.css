@@ -88,3 +88,7 @@
     border-top: 3px solid black;
      margin: 10px 0;
   }
+
+  .error {
+    color: red;
+  }
