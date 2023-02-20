@@ -40,7 +40,7 @@ export default function CreateNewSpot() {
         const errs = []
 
         if (typeof spot.price !== 'number') errs.push({numMessage:'Price must be a number'})
-        if (!price.length) errs.push('Price is required')
+        if (!price) errs.push('Price is required')
         if (!country.length) errs.push('Country is required')
         if (!address.length) errs.push('Address is required')
         if (!city.length) errs.push('City is required')
@@ -61,6 +61,7 @@ export default function CreateNewSpot() {
 
     }
     
+    console.log('errors', validationErrors)
 
     return (
         <div className='formParent'>
