@@ -39,7 +39,7 @@ export default function CreateNewSpot() {
 
         const errs = []
 
-        if (typeof spot.price !== 'number') errs.push({numMessage:'Price must be a number'})
+        if (typeof spot.price !== 'number') errs.push('Price must be a number')
         if (!price) errs.push('Price is required')
         if (!country.length) errs.push('Country is required')
         if (!address.length) errs.push('Address is required')
@@ -70,7 +70,7 @@ export default function CreateNewSpot() {
             <label>Country
                 <p>
                     {validationErrors.length > 0 ? <p className='error'>
-                        {validationErrors[2]}
+                        {'Country is required'}
                     </p> : ''}
                 </p>
             <input className='countryInput' value={country} onChange={(e) => setCountry(e.target.value)} type='text'/>
@@ -81,7 +81,7 @@ export default function CreateNewSpot() {
             <label>Street Address
                 <p>
                    {validationErrors.length > 0 ? <p className='error'>
-                    {validationErrors[3]}
+                    {'Address is required'}
                    </p>: ''} 
                 </p>
             <input className='addressInput' value={address} onChange={(e) => setAddress(e.target.value)} type='text'/>
@@ -93,7 +93,7 @@ export default function CreateNewSpot() {
             <label>City
             <p>
                    {validationErrors.length > 0 ? <p className='error'>
-                    {validationErrors[4]}
+                    {'City is required'}
                    </p>: ''} 
                 </p>
             <input className='cityInput' value={city} onChange={(e) => setCity(e.target.value)} type='text'/>
@@ -103,7 +103,7 @@ export default function CreateNewSpot() {
             <label>State
             <p>
                    {validationErrors.length > 0 ? <p className='error'>
-                    {validationErrors[5]}
+                    {'State is required'}
                    </p>: ''} 
                 </p>
             <input className='stateInput' value={state} onChange={(e) => setState(e.target.value)} type='text'/>
@@ -118,7 +118,7 @@ fast wifi or parking, and what you love about the neighborhood.</h4>
             <label>
             <p>
                    {validationErrors.length > 0 ? <p className='error'>
-                    {validationErrors[6]}
+                    {'Description is required'}
                    </p>: ''} 
                 </p>
                 <textarea className='descriptionInput' value={description} onChange={(e) => setDescription(e.target.value)} name='description'/>
@@ -132,7 +132,7 @@ your place special.</h4>
             <label>
             <p>
                    {validationErrors.length > 0 ? <p className='error'>
-                    {validationErrors[7]}
+                    {'Title is required'}
                    </p>: ''} 
                 </p>
                 <input className='titleInput' value={name} onChange={(e) => setName(e.target.value)} type='text'/>
@@ -146,11 +146,11 @@ in search results.</h4>
             <label>
             <p>
                    {validationErrors.length > 0 ? <p className='error'>
-                    {validationErrors[1]}
+                    {'Price is required'}
                    </p>: ''}
-                   {/* {price === 'NaN' ? <p>
-                    {validationErrors[0]}
-                   </p>: ''}  */}
+                   {price === NaN ? <p>
+                    {'Price must be a number'}
+                   </p>: ''} 
                 </p>
                 <input className='priceInput' value={price} onChange={(e) => setPrice(Number(e.target.value))} type='text'/>
             </label>
