@@ -33,7 +33,7 @@ export default function UserSpots() {
             <NavLink className='createSpotButton-2' to='/spots'>Create new Spot</NavLink>
             </div>
             <div className='userSpotsList'>
-                {userSpots && Object.values(userSpots).map(spot => <li key={spot.name} className='user-spotCard'>
+                {userSpots && Object.values(userSpots).map(spot => (<Link key={spot.id} to={`/spots/${spot.id}` } className='user-spotCard'>
                     {/* <p>{spot.name}</p> */}
                     <p>
                         <img src={spot.previewImage} style={{width: 270, height: 250}}/>
@@ -55,7 +55,8 @@ export default function UserSpots() {
                         <OpenModalButton modalComponent={<DeleteSpotModal spotId={spot.id}/>} buttonText={'Delete'}/>
                     </div>
                     </div>
-                    </li>)}
+                </Link>
+                    ))}
             </div>
         </div>
         </>
