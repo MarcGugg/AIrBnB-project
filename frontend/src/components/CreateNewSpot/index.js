@@ -163,8 +163,8 @@ in search results.</h4>
             </label>
             </div>
             
-            <div className='submitButton'>
-                <button type='submit' >Create Spot</button>
+            <div className='submitButtonParent'>
+                <button type='submit' className='submitButton'>Create Spot</button>
             </div>
 
         </form>

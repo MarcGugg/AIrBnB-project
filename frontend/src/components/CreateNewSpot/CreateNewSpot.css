@@ -43,27 +43,30 @@
     width: 48%;
     margin: 10px 0;
   }
-  .submitButton {
+  .submitButtonParent {
     display: flex;
     justify-content: center;
-    margin: 10px 0;
+    /* margin: 10px 0; */
   }
-  .form .submitButton button {
+  .form .submitButton {
     /* background-color: #008CBA; */
     background-color: red;
-    box-shadow: 4px 10px black;
-    width: 100px;
+    box-shadow: 2px 4px black;
+    /* width: 100px; */
     color: white;
-    padding: 10px;
+    padding: 1em;
+    width: 10em;
+    /* padding-left: 10em; */
+    /* padding-right: 10em; */
     border: none;
-    /* border-radius: 4px; */
+    border-radius: 4px;
     cursor: pointer;
-    margin: 10px 0;
+    /* margin: 10px 0; */
   }
   
   .form .submitButton button:hover {
     /* background-color: #007AA3; */
-    background-color: red;
+    background-color: darkred;
   }
 
   .title {
