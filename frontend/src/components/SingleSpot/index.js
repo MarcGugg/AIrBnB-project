@@ -18,7 +18,7 @@ export default function SingleSpot() {
     const user = useSelector((state) => state.session.user)
     const dispatch = useDispatch()
 
-    // console.log('spot', spot)
+    console.log('spot', spot)
     // console.log('spot owner', spot.Owner)
     console.log('reviews og', reviews)
     // console.log('user', user)
@@ -45,6 +45,8 @@ export default function SingleSpot() {
     // console.log('reviews array', Object.values(reviews))
     // for (let review of Object.values(reviews))
     
+    console.log('rating', spot.avgRating)
+
     if (Object.keys(spot).length === 0 || !reviews) return null
     return (
         <>
@@ -86,7 +88,7 @@ export default function SingleSpot() {
                 ${spot.price} night
             </div>
             <div className='rating'>
-                Rating: {!spot.avgRating ? 'New': spot.avgRating}
+                Rating: {spot.avgStarRating ? spot.avgStarRating : 'New'}
             </div>
             <div className='reviewCountParent'>
                 <div className='reviewCount'>

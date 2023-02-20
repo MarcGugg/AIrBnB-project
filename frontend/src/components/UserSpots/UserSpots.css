@@ -39,6 +39,10 @@
     margin: 0.06rem;
     margin-bottom: 0.02rem;
 }
+.updateSpotButton:hover {
+    cursor: pointer;
+    background-color: darkgray;
+}
 
 .manageSpots-Header{
     margin-bottom: 10px;
