@@ -7,6 +7,8 @@ import { getAllSpots, getUserSpots } from '../../store/spots';
 import OpenModalButton from '../OpenModalButton'
 import DeleteSpotModal from '../DeleteSpotModal';
 
+import './UserSpots.css'
+
 export default function UserSpots() {
     const userSpots = useSelector((state) => state.spots.userSpots) 
 
@@ -25,10 +27,10 @@ export default function UserSpots() {
         <div>
             <h1>Manage Your Spots</h1>
             <div className='userSpotsList'>
-                {userSpots && Object.values(userSpots).map(spot => <li key={spot.name}>
+                {userSpots && Object.values(userSpots).map(spot => <li key={spot.name} className='user-spotCard'>
                     <p>{spot.name}</p>
                     <p>
-                        <img src={spot.previewImage} style={{width: 700, height: 500}}/>
+                        <img src={spot.previewImage} style={{width: 270, height: 250}}/>
                     </p>
                     <p>{spot.address}</p>
                     <p>{spot.city}, {spot.state}</p>
@@ -36,7 +38,7 @@ export default function UserSpots() {
                     <p>{spot.price} /night</p>
                     <div className='editButton'>
                         <Link to={`/spots/${spot.id}/edit`}>
-                        <button>Update Spot</button>
+                        <button className='updateSpotButton'>Update</button>
                         </Link>
                     </div>
                     <div className='deleteButton'>

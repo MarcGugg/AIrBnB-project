@@ -1,0 +1,29 @@
+.userSpotsList {
+    list-style: none;
+    display: flex;
+    width: 1175px;
+    flex-wrap: wrap;
+}
+
+.user-spotCard {
+    margin: 5px;
+    width: 270px;
+    /* border: 1px solid black; */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.19), 0px 1px 0px rgba(0, 0, 0, 0.23);
+    /* display: grid; */
+}
+.user-spotCard:hover {
+    background-color: lightgray;
+    box-shadow: 0px 0px 15px #141311;
+}
+
+.updateSpotButton {
+    padding: 0.5rem 0.8rem;
+    background-color: gray;
+    color: white;
+    border: none;
+    box-shadow: 2px 2px 2px black;
+    font-size: large;
+    margin: 0.06rem;
+    margin-bottom: 0.02rem;
+}
