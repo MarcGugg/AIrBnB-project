@@ -61,3 +61,7 @@
     height: 2em;
     border-radius: 20px;
 }
+
+.profile-dropdown {
+    list-style: none;
+}
