@@ -45,7 +45,8 @@ export default function SingleSpot() {
     // console.log('reviews array', Object.values(reviews))
     // for (let review of Object.values(reviews))
     
-    console.log('rating', spot.avgRating)
+    // console.log('rating', spot.avgRating)
+    console.log('reviews',Object.values(reviews))
 
     if (Object.keys(spot).length === 0 || !reviews) return null
     return (
@@ -88,12 +89,19 @@ export default function SingleSpot() {
                 ${spot.price} night
             </div>
             <div className='rating'>
-                Rating: {spot.avgStarRating ? spot.avgStarRating : 'New'}
+                Rating: {spot.avgStarRating ? (spot.avgStarRating).toFixed(1) : 'New'} 
             </div>
-            <div className='reviewCountParent'>
-                <div className='reviewCount'>
-                    {Object.values(reviews).length} review(s)
+            {Object.values(reviews).length > 0 ? 
+                <div className='dot'>
+                ·
                 </div>
+            : ''}
+            <div className='reviewCountParent'>
+                {Object.values(reviews).length > 0 ? 
+                    <div className='reviewCount'>
+                        {Object.values(reviews).length} review
+                    </div>
+                : ''}
             </div>
             </div>
             <div className='reserveButtonParent'>
@@ -111,9 +119,12 @@ export default function SingleSpot() {
                 </div>
             </div>
             <div className='reviews'>
-                {reviews && Object.values(reviews).map(review => <li>
+                {Object.values(reviews).length > 0 ? Object.values(reviews).slice(0).reverse().map(review => <li>
                     <div className='name'>
                         {review.User.firstName} {review.User.lastName}
+                    </div>
+                    <div className='reviewDate'>
+                        {review.createdAt.slice(5, 7)}, {review.createdAt.slice(0,4)}
                     </div>
                     <div>
                     {review.review}
@@ -124,7 +135,7 @@ export default function SingleSpot() {
                     <div>
                         {user && review.userId === user.id ? <button className='deleteReview' onClick={() => handleClick(review.id)}>Delete Review</button>: ''}
                     </div>
-                </li>)}
+                </li>) : <div>{user && spot.Owner.id !== user.id ? <p>Be the first to post a review!</p>: ''}</div>}
             </div>
         </>
     );
