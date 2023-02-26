@@ -76,7 +76,7 @@ export default function UpdateSpot() {
             // console.log('spot', spotDetails)
             // return null
             dispatch(updateSpot(spotDetails, imageURL, spotId))
-            history.push(`/spots/current`)
+            history.push(`/spots/${spotId}`)
         }
 
     }
