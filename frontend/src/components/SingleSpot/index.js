@@ -68,6 +68,16 @@ export default function SingleSpot() {
             <div className='spotLocation'>
                 {spot.city}, {spot.state}, {spot.country}
             </div>
+            <div className='updateButtonDiv'>
+                <button className='updateButton'>
+                    {user && user.id === spot.Owner.id ? 
+                    <Link to={`/spots/${spot.id}/edit`}>Update Spot</Link>
+                    :''}
+                    {!user || user.id !== spot.Owner.id ?
+                    <Link to={`/`}>Update Spot</Link>
+                    : ''}
+                </button>
+            </div>
             </div>
             {/* <div className='imageParent'>                
             <div className='image'>
@@ -123,7 +133,7 @@ export default function SingleSpot() {
         </div>
         <div className='reviewButton'>
                 {/* put modal component into ternary */}
-                {!reviewUserIds.includes(user.id) ?                 
+                {user && !reviewUserIds.includes(user.id) ?                 
                 <div className='submitReview'>
                 {user && spot.Owner.id !== user.id ? <OpenModalButton modalComponent={<CreateReviewModal spotId={spotId} user={user}/>} buttonText={'Post Your Review'} />: ''} 
                 </div>
