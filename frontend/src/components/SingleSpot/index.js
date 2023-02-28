@@ -50,7 +50,7 @@ export default function SingleSpot() {
 
     useEffect(() => {
         dispatch(getSingleSpot(spotId))
-    }, [reviewAvg])
+    }, [reviews])
 
     // const handleClick = (reviewId) => {
     //     // console.log('review id', reviewId)
