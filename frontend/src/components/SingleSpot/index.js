@@ -28,7 +28,7 @@ export default function SingleSpot() {
         dispatch(getSingleSpot(spotId))
         dispatch(getSpotReviews(spotId))
         
-    }, [dispatch])
+    }, [dispatch, reviews])
     
     // const handleClick = (reviewId) => {
     //     // console.log('review id', reviewId)
