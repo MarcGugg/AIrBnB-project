@@ -21,6 +21,7 @@ export default function SingleSpot() {
     const dispatch = useDispatch()
 
     console.log('spot', spot)
+    console.log('avg rating', reviewAvg)
     // console.log('spot owner', spot.Owner)
     console.log('reviews og', reviews)
     // console.log('user', user)
@@ -35,21 +36,21 @@ export default function SingleSpot() {
     //     dispatch(getSpotReviews(spotId))
     // }, [handleReviewChange])
     
-    const handleReviewChange = () => {
-        const reviewThing = dispatch(getSpotReviews(spotId))
-        console.log('reviewThing', reviewThing)
-        return reviewThing
-        // dispatch(getSingleSpot(spotId))
-    }
-    const handleRatingChange = () => {
-        const spotThing = dispatch(getSingleSpot(spotId))
-        console.log('spotThing', spotThing)
-        return spotThing.avgStarRating
-    }
+    // const handleReviewChange = () => {
+    //     const reviewThing = dispatch(getSpotReviews(spotId))
+    //     console.log('reviewThing', reviewThing)
+    //     return reviewThing
+    //     // dispatch(getSingleSpot(spotId))
+    // }
+    // const handleRatingChange = () => {
+    //     const spotThing = dispatch(getSingleSpot(spotId))
+    //     console.log('spotThing', spotThing)
+    //     return spotThing.avgStarRating
+    // }
 
-    // useEffect(() => {
-    //     dispatch(getSpotReviews(spotId))
-    // }, [handleReviewChange])
+    useEffect(() => {
+        dispatch(getSingleSpot(spotId))
+    }, [reviewAvg])
 
     // const handleClick = (reviewId) => {
     //     // console.log('review id', reviewId)
@@ -128,7 +129,7 @@ export default function SingleSpot() {
             <div className='price'>
                 ${spot.price} night
             </div>
-            <div className='rating' onChange={handleReviewChange}>
+            <div className='rating' >
                 Rating: {reviewAvg ? (reviewAvg).toFixed(1) : 'New'} 
             </div>
             {Object.values(reviews).length > 0 ? 
@@ -138,7 +139,7 @@ export default function SingleSpot() {
             : ''}
             <div className='reviewCountParent'>
                 {Object.values(reviews).length > 0 ? 
-                    <div className='reviewCount' onChange={handleReviewChange}>
+                    <div className='reviewCount' >
                         {Object.values(reviews).length} review
                     </div>
                 : ''}
