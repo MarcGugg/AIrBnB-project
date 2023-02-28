@@ -140,3 +140,19 @@
     background-color: darkgray;
     cursor: pointer;
   }
+
+  .dot {
+    margin-left: 1.5em;
+  }
+
+  .updateButton {
+    background-color: red;
+    margin: 0.5em;
+    padding: 0.5em;
+    border-radius: 5px;
+  }
+  .updateButton:hover {
+    background-color: darkred;
+    color: white;
+    cursor: pointer;
+  }

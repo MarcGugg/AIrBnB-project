@@ -25,6 +25,19 @@ function LoginFormModal() {
       );
   };
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    setErrors([]);
+    return dispatch(sessionActions.login({ credential: 'Demo-lition', password: 'password' }))
+      .then(closeModal)
+      .catch(
+        async (res) => {
+          const data = await res.json();
+          if (data && data.errors) setErrors(data.errors);
+        }
+      );
+  };
+
   return (
     <>
     <div className='wholeForm'>
@@ -57,7 +70,8 @@ function LoginFormModal() {
             required
           />
         </div>
-        <button type="submit" className="loginButton">Log In</button>
+        <button type="submit" className="loginButton" disabled={credential.length < 4 || password.length < 6}>Log In</button>
+        <button onClick={handleClick} className='demoUserButton'>Log In as Demo User</button>
       </form>
     </div>
     </>

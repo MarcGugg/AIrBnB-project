@@ -1,0 +1,43 @@
+.wholeModal {
+    height: 9em;
+    width: 25em;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.yes {
+    margin: 1em;
+    padding: 1em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    background-color: red;
+    color: black;
+}
+.yes:hover {
+    background-color: darkred;
+    color: white;
+    cursor: pointer;
+}
+
+.no {
+    margin: 1em;
+    padding: 1em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    background-color: gray;
+    color: white;
+}
+.no:hover {
+    background-color: darkgrey;
+    color: black;
+    cursor: pointer;
+}
