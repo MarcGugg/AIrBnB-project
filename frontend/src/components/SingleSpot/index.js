@@ -48,7 +48,7 @@ export default function SingleSpot() {
     //     return spotThing.avgStarRating
     // }
 
-    useEffect(() => {
+    useEffect(() => { //updates rating when review is added/removed/edited
         dispatch(getSingleSpot(spotId))
     }, [reviews])
 
