@@ -29,6 +29,10 @@ export default function SingleSpot() {
         dispatch(getSpotReviews(spotId))
         
     }, [dispatch, reviews])
+
+    // useEffect(() => {
+    //     dispatch(getSpotReviews(spotId))
+    // }, [reviews])
     
     // const handleClick = (reviewId) => {
     //     // console.log('review id', reviewId)
