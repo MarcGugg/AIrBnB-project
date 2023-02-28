@@ -50,12 +50,12 @@ module.exports = {
         {
           spotId: 3,
           url: 'https://charlotte.axios.com/wp-content/uploads/2022/11/1820-Herrin-Ave-living-room.jpg',
-          preview: true,
+          preview: false,
         },
         {
           spotId: 3,
           url: 'https://charlotte.axios.com/wp-content/uploads/2022/11/1820-Herrin-Ave-kitchen.jpgg',
-          preview: true,
+          preview: false,
         },
       ],
       {}
