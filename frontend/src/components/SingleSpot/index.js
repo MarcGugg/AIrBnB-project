@@ -15,11 +15,13 @@ import DeleteReviewModal from '../DeleteReviewModal';
 export default function SingleSpot() {
     const {spotId} = useParams()
     const spot = useSelector((state) => state.spots.singleSpot)
+    const reviewAvg = useSelector((state) => state.spots.singleSpot.avgStarRating)
     const reviews = useSelector((state) => state.reviews.spot)
     const user = useSelector((state) => state.session.user)
     const dispatch = useDispatch()
 
     console.log('spot', spot)
+    console.log('avg rating', reviewAvg)
     // console.log('spot owner', spot.Owner)
     console.log('reviews og', reviews)
     // console.log('user', user)
@@ -28,8 +30,28 @@ export default function SingleSpot() {
         dispatch(getSingleSpot(spotId))
         dispatch(getSpotReviews(spotId))
         
-    }, [dispatch, reviews])
+    }, [dispatch])
+
+    // useEffect(() => {
+    //     dispatch(getSpotReviews(spotId))
+    // }, [handleReviewChange])
     
+    // const handleReviewChange = () => {
+    //     const reviewThing = dispatch(getSpotReviews(spotId))
+    //     console.log('reviewThing', reviewThing)
+    //     return reviewThing
+    //     // dispatch(getSingleSpot(spotId))
+    // }
+    // const handleRatingChange = () => {
+    //     const spotThing = dispatch(getSingleSpot(spotId))
+    //     console.log('spotThing', spotThing)
+    //     return spotThing.avgStarRating
+    // }
+
+    useEffect(() => {
+        dispatch(getSingleSpot(spotId))
+    }, [reviews])
+
     // const handleClick = (reviewId) => {
     //     // console.log('review id', reviewId)
         
@@ -107,8 +129,8 @@ export default function SingleSpot() {
             <div className='price'>
                 ${spot.price} night
             </div>
-            <div className='rating'>
-                Rating: {spot.avgStarRating ? (spot.avgStarRating).toFixed(1) : 'New'} 
+            <div className='rating' >
+                Rating: {reviewAvg ? (reviewAvg).toFixed(1) : 'New'} 
             </div>
             {Object.values(reviews).length > 0 ? 
                 <div className='dot'>
@@ -117,7 +139,7 @@ export default function SingleSpot() {
             : ''}
             <div className='reviewCountParent'>
                 {Object.values(reviews).length > 0 ? 
-                    <div className='reviewCount'>
+                    <div className='reviewCount' >
                         {Object.values(reviews).length} review
                     </div>
                 : ''}

@@ -84,6 +84,7 @@ export const getSingleSpot = (spotId) => async (dispatch) => {
         const spot = await res.json()
         // spot.reviews = dispatch(getSpotReviews(spot.id))
         await dispatch(oneSpot(spot))
+        console.log('thunk spot', spot)
         return spot
     }
 }
@@ -103,6 +104,7 @@ export const associateImageToSpot = (newSpotDetails, newSpotId) => async (dispat
         newSpotDetails.avgRating = 0
         newSpotDetails.previewImage = newSpotDetails.imageURL
         dispatch(createSpot(newSpotDetails))
+        // console.log('newSpotDetails', newSpotDetails)
         // return newSpotDetails
     }
 }
