@@ -16,8 +16,26 @@ export default function CreateNewSpot() {
     const [description, setDescription] = useState('')
     const [name, setName] = useState('')
     const [price, setPrice] = useState('')
-    const [imageURL, setImageURL] = useState('')
-    
+    const [imageURL, setImageURL] = useState('') //only for preview image
+    // const [otherImages, setOtherImages] = useState({})
+
+    const [imageOne, setImageOne] = useState('')
+    const [imageTwo, setImageTwo] = useState('')
+    const [imageThree, setImageThree] = useState('')
+    const [imageFour, setImageFour] = useState('')
+
+    const otherImagesObj = {
+        imageOne,
+        imageTwo,
+        imageThree,
+        imageFour
+    }
+
+    // if (Object.values(otherImagesObj).length) {
+    //     console.log(otherImagesObj)
+    //     setOtherImages(otherImagesObj)
+    // }
+
     const spot = {
         country,
         address,
@@ -26,7 +44,11 @@ export default function CreateNewSpot() {
         description,
         name,
         price,
-        imageURL
+        imageURL,
+        otherImages:{
+            ...otherImagesObj
+        }
+            
     }
 
     const dispatch = useDispatch()
@@ -53,6 +75,7 @@ export default function CreateNewSpot() {
         // else {
             if (!validationErrors.length) {
                 const newSpotObj = {...spot}
+                newSpotObj.otherImages = {...spot.otherImages}
                 const newSpot = await dispatch(createNewSpot(newSpotObj))
                 // console.log('new spot',newSpot)
                 history.push(`spots/${newSpot.id}`)
@@ -160,7 +183,13 @@ in search results.</h4>
                 <h2>Liven up your spot with photos</h2>
                 <h4>Submit a link to at least one photo to publish your spot.</h4>
             <label>
-                <input className='imageURLinput' value={imageURL} onChange={(e) => setImageURL(e.target.value)} type='text'/>
+                {/* preview iamge */}
+                <input className='imageURLinput' value={imageURL} onChange={(e) => setImageURL(e.target.value)} type='text'/> 
+               
+                <input className='imageURLinput' value={imageOne} onChange={(e) => setImageOne(e.target.value)} type='text'/>
+                <input className='imageURLinput' value={imageTwo} onChange={(e) => setImageTwo(e.target.value)} type='text'/>
+                <input className='imageURLinput' value={imageThree} onChange={(e) => setImageThree(e.target.value)} type='text'/>
+                <input className='imageURLinput' value={imageFour} onChange={(e) => setImageFour(e.target.value)} type='text'/>
             </label>
             </div>
             
