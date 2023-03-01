@@ -107,7 +107,9 @@ export default function SingleSpot() {
             </div> */}
             <div className='allImages'>
                 <div className='previewImage'>
+                    {spot.SpotImages.length > 0 ? 
                     <img src={spot.SpotImages[0].url} style={{width: 700, height: 500}}/>
+                    :''}
                 </div>
                 {spot.SpotImages.length > 1 ?                 
                 <div className='otherImages'>

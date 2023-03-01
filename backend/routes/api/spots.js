@@ -46,9 +46,9 @@ router.get('/current', requireAuth, async (req, res, next) => {
                 }
             })
 
-            // if (previewImage) {
+            if (previewImage) {
                 spot['previewImage'] = previewImage.toJSON().url
-            // }
+            }
         }
         
         res.json({"Spots":Spots})
