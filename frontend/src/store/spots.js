@@ -125,7 +125,7 @@ export const associateOtherImageToSpot = (image, newSpotId, newSpotDetails) => a
     if (res.ok) {
         dispatch(getSingleSpot(newSpotId))
 
-        newSpotDetails.SpotImages.push(image)
+        // newSpotDetails.SpotImages.push(image)
 
         // newSpotDetails.avgRating = 0
         // newSpotDetails.previewImage = newSpotDetails.imageURL
@@ -148,12 +148,12 @@ export const createNewSpot = (newSpotDetails) => async (dispatch) => {
     if (res.ok) {
         const newSpot = await res.json()
         await dispatch(associateImageToSpot(newSpotDetails, newSpot.id))
-        
-        if (newSpotDetails.otherImages.length > 0) {
+            
+        if (Object.values(newSpotDetails.otherImages).length > 0) {
             // console.log('other images', Object.values(newSpotDetails.otherImages))
-            for (let i = 0; i < newSpotDetails.otherImages.length; i++) {
+            for (let i = 0; i < Object.values(newSpotDetails.otherImages).length; i++) {
                 console.log('curr image', newSpotDetails.otherImages[i])
-                await dispatch(associateOtherImageToSpot(newSpotDetails.otherImages[i], newSpot.id, newSpotDetails))
+                await dispatch(associateOtherImageToSpot(Object.values(newSpotDetails.otherImages)[i], newSpot.id, newSpotDetails))
             }
         }
 
