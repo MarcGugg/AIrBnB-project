@@ -146,8 +146,8 @@ in search results.</h4>
             </label>
             </div>
             
-            <div className='submitButton'>
-                <button type='submit'>Update Spot</button>
+            <div className='submitButtonParent'>
+                <button type='submit' className='submitButton'>Update Spot</button>
             </div>
 
         </form>

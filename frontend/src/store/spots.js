@@ -100,16 +100,43 @@ export const associateImageToSpot = (newSpotDetails, newSpotId) => async (dispat
     })
 
     if (res.ok) {
-        dispatch(getSingleSpot(newSpotId))
+        // dispatch(getSingleSpot(newSpotId))
         newSpotDetails.avgRating = 0
         newSpotDetails.previewImage = newSpotDetails.imageURL
-        dispatch(createSpot(newSpotDetails))
+        // dispatch(createSpot(newSpotDetails))
+        
         // console.log('newSpotDetails', newSpotDetails)
         // return newSpotDetails
     }
 }
 
+export const associateOtherImageToSpot = (image, newSpotId, newSpotDetails) => async (dispatch) => {
+    console.log('thunk hit')
+    console.log('image', image)
+    const res = await csrfFetch(`/api/spots/${newSpotId}/images`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            "url": image,
+            "preview": false
+        })
+    })
+
+    if (res.ok) {
+        dispatch(getSingleSpot(newSpotId))
+
+        // newSpotDetails.SpotImages.push(image)
+
+        // newSpotDetails.avgRating = 0
+        // newSpotDetails.previewImage = newSpotDetails.imageURL
+        // dispatch(createSpot(newSpotDetails))
+        // console.log('newSpotDetails', newSpotDetails)
+        return newSpotDetails
+    }
+}
+
 export const createNewSpot = (newSpotDetails) => async (dispatch) => {
+    console.log('other images', newSpotDetails.otherImages)
     const res = await csrfFetch('/api/spots', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -121,7 +148,16 @@ export const createNewSpot = (newSpotDetails) => async (dispatch) => {
     if (res.ok) {
         const newSpot = await res.json()
         await dispatch(associateImageToSpot(newSpotDetails, newSpot.id))
-        // dispatch(createSpot(newSpot))
+            
+        if (Object.values(newSpotDetails.otherImages).length > 0) {
+            // console.log('other images', Object.values(newSpotDetails.otherImages))
+            for (let i = 0; i < Object.values(newSpotDetails.otherImages).length; i++) {
+                console.log('curr image', newSpotDetails.otherImages[i])
+                await dispatch(associateOtherImageToSpot(Object.values(newSpotDetails.otherImages)[i], newSpot.id, newSpotDetails))
+            }
+        }
+
+        dispatch(createSpot(newSpotDetails))
         return newSpot
     }
 

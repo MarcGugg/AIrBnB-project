@@ -105,7 +105,20 @@ export default function SingleSpot() {
             <div className='image'>
             </div>
             </div> */}
-            <img src={spot.SpotImages[0].url} style={{width: 700, height: 500}}/>
+            <div className='allImages'>
+                <div className='previewImage'>
+                    {spot.SpotImages.length > 0 ? 
+                    <img src={spot.SpotImages[0].url} style={{width: 700, height: 500}}/>
+                    :''}
+                </div>
+                {spot.SpotImages.length > 1 ?                 
+                <div className='otherImages'>
+                    {spot.SpotImages.slice(1).map(image => (
+                        <img src={image.url} style={{width: 300, height: 240}}/>
+                    ))}
+                </div>
+                : ''}
+            </div>
             <div className='hostDescCallout'>
             <div className='hostAndDesc'>                
             <div className='spotOwner'>
