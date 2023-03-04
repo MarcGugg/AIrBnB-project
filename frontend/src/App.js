@@ -9,6 +9,7 @@ import SingleSpot from "./components/SingleSpot";
 import CreateNewSpot from "./components/CreateNewSpot";
 import UserSpots from "./components/UserSpots";
 import UpdateSpot from "./components/UpdateSpot";
+import ManageReviews from "./components/ManageReviews";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +37,9 @@ function App() {
           </Route>
           <Route exact path='/spots/:spotId'>
             <SingleSpot />
+          </Route>
+          <Route exact path='/reviews/current'>
+            <ManageReviews />
           </Route>
         </Switch>
       )}

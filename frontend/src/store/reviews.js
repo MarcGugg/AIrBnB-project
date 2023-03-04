@@ -1,9 +1,17 @@
 import { csrfFetch } from "./csrf"
 
+const GET_USER_REVIEWS = 'reviews/getUserReviews'
 const GET_SPOT_REVIEWS = 'reviews/getSpotReview'
 const CREATE_REVIEW = 'reviews/createReview'
 const EDIT_REVIEW = 'reviews/editReview'
 const DELETE_REVIEW = 'reviews/deleteReview'
+
+const retrieveUserReviews = (userReviews) =>{
+    return {
+        type: GET_USER_REVIEWS,
+        userReviews
+    }
+}
 
 const getReviews = (reviews) => {
     return {
@@ -30,6 +38,15 @@ const removeReview = (reviewId) => {
     return {
         type: DELETE_REVIEW,
         reviewId
+    }
+}
+
+export const getUserReviews = () => async(dispatch) => {
+    const res = await csrfFetch(`/api/reviews/current`)
+
+    if (res.ok) {
+        const userReviews = await res.json()
+        dispatch(retrieveUserReviews(userReviews))
     }
 }
 
@@ -130,6 +147,17 @@ export default function reviewsReducer(state=initialState, action) {
 
             return newState4
 
+        }
+        case GET_USER_REVIEWS: {
+            const newState5 = {...state, user: {...state.user}}
+
+            console.log('reducer reviews', action.userReviews.Reviews)
+
+            for (let review of action.userReviews.Reviews) {
+                console.log('reducer loop', review)
+                newState5.user.userReviews[review.id] = review
+            }
+            return newState5
         }
         default:
             return state
