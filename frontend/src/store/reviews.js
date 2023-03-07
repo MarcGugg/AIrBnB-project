@@ -132,9 +132,11 @@ export default function reviewsReducer(state=initialState, action) {
             return newState2
         }
         case EDIT_REVIEW: {
-            const newState3 = {...state, spot: {...state.spot}}
+            const newState3 = {...state, spot: {...state.spot}, user: {...state.user}}
+            console.log('newstate user',newState3.user)
+            newState3.user.userReviews[action.updatedReview.id] = action.updatedReview
             // console.log('newstate reviews', newState3.spot.Reviews)
-            // console.log('action review', action.updatedReview)
+            console.log('action review', action.updatedReview)
             // newState3.spot.Reviews[action.updatedReview.id] = {...action.updatedReview}
             // newState3.spot.Reviews[action.updatedReview.id].stars = {...action.updatedReview.stars}
             newState3.spot[action.updatedReview.id] = action.updatedReview
