@@ -155,7 +155,7 @@ export default function reviewsReducer(state=initialState, action) {
 
             for (let review of action.userReviews.Reviews) {
                 console.log('reducer loop', review)
-                newState5.user.userReviews[review.id] = review
+                newState5.user.userReviews[review.id] = {...review}
             }
             return newState5
         }
