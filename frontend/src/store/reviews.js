@@ -150,7 +150,7 @@ export default function reviewsReducer(state=initialState, action) {
         }
         case GET_USER_REVIEWS: {
             const newState5 = {...state, user: {...state.user}}
-
+            newState5.user.userReviews = {}
             console.log('reducer reviews', action.userReviews.Reviews)
 
             for (let review of action.userReviews.Reviews) {
