@@ -12,12 +12,14 @@ import { getUserReviews } from "../../store/reviews";
 import OpenModalButton from "../OpenModalButton";
 
 export default function ManageReviews() {
-    // const user = useSelector((state) => )
     const reviews = useSelector((state) => state.reviews.user.userReviews)
     const user = useSelector((state) => state.session)
     console.log('user reviews', reviews)
-    // const {Reviews} = reviews
-    // console.log('Reviews', Reviews)
+
+    let spots = []
+    for (let review in reviews) {
+        spots.push(review.Spot)
+    }
 
     const dispatch = useDispatch()
 
@@ -25,7 +27,7 @@ export default function ManageReviews() {
         dispatch(getUserReviews())
     }, [dispatch])
 
-    if(!reviews) return null
+    if(!reviews || !spots.length) return null
 
     return (
         <>
@@ -33,7 +35,7 @@ export default function ManageReviews() {
         <div className="allReviews">
             {Object.values(reviews).map(review => (
                 <div className="review">
-                    {/* <div>{review.Spot.name}</div> */}
+                    {review.Spot ? <div>{review.Spot.name}</div>: ''}
                     <div>{review.createdAt}</div>
                     <div>{review.review}</div>
                     <div className="buttons">
