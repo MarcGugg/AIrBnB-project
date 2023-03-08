@@ -33,7 +33,7 @@ export default function ManageReviews() {
         <div className="allReviews">
             {Object.values(reviews).map(review => (
                 <div className="review">
-                    <div>{review.Spot.name}</div>
+                    {/* <div>{review.Spot.name}</div> */}
                     <div>{review.createdAt}</div>
                     <div>{review.review}</div>
                     <div className="buttons">
