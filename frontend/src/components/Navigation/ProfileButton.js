@@ -69,6 +69,9 @@ function ProfileButton({ user }) {
               <button className="manageSpotsButton">
                 <Link to='/spots/current'>Manage Spots</Link>
               </button>
+              <button className="manageReviewsButton">
+                <Link to='/reviews/current'>Manage Reviews</Link>
+              </button>
             </li>
             <li className="logoutButtonParent">
               <button onClick={logout} className='logoutButton'>Log Out</button>

@@ -10,8 +10,9 @@ import { editReview, postReview } from '../../store/reviews';
 import './UpdateReview.css'
 
 export default function UpdateReviewModal({reviewId, user}) {
-    const reviewRetrieve = useSelector((state) => state.reviews.spot)
-    // console.log('review retrieve', reviewRetrieve)
+    // const reviewRetrieve = useSelector((state) => state.reviews.spot)
+    const reviewRetrieve = useSelector((state) => state.reviews.user.userReviews)
+    console.log('review retrieve', reviewRetrieve)
     // console.log(reviewId)
 
     let reviewToEdit
@@ -47,6 +48,7 @@ export default function UpdateReviewModal({reviewId, user}) {
         // closeModal()
     }
 
+    // if (!review) return null
 
     return (
         <form onSubmit={handleSubmit} className='wholeForm'>
