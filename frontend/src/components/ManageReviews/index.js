@@ -11,6 +11,8 @@ import { Link, useHistory } from "react-router-dom";
 import { getUserReviews } from "../../store/reviews";
 import OpenModalButton from "../OpenModalButton";
 
+import './ManageReviews.css'
+
 export default function ManageReviews() {
     const reviews = useSelector((state) => state.reviews.user.userReviews)
     const user = useSelector((state) => state.session)
@@ -36,7 +38,7 @@ export default function ManageReviews() {
             {Object.values(reviews).map(review => (
                 <div className="review">
                     {review.Spot ? <div>{review.Spot.name}</div>: ''}
-                    <div>{review.createdAt}</div>
+                    <div>{review.createdAt.slice(0, 10)}</div>
                     <div>{review.review}</div>
                     <div className="buttons">
                     <OpenModalButton modalComponent={<DeleteReviewModal reviewId={review.id}/>} buttonText={'Delete Review'}/>

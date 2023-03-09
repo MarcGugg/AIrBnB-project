@@ -1,0 +1,8 @@
+.review {
+    margin: 1em;
+}
+.buttons {
+    display: flex;
+    justify-content: flex-start;
+    height: 2em;
+}
