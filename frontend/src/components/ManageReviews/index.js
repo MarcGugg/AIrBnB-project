@@ -29,7 +29,11 @@ export default function ManageReviews() {
         dispatch(getUserReviews())
     }, [dispatch])
 
-    if(!reviews || !spots.length) return null
+    if(!reviews || !spots.length) {
+        return (
+            <p className="placeholderMessage">Please visit a spot to post a review</p>
+        )
+    } 
 
     return (
         <>

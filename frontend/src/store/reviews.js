@@ -149,9 +149,10 @@ export default function reviewsReducer(state=initialState, action) {
             return newState3
         }
         case DELETE_REVIEW: {
-            const newState4 = {...state, spot: {...state.spot}, user: {...state.user.userReviews}}
+            const newState4 = {...state, spot: {...state.spot}, user: {...state.user}}
             // console.log('new state 4 user reviews', newState4.user)
-            delete newState4.user[action.reviewId]
+            newState4.user.userReviews = {...state.user.userReviews}
+            delete newState4.user.userReviews[action.reviewId]
             delete newState4.spot[action.reviewId]
 
             return newState4

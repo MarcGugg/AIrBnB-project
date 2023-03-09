@@ -1,3 +1,12 @@
+.placeholderMessage {
+    display: flex;
+    justify-content: center;
+    font-weight: 900;
+    font-size: xx-large;
+    margin: 0.5em;
+}
+
+
 .review {
     margin: 1em;
 }
