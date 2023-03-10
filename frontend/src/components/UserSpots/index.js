@@ -46,7 +46,7 @@ export default function UserSpots() {
                     <p>{spot.price} /night</p>
                     </div>
                     <div className='editAndDelete-rating'>
-                    <div className='rating'><FontAwesomeIcon icon={faStar} />{!spot.avgRating ? 'New': spot.avgRating}</div>
+                    <div className='rating'><FontAwesomeIcon icon={faStar} />{!spot.avgRating ? 'New': spot.avgRating.toFixed(1)}</div>
                     </div>
                     </Link>
                     <div className='buttons'>
