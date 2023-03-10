@@ -79,6 +79,11 @@ export default function SingleSpot() {
         reviewUserIds.push(review.userId)
     }
 
+    const handleReserveClick = (e) => {
+        e.preventDefault()
+        window.alert('Feature coming soon')
+    } 
+
     if (Object.keys(spot).length === 0 || !reviews) return null
     return (
         <>
@@ -151,15 +156,15 @@ export default function SingleSpot() {
                 </div>
             : ''}
             <div className='reviewCountParent'>
-                {Object.values(reviews).length > 0 ? 
+                {Object.values(reviews).length === 1 ? 
                     <div className='reviewCount' >
                         {Object.values(reviews).length} review
                     </div>
-                : ''}
+                : Object.values(reviews).length > 1 ? <div className='reviewCount'>{Object.values(reviews).length} reviews</div> :''}
             </div>
             </div>
             <div className='reserveButtonParent'>
-                <button className='reserveButton'>Reserve</button>
+                <button className='reserveButton' onClick={handleReserveClick}>Reserve</button>
             </div>
         </div>
         {/* </div> */}
