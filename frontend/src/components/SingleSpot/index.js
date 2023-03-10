@@ -12,6 +12,11 @@ import CreateReviewModal from '../CreateReviewModal';
 import UpdateReviewModal from '../UpdateReviewModal';
 import DeleteReviewModal from '../DeleteReviewModal';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
+
 export default function SingleSpot() {
     const {spotId} = useParams()
     const spot = useSelector((state) => state.spots.singleSpot)
@@ -148,7 +153,8 @@ export default function SingleSpot() {
                 ${spot.price} night
             </div>
             <div className='rating' >
-                Rating: {reviewAvg ? (reviewAvg).toFixed(1) : 'New'} 
+                {/* Rating: {reviewAvg ? (reviewAvg).toFixed(1) : 'New'}  */}
+                <p><FontAwesomeIcon icon={faStar} />{!reviewAvg ? 'New': (reviewAvg).toFixed(1)}</p>
             </div>
             {Object.values(reviews).length > 0 ? 
                 <div className='dot'>
