@@ -47,6 +47,8 @@ export default function UserSpots() {
                     </div>
                     <div className='editAndDelete-rating'>
                     <div className='rating'><FontAwesomeIcon icon={faStar} />{!spot.avgRating ? 'New': spot.avgRating}</div>
+                    </div>
+                    </Link>
                     {/* <div className='buttons'> */}
                     <div className='editButton'>
                         <Link to={`/spots/${spot.id}/edit`}>
@@ -57,8 +59,6 @@ export default function UserSpots() {
                         <OpenModalButton modalComponent={<DeleteSpotModal spotId={spot.id}/>} buttonText={'Delete'}/>
                     </div>
                     {/* </div> */}
-                    </div>
-                    </Link>
                     </li>)}
             </div>
         </div>

@@ -89,6 +89,7 @@ export default function CreateNewSpot() {
     return (
         <div className='formParent'>
         <form onSubmit={handleSubmit} className='form'>
+            <div className='banner'>Create a spot</div>
             <div className='country'>    
             <label>Country
                 <p>
