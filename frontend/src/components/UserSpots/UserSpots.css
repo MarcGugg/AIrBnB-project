@@ -65,3 +65,15 @@
     background-color: darkgray;
     color: black;
 }
+
+.buttons {
+    margin: 1em;
+}
+/* .editButton {
+    display: flex;
+    justify-content: flex-start;
+}
+.updateSpotButton {
+    display: flex;
+    justify-content: flex-start;
+} */

@@ -12,6 +12,11 @@ import CreateReviewModal from '../CreateReviewModal';
 import UpdateReviewModal from '../UpdateReviewModal';
 import DeleteReviewModal from '../DeleteReviewModal';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
+
 export default function SingleSpot() {
     const {spotId} = useParams()
     const spot = useSelector((state) => state.spots.singleSpot)
@@ -79,6 +84,11 @@ export default function SingleSpot() {
         reviewUserIds.push(review.userId)
     }
 
+    const handleReserveClick = (e) => {
+        e.preventDefault()
+        window.alert('Feature coming soon')
+    } 
+
     if (Object.keys(spot).length === 0 || !reviews) return null
     return (
         <>
@@ -143,7 +153,8 @@ export default function SingleSpot() {
                 ${spot.price} night
             </div>
             <div className='rating' >
-                Rating: {reviewAvg ? (reviewAvg).toFixed(1) : 'New'} 
+                {/* Rating: {reviewAvg ? (reviewAvg).toFixed(1) : 'New'}  */}
+                <p><FontAwesomeIcon icon={faStar} />{!reviewAvg ? 'New': (reviewAvg).toFixed(1)}</p>
             </div>
             {Object.values(reviews).length > 0 ? 
                 <div className='dot'>
@@ -151,15 +162,15 @@ export default function SingleSpot() {
                 </div>
             : ''}
             <div className='reviewCountParent'>
-                {Object.values(reviews).length > 0 ? 
+                {Object.values(reviews).length === 1 ? 
                     <div className='reviewCount' >
                         {Object.values(reviews).length} review
                     </div>
-                : ''}
+                : Object.values(reviews).length > 1 ? <div className='reviewCount'>{Object.values(reviews).length} reviews</div> :''}
             </div>
             </div>
             <div className='reserveButtonParent'>
-                <button className='reserveButton'>Reserve</button>
+                <button className='reserveButton' onClick={handleReserveClick}>Reserve</button>
             </div>
         </div>
         {/* </div> */}

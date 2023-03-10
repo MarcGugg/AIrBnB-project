@@ -30,11 +30,12 @@ export default function UserSpots() {
         <div>
             <h1 className='manageSpots-Header'>Manage Your Spots</h1>
             <div>
-            <NavLink className='createSpotButton-2' to='/spots'>Create new Spot</NavLink>
+            <NavLink className='createSpotButton-2' to='/spots'>Create a new Spot</NavLink>
             </div>
             <div className='userSpotsList'>
                 {userSpots && Object.values(userSpots).map(spot => <li key={spot.name} className='user-spotCard'>
                     {/* <p>{spot.name}</p> */}
+                    <Link to={`/spots/${spot.id}`}>                    
                     <p>
                         <img src={spot.previewImage} style={{width: 270, height: 250}}/>
                     </p>
@@ -45,7 +46,10 @@ export default function UserSpots() {
                     <p>{spot.price} /night</p>
                     </div>
                     <div className='editAndDelete-rating'>
-                    <div className='rating'><FontAwesomeIcon icon={faStar} />{!spot.avgRating ? 'New': spot.avgRating}</div>
+                    <div className='rating'><FontAwesomeIcon icon={faStar} />{!spot.avgRating ? 'New': spot.avgRating.toFixed(1)}</div>
+                    </div>
+                    </Link>
+                    <div className='buttons'>
                     <div className='editButton'>
                         <Link to={`/spots/${spot.id}/edit`}>
                         <button className='updateSpotButton'>Update</button>
