@@ -35,6 +35,7 @@ export default function UserSpots() {
             <div className='userSpotsList'>
                 {userSpots && Object.values(userSpots).map(spot => <li key={spot.name} className='user-spotCard'>
                     {/* <p>{spot.name}</p> */}
+                    <Link to={`/spots/${spot.id}`}>                    
                     <p>
                         <img src={spot.previewImage} style={{width: 270, height: 250}}/>
                     </p>
@@ -57,6 +58,7 @@ export default function UserSpots() {
                     </div>
                     {/* </div> */}
                     </div>
+                    </Link>
                     </li>)}
             </div>
         </div>
