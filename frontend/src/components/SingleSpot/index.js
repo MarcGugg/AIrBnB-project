@@ -98,7 +98,8 @@ export default function SingleSpot() {
         window.alert('Feature coming soon')
     } 
 
-    if (Object.keys(spot).length === 0 || !reviews || !spot.SpotImages.length) return null
+    if (Object.keys(spot).length === 0 || !reviews) return null
+    // if (Object.keys(spot).length === 0 || !reviews || !spot.SpotImages.length) return null
     return (
         <>
         <div className='aboveReviews'>
