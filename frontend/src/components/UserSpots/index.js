@@ -23,17 +23,28 @@ export default function UserSpots() {
 
     console.log('userSpots', userSpots)
 
+    // if (!Object.values(userSpots)) {
+    //     return (
+    //         <>            
+    //         <h1 className='manageSpots-Header'>Manage Your Spots</h1>
+    //         <div>
+    //         <NavLink className='createSpotButton-2' to='/spots'>Create a new Spot</NavLink>
+    //         </div>
+    //         </>
+    //     )
+    // }
+
     if (!Object.values(userSpots)) return null
 
     return (
         <>
         <div>
             <h1 className='manageSpots-Header'>Manage Your Spots</h1>
-            <div>
-            <NavLink className='createSpotButton-2' to='/spots'>Create a new Spot</NavLink>
-            </div>
+            {/* <div>
+            {!Object.values(userSpots) ? <NavLink className='createSpotButton-2' to='/spots'>Create a new Spot</NavLink> : ''}
+            </div> */}
             <div className='userSpotsList'>
-                {userSpots && Object.values(userSpots).map(spot => <li key={spot.name} className='user-spotCard'>
+                {userSpots ? Object.values(userSpots).map(spot => <li key={spot.name} className='user-spotCard'>
                     {/* <p>{spot.name}</p> */}
                     <Link to={`/spots/${spot.id}`}>                    
                     <p>
@@ -59,7 +70,7 @@ export default function UserSpots() {
                         <OpenModalButton modalComponent={<DeleteSpotModal spotId={spot.id}/>} buttonText={'Delete'}/>
                     </div>
                     </div>
-                    </li>)}
+                    </li>): <NavLink className='createSpotButton-2' to='/spots'>Create a new Spot</NavLink>}
             </div>
         </div>
         </>
