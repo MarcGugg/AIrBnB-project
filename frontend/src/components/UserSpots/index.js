@@ -23,7 +23,7 @@ export default function UserSpots() {
 
     // console.log('userSpots', userSpots)
 
-    console.log('test')
+    // console.log('test')
 
     if (!Object.values(userSpots)) return null
 
