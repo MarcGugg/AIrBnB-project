@@ -21,8 +21,9 @@ export default function UserSpots() {
         dispatch(getUserSpots())
     }, [dispatch])
 
-    console.log('userSpots', userSpots)
+    // console.log('userSpots', userSpots)
 
+    // console.log('test')
 
     if (!Object.values(userSpots)) return null
 
