@@ -14,7 +14,7 @@ export default function Spots() {
     const dispatch = useDispatch()
     const spots = useSelector((state) => state.spots.allSpots)
 
-    // console.log('spots',spots)
+    console.log('spots',spots)
 
     useEffect(() => {
         dispatch(getAllSpots())
@@ -27,6 +27,7 @@ export default function Spots() {
         <div className='spotsDisplayParent'>
         <div className='spotsDisplay'>
         {spots && Object.values(spots).map(spot => (<Link key={spot.id} to={`spots/${spot.id}`}>
+            <div title={spot.name}>
             <div className='spotCard'>                
             <img src={spot.previewImage} style={{width: 270, height: 250}}/>
             <div className='cityStateRating'>
@@ -42,6 +43,7 @@ export default function Spots() {
             {/* <p className='spotAvgRating'>average rating: {spot.avgRating}</p> */}
             </div> 
             {/* style={{width: 300, height: 300}} */}
+            </div>
         </Link>))}
         </div>
         </div>
