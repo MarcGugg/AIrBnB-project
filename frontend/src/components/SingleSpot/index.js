@@ -127,7 +127,7 @@ export default function SingleSpot() {
             <div className='allImages'>
                 <div className='previewImage'>
                     {/* "https://charlotte.axios.com/wp-content/uploads/2022/11/435-Beaumont-Ave-exterior.jpg" */}
-                    {/* {spot.SpotImages.length > 0 ?  */}
+                    {spot.SpotImages.length > 0 ? 
                     <img src={spot.SpotImages[0].url} style={{width: 700, height: 500}}   
                     onError={(e) => {
                         e.target.onerror = null
@@ -136,7 +136,7 @@ export default function SingleSpot() {
                     alt="https://charlotte.axios.com/wp-content/uploads/2022/11/435-Beaumont-Ave-exterior.jpg"
                     />
                     
-                    {/* // : ''} */}
+                    : ''}
                     
                 </div>
                 {spot.SpotImages.length > 1 ?                 
