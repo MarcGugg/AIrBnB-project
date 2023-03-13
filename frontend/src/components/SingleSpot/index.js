@@ -77,6 +77,15 @@ export default function SingleSpot() {
     // for (let review of Object.values(reviews))
     
     // console.log('rating', spot.avgRating)
+
+    const months = [
+        "January", "February", 
+        "March", "April", "May", 
+        "June", "July", "August",
+        "September", "October", 
+        "November", "December"
+    ];
+
     console.log('reviews',Object.values(reviews))
 
     let reviewUserIds = []
@@ -191,7 +200,8 @@ export default function SingleSpot() {
                         {review.User.firstName} {review.User.lastName}
                     </div>
                     <div className='reviewDate'>
-                        {review.createdAt.slice(5, 7)}, {review.createdAt.slice(0,4)}
+                        {/* {review.createdAt.slice(5, 7)}, {review.createdAt.slice(0,4)} */}
+                        {months[new Date(review.createdAt).getMonth()]} {new Date(review.createdAt).getFullYear()}
                     </div>
                     <div>
                     {review.review}
