@@ -126,14 +126,24 @@ export default function SingleSpot() {
             </div> */}
             <div className='allImages'>
                 <div className='previewImage'>
-                    {spot.SpotImages.length > 0 ? 
-                    <img src={spot.SpotImages[0].url} style={{width: 700, height: 500}}/>
-                    :''}
+                    {/* {spot.SpotImages.length > 0 ?  */}
+                    {/* "https://charlotte.axios.com/wp-content/uploads/2022/11/435-Beaumont-Ave-exterior.jpg" */}
+                    <img src={spot.SpotImages[0].url} style={{width: 700, height: 500}}   
+                    onError={(e) => {
+                        e.target.onerror = null
+                        e.target.src = "https://charlotte.axios.com/wp-content/uploads/2022/11/435-Beaumont-Ave-exterior.jpg"
+                    }}/>
+                    
                 </div>
                 {spot.SpotImages.length > 1 ?                 
                 <div className='otherImages'>
                     {spot.SpotImages.slice(1).map(image => (
-                        <img src={image.url} style={{width: 300, height: 240}}/>
+                        <img src={image.url} style={{width: 300, height: 240}}
+                        onError={(e) => {
+                            e.target.onerror = null
+                            e.target.src = "https://charlotte.axios.com/wp-content/uploads/2022/11/435-Beaumont-Ave-exterior.jpg"
+                        }}
+                        />
                     ))}
                 </div>
                 : ''}
