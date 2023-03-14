@@ -6,9 +6,16 @@
     margin: 0.5em;
 }
 
+h1 {
+    margin-left: 1em;
+}
+
+.date {
+    color: gray;
+}
 
 .review {
-    margin: 1em;
+    margin: 2em;
 }
 .buttons {
     display: flex;

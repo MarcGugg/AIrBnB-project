@@ -33,7 +33,15 @@ export default function ManageReviews() {
         return (
             <p className="placeholderMessage">Please visit a spot to post a review</p>
         )
-    } 
+    }
+    
+    const months = [
+        "January", "February", 
+        "March", "April", "May", 
+        "June", "July", "August",
+        "September", "October", 
+        "November", "December"
+    ];
 
     return (
         <>
@@ -41,12 +49,12 @@ export default function ManageReviews() {
         <div className="allReviews">
             {Object.values(reviews).map(review => (
                 <div className="review">
-                    {review.Spot ? <div>{review.Spot.name}</div>: ''}
-                    <div>{review.createdAt.slice(0, 10)}</div>
-                    <div>{review.review}</div>
+                    {review.Spot ? <h2>{review.Spot.name}</h2>: ''}
+                    <div className="date">{months[new Date(review.createdAt).getMonth()]} {new Date(review.createdAt).getFullYear()}</div>
+                    <div style={{fontWeight: "bold"}}>{review.review}</div>
                     <div className="buttons">
-                    <OpenModalButton modalComponent={<DeleteReviewModal reviewId={review.id}/>} buttonText={'Delete Review'}/>
-                    <OpenModalButton modalComponent={<UpdateReviewModal reviewId={review.id} user={user}/>} buttonText={'Edit Your Review'}/>
+                    <OpenModalButton modalComponent={<UpdateReviewModal reviewId={review.id} user={user}/>} buttonText={'Update'}/>
+                    <OpenModalButton modalComponent={<DeleteReviewModal reviewId={review.id}/>} buttonText={'Delete'}/>
                     </div>
                 </div>
             ))}
