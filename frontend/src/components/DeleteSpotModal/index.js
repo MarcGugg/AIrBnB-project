@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { deleteSpot } from '../../store/spots';
 
 import { useModal } from '../../context/Modal';
+import './DeleteSpot.css'
 
 export default function DeleteSpotModal({spotId}) {
     const {closeModal} = useModal()
@@ -18,9 +19,13 @@ export default function DeleteSpotModal({spotId}) {
 
     return (
         <>
-        <h3>Are you sure you want to delete this spot?</h3>
-        <button onClick={handleClick}>Yes</button>
-        <button onClick={closeModal}>No</button>
+        <h1 className='header'>Confirm Delete</h1>
+        <h3 className='message'>Are you sure you want to remove this spot 
+        from the listings?</h3>
+        <div className='yesNo-buttons'>
+        <button className='yes' onClick={handleClick}>{'Yes (Delete Spot)'}</button>
+        <button className='no' onClick={closeModal}>{'No (Keep Spot)'}</button>
+        </div>
         </>
     )
 }

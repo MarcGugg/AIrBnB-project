@@ -1,0 +1,17 @@
+.header {
+    display: flex;
+    justify-content: center;
+}
+
+.message {
+    margin: 1em;
+}
+
+.yesNo-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.yes {
+    color: white;
+}
