@@ -16,12 +16,23 @@ export default function UpdateReviewModal({reviewId, user}) {
     // console.log(reviewId)
 
     let reviewToEdit
-    for (let currReview of Object.values(reviewRetrieve)) {
-        if (currReview.id === reviewId) {
-            reviewToEdit = {...currReview}
+    // for (let currReview of Object.values(reviewRetrieve)) {
+    //     if (currReview.id === reviewId) {
+    //         reviewToEdit = {...currReview}
 
+    //     }
+    // }
+
+    useEffect(() => {
+        if (Object.values(reviewRetrieve).length > 0) {
+            for (let currReview of Object.values(reviewRetrieve)) {
+                if (currReview.id === reviewId) {
+                    reviewToEdit = {...currReview}
+        
+                }
+            }
         }
-    }
+    }, [reviewRetrieve])
 
     // console.log('target review', reviewToEdit)
 
