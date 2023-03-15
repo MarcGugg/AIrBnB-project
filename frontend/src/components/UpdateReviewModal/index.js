@@ -5,11 +5,16 @@ import { useEffect, useState } from 'react';
 import { getAllSpots, getSingleSpot, getSpotReviews } from '../../store/spots';
 
 import { useModal } from '../../context/Modal';
-import { editReview, postReview } from '../../store/reviews';
+import { editReview, getUserReviews, postReview } from '../../store/reviews';
 
 import './UpdateReview.css'
 
 export default function UpdateReviewModal({reviewId, user}) {
+
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getUserReviews(user.id))
+    }, [])
     // const reviewRetrieve = useSelector((state) => state.reviews.spot)
     const reviewRetrieve = useSelector((state) => state.reviews.user.userReviews)
     console.log('review retrieve', reviewRetrieve)
@@ -22,13 +27,17 @@ export default function UpdateReviewModal({reviewId, user}) {
 
     //     }
     // }
+    // const [review, setReview] = useState(reviewToEdit?.review)
+    const [review, setReview] = useState('')
+    const [stars, setStars] = useState(reviewToEdit?.stars)
 
     useEffect(() => {
-        if (Object.values(reviewRetrieve).length > 0) {
+        if (reviewRetrieve) {
             for (let currReview of Object.values(reviewRetrieve)) {
                 if (currReview.id === reviewId) {
                     reviewToEdit = {...currReview}
-        
+                    console.log('review to edit', reviewToEdit)
+                    setReview(reviewToEdit.review)
                 }
             }
         }
@@ -36,12 +45,10 @@ export default function UpdateReviewModal({reviewId, user}) {
 
     // console.log('target review', reviewToEdit)
 
-    const [review, setReview] = useState(reviewToEdit.review)
-    const [stars, setStars] = useState(reviewToEdit.stars)
 
     const {closeModal} = useModal()
 
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
 
     const reviewObj = {
         review,
