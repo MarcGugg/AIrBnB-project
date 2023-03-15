@@ -101,6 +101,8 @@ export default function UpdateSpot() {
     }
 
     if (!Object.values(spot).length) return null
+
+    console.log('errors', validationErrors)
     
     return (
         <div className='formParent'>
