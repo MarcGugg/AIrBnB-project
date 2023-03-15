@@ -89,15 +89,20 @@ export default function UpdateSpot() {
         //     dispatch(updateSpot(spotDetails, imageURL, spotId))
         //     history.push(`/spots/${spotId}`)
         // }
-        const spotDetails = {...updatedSpotDetails}
-        // console.log('spot', spotDetails)
-        // return null
-        dispatch(updateSpot(spotDetails, imageURL, spotId))
-        history.push(`/spots/${spotId}`)
+
+        if (!validationErrors.length) {
+            const spotDetails = {...updatedSpotDetails}
+            // console.log('spot', spotDetails)
+            // return null
+            dispatch(updateSpot(spotDetails, imageURL, spotId))
+            history.push(`/spots/${spotId}`)
+        }
 
     }
 
     if (!Object.values(spot).length) return null
+
+    console.log('errors', validationErrors)
     
     return (
         <div className='formParent'>
