@@ -16,10 +16,12 @@ export default function UpdateReviewModal({reviewId, user}) {
     // console.log(reviewId)
 
     let reviewToEdit
-    for (let currReview of Object.values(reviewRetrieve)) {
-        if (currReview.id === reviewId) {
-            reviewToEdit = {...currReview}
-
+    if (Object.values(reviewRetrieve)) {
+        for (let currReview of Object.values(reviewRetrieve)) {
+            if (currReview.id === reviewId) {
+                reviewToEdit = {...currReview}
+    
+            }
         }
     }
 
