@@ -111,14 +111,14 @@ export default function SingleSpot() {
                 {spot.city}, {spot.state}, {spot.country}
             </div>
             <div className='updateButtonDiv'>
-                <button className='updateButton'>
                     {user && user.id === spot.Owner.id ? 
+                <button className='updateButton'>
                     <Link to={`/spots/${spot.id}/edit`}>Update Spot</Link>
-                    :''}
-                    {!user || user.id !== spot.Owner.id ?
-                    <Link to={`/`}>Update Spot</Link>
-                    : ''}
                 </button>
+                    :''}
+                    {/* {!user || user.id !== spot.Owner.id ?
+                    <Link to={`/`}>Update Spot</Link>
+                    : ''} */}
             </div>
             </div>
             {/* <div className='imageParent'>                

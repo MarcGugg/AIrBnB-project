@@ -67,17 +67,33 @@ export default function UpdateSpot() {
         e.preventDefault()
         
         const errs = []
+
+        if (typeof spot.price !== 'number') errs.push('Price must be a number')
+        if (!price) errs.push('Price is required')
+        if (!country.length) errs.push('Country is required')
+        if (!address.length) errs.push('Address is required')
+        if (!city.length) errs.push('City is required')
+        if (!state.length) errs.push('State is required')
+        if (!description.length) errs.push('Description is required')
+        if (!name.length) errs.push('Title is required')
+        setValidationErrors(errs)
         
-        if (typeof updatedSpotDetails.price !== 'number') {
-            errs.push('price must be a number')
-            setValidationErrors(errs)
-        } else {
-            const spotDetails = {...updatedSpotDetails}
-            // console.log('spot', spotDetails)
-            // return null
-            dispatch(updateSpot(spotDetails, imageURL, spotId))
-            history.push(`/spots/${spotId}`)
-        }
+        // if (typeof updatedSpotDetails.price !== 'number') {
+        //     errs.push('price must be a number')
+        //     setValidationErrors(errs)
+        // } 
+        // else {
+        //     const spotDetails = {...updatedSpotDetails}
+        //     // console.log('spot', spotDetails)
+        //     // return null
+        //     dispatch(updateSpot(spotDetails, imageURL, spotId))
+        //     history.push(`/spots/${spotId}`)
+        // }
+        const spotDetails = {...updatedSpotDetails}
+        // console.log('spot', spotDetails)
+        // return null
+        dispatch(updateSpot(spotDetails, imageURL, spotId))
+        history.push(`/spots/${spotId}`)
 
     }
 
