@@ -66,6 +66,16 @@
     color: black;
 }
 
+.location {
+    margin-left: 0.8em;
+}
+
+.priceTag {
+    margin-left: 0.8em;
+    margin-top: -0.2em;
+    margin-bottom: 0.5em;
+}
+
 .buttons {
     margin: 1em;
 }

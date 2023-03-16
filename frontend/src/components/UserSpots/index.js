@@ -35,17 +35,17 @@ export default function UserSpots() {
             {!Object.values(userSpots).length ? <NavLink className='createSpotButton-2' to='/spots'>Create a new Spot</NavLink> : ''}
             </div>
             <div className='userSpotsList'>
-                {userSpots && Object.values(userSpots).map(spot => <li key={spot.name} className='user-spotCard'>
+                {userSpots && Object.values(userSpots).map(spot => <li key={spot.name} title={spot.name} className='user-spotCard'>
                     {/* <p>{spot.name}</p> */}
                     <Link to={`/spots/${spot.id}`}>                    
                     <p>
                         <img src={spot.previewImage} style={{width: 270, height: 250}}/>
                     </p>
-                    <div className='location-price'>
+                    <div className='locationAndprice'>
                     {/* <p>{spot.address}</p> */}
-                    <p>{spot.city}, {spot.state}</p>
+                    <p className='location'>{spot.city}, {spot.state}</p>
                     {/* <p>{spot.description}</p> */}
-                    <p>{spot.price} /night</p>
+                    <p className='priceTag'>{spot.price} /night</p>
                     </div>
                     <div className='editAndDelete-rating'>
                     <div className='rating'><FontAwesomeIcon icon={faStar} />{!spot.avgRating ? 'New': spot.avgRating.toFixed(1)}</div>
