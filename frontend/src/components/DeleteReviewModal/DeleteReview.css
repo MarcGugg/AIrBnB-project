@@ -1,5 +1,5 @@
 .wholeModal {
-    height: 9em;
+    height: 10em;
     width: 25em;
 }
 
@@ -21,7 +21,8 @@
     padding-right: 1.5em;
     background-color: red;
     color: black;
-    /* height: 1em; */
+    /* text-align: center; */
+    height: 3.5rem;
 }
 .yesButton:hover {
     background-color: darkred;
@@ -36,6 +37,7 @@
     padding-right: 1.5em;
     background-color: gray;
     color: white;
+    height: 3.5rem;
 }
 .noButton:hover {
     background-color: darkgrey;
