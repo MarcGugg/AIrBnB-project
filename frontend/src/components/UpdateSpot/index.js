@@ -62,12 +62,9 @@ export default function UpdateSpot() {
         price
     }
 
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        
+    useEffect(() => {
         const errs = []
-
+    
         if (typeof spot.price !== 'number') errs.push('Price must be a number')
         if (!price) errs.push('Price is required')
         if (!country.length) errs.push('Country is required')
@@ -77,6 +74,11 @@ export default function UpdateSpot() {
         if (!description.length) errs.push('Description is required')
         if (!name.length) errs.push('Title is required')
         setValidationErrors(errs)
+    }, [price, country, address, city, state, description, name])
+    
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        
         
         // if (typeof updatedSpotDetails.price !== 'number') {
         //     errs.push('price must be a number')

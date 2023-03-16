@@ -210,6 +210,28 @@ export default function SingleSpot() {
                 :''}
             </div>
             <div className='reviews'>
+               
+               
+                <div className='reviewAndAvgClone'>                    
+            <div className='rating' >
+                {/* Rating: {reviewAvg ? (reviewAvg).toFixed(1) : 'New'}  */}
+                <p><FontAwesomeIcon icon={faStar} />{!reviewAvg ? 'New': (reviewAvg).toFixed(1).toString()}</p>
+            </div>
+            {Object.values(reviews).length > 0 ? 
+                <div className='dot'>
+                ·
+                </div>
+            : ''}
+            <div className='reviewCountParent'>
+                {Object.values(reviews).length === 1 ? 
+                    <div className='reviewCount' >
+                        {Object.values(reviews).length} review
+                    </div>
+                : Object.values(reviews).length > 1 ? <div className='reviewCount'>{Object.values(reviews).length} reviews</div> :''}
+            </div>  
+                </div>
+
+
                 {Object.values(reviews).length > 0 ? Object.values(reviews).slice(0).reverse().map(review => <li>
                     <div className='name'>
                         {review.User.firstName} {review.User.lastName}
@@ -218,7 +240,7 @@ export default function SingleSpot() {
                         {/* {review.createdAt.slice(5, 7)}, {review.createdAt.slice(0,4)} */}
                         {months[new Date(review.createdAt).getMonth()]} {new Date(review.createdAt).getFullYear()}
                     </div>
-                    <div>
+                    <div className='textStyling'>
                     {review.review}
                     </div>
                     <div>
