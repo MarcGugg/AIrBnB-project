@@ -28,8 +28,8 @@ export default function DeleteReviewModal({reviewId}) {
             <h3>Are you sure you want to delete this review?</h3>
             </div>
             <div className='buttons'>
-            <button onClick={handleClick} className='yes'>{"Yes (Delete Review)"}</button>
-            <button onClick={closeModal} className='no'>{"No (Keep Review)"}</button>
+            <button onClick={handleClick} className='yesButton'>{"Yes (Delete Review)"}</button>
+            <button onClick={closeModal} className='noButton'>{"No (Keep Review)"}</button>
             </div>
         </div>
     )

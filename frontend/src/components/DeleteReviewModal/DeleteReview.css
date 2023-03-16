@@ -14,21 +14,22 @@
     justify-content: center;
 }
 
-.yes {
+.yesButton {
     margin: 1em;
     padding: 1em;
     padding-left: 1.5em;
     padding-right: 1.5em;
     background-color: red;
     color: black;
+    /* height: 1em; */
 }
-.yes:hover {
+.yesButton:hover {
     background-color: darkred;
-    color: white;
+    color: black;
     cursor: pointer;
 }
 
-.no {
+.noButton {
     margin: 1em;
     padding: 1em;
     padding-left: 1.5em;
@@ -36,7 +37,7 @@
     background-color: gray;
     color: white;
 }
-.no:hover {
+.noButton:hover {
     background-color: darkgrey;
     color: black;
     cursor: pointer;

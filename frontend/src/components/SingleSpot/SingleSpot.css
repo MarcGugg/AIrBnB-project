@@ -127,7 +127,7 @@
   /* Styles for reviews */
   .reviews {
     border-top: 2px solid black;
-
+    margin-left: 1em;
   }
   .reviews li {
     list-style: none;
@@ -152,6 +152,8 @@
 
   .dot {
     margin-left: 1.5em;
+    font-weight: bolder;
+    font-size: x-large;
   }
 
   .updateButton {
@@ -164,4 +166,21 @@
     background-color: darkred;
     color: white;
     cursor: pointer;
+  }
+
+  .reviewAndAvgClone {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1em;
+    margin-bottom: 1.5em;
+    color: purple;
+    /* font-size: xx-large; */
+  }
+
+  .reviewDate {
+    color: gray;
+  }
+  .textStyling {
+    font-size: larger;
+    font-weight: bold;
   }
