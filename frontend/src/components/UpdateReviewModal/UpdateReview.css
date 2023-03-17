@@ -6,7 +6,8 @@
     float: left;
     height: 46px;
     padding: 0 10px;
-    padding-left: 4.3em;
+    padding-left: 2.5em;
+    margin-top: -1em;
 }
 .rate:not(:checked) > input {
     position:absolute;
@@ -49,6 +50,7 @@
 .wholeForm {
     display: flex;
     flex-direction: column;
+    height: 19.5em;
     /* border: 3px solid black; */
     /* border-radius: 20px; */
 }
@@ -62,8 +64,8 @@
     display: flex;
 }
 .submitButton {
-    background-color: white;
-    color: lightgray;
+    background-color: red;
+    color: white;
     padding-left: 6.5em;
     padding-right:6.5em;
     padding-top: 1em;
@@ -74,6 +76,11 @@
 }
 .submitButton:hover {
     cursor: pointer;
-    background-color: lightgray;
+    background-color: darkred;
     color: black;
+}
+.submitButton:disabled {
+    background-color: white;
+    color: gray;
+    cursor: inherit;
 }

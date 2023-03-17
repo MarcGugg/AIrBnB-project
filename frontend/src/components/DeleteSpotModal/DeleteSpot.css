@@ -14,4 +14,22 @@
 
 .yes {
     color: white;
+    background-color: red;
+    height: 3em;
+    margin: 0.5em;
+}
+.yes:hover {
+    background-color: darkred;
+    color: black;
+    cursor: pointer;
+}
+
+.no {
+    background-color: gray;
+    height: 3em;
+    margin: 0.5em;
+}
+.no:hover {
+    background-color: darkgray;
+    cursor: pointer;
 }

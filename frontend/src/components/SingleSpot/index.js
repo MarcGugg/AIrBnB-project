@@ -129,7 +129,7 @@ export default function SingleSpot() {
                 <div className='previewImage'>
                     {/* "https://charlotte.axios.com/wp-content/uploads/2022/11/435-Beaumont-Ave-exterior.jpg" */}
                     {spot.SpotImages.length > 0 ? 
-                    <img src={spot.SpotImages[0].url} style={{width: 700, height: 500}}   
+                    <img src={spot.SpotImages[0].url} style={{width: 700, height: 498}}   
                     onError={(e) => {
                         e.target.onerror = null
                         e.target.src = "https://charlotte.axios.com/wp-content/uploads/2022/11/435-Beaumont-Ave-exterior.jpg"
@@ -140,10 +140,11 @@ export default function SingleSpot() {
                     : ''}
                     
                 </div>
-                {spot.SpotImages.length > 1 ?                 
+                {spot.SpotImages.length > 1 ?
+                <div className='otherImagesParent'>
                 <div className='otherImages'>
                     {spot.SpotImages.slice(1).map(image => (
-                        <img src={image.url} style={{width: 300, height: 240}}
+                        <img src={image.url} style={{width: 300, height: 245}}
                         onError={(e) => {
                             e.target.onerror = null
                             e.target.src = "https://charlotte.axios.com/wp-content/uploads/2022/11/435-Beaumont-Ave-exterior.jpg"
@@ -151,6 +152,7 @@ export default function SingleSpot() {
                         />
                     ))}
                 </div>
+                </div>                 
                 : ''}
             </div>
             <div className='hostDescCallout'>
@@ -215,7 +217,7 @@ export default function SingleSpot() {
                 <div className='reviewAndAvgClone'>                    
             <div className='rating' >
                 {/* Rating: {reviewAvg ? (reviewAvg).toFixed(1) : 'New'}  */}
-                <p><FontAwesomeIcon icon={faStar} />{!reviewAvg ? 'New': (reviewAvg).toFixed(1).toString()}</p>
+                <p style={{fontSize: 'xx-large'}}><FontAwesomeIcon icon={faStar} />{!reviewAvg ? 'New': (reviewAvg).toFixed(1)}</p>
             </div>
             {Object.values(reviews).length > 0 ? 
                 <div className='dot'>
@@ -243,12 +245,14 @@ export default function SingleSpot() {
                     <div className='textStyling'>
                     {review.review}
                     </div>
-                    <div>
-                        {user && review.userId === user.id ? <OpenModalButton modalComponent={<UpdateReviewModal reviewId={review.id} user={user}/>} buttonText={'Edit Your Review'}/>: ''}
-                    </div>
+                    <div className='editAndDelete'>
                     <div>
                         {/* {user && review.userId === user.id ? <button className='deleteReview' onClick={() => handleClick(review.id)}>Delete Review</button>: ''} */}
-                        {user && review.userId === user.id ? <OpenModalButton modalComponent={<DeleteReviewModal reviewId={review.id}/>} buttonText={'Delete Review'}/>: ''}
+                        {user && review.userId === user.id ? <OpenModalButton modalComponent={<DeleteReviewModal reviewId={review.id}/>} buttonText={'Delete'}/>: ''}
+                    </div>
+                    <div>
+                        {user && review.userId === user.id ? <OpenModalButton modalComponent={<UpdateReviewModal reviewId={review.id} user={user}/>} buttonText={'Edit'}/>: ''}
+                    </div>
                     </div>
                 </li>) : <div>{user && spot.Owner.id !== user.id ? <p>Be the first to post a review!</p>: ''}</div>}
             </div>

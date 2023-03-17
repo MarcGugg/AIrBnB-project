@@ -10,12 +10,19 @@ import { postReview } from '../../store/reviews';
 import './Review.css'
 
 export default function CreateReviewModal({spotId, user}) {
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getAllSpots())
+    }, [])
+
+    const spot = useSelector((state) => state.spots.singleSpot)
+    console.log('spot', spot)
     const [review, setReview] = useState('')
     const [stars, setStars] = useState(0)
 
     const {closeModal} = useModal()
 
-    const dispatch = useDispatch()
 
     const reviewObj = {
         review,
@@ -36,8 +43,8 @@ export default function CreateReviewModal({spotId, user}) {
 
     return (
         <form onSubmit={handleSubmit} className='wholeForm'>
-            <div>
-                <div className='topText'>How was your stay?</div>
+            <div className='headerAndReview'>
+                <div className='topText'>{`How was your stay at ${spot.name}?`}</div>
                 <textarea name='review' className='reviewText' value={review} onChange={(e) => setReview(e.target.value)}/>
             </div>
             <div>
