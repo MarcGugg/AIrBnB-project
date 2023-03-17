@@ -91,7 +91,7 @@ export default function UpdateReviewModal({reviewId, user}) {
                 </div>
             </div>
             <div className='submitButtonParent'>
-                <button type='submit' className='submitButton' disabled={review.length < 10 || stars < 1}>Submit Your Review</button>
+                <button type='submit' className='submitButton' disabled={review.length < 10 || stars < 1}>Update Your Review</button>
             </div>
         </form>
     );

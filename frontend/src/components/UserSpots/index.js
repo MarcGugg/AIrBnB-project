@@ -42,9 +42,9 @@ export default function UserSpots() {
                         <img src={spot.previewImage} style={{width: 270, height: 250}}                
                              onError={(e) => {
                             e.target.onerror = null
-                            e.target.src = "https://charlotte.axios.com/wp-content/uploads/2022/11/435-Beaumont-Ave-exterior.jpg"
+                            e.target.src = "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled.png"
                             }}
-                        alt='https://charlotte.axios.com/wp-content/uploads/2022/11/435-Beaumont-Ave-exterior.jpg'/>
+                        alt='https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled.png'/>
                     </p>
                     <div className='locationAndprice'>
                     {/* <p>{spot.address}</p> */}
