@@ -215,7 +215,7 @@ export default function SingleSpot() {
                 <div className='reviewAndAvgClone'>                    
             <div className='rating' >
                 {/* Rating: {reviewAvg ? (reviewAvg).toFixed(1) : 'New'}  */}
-                <p><FontAwesomeIcon icon={faStar} />{!reviewAvg ? 'New': (reviewAvg).toFixed(1).toString()}</p>
+                <p style={{fontSize: 'xx-large'}}><FontAwesomeIcon icon={faStar} />{!reviewAvg ? 'New': (reviewAvg).toFixed(1)}</p>
             </div>
             {Object.values(reviews).length > 0 ? 
                 <div className='dot'>
@@ -243,12 +243,14 @@ export default function SingleSpot() {
                     <div className='textStyling'>
                     {review.review}
                     </div>
-                    <div>
-                        {user && review.userId === user.id ? <OpenModalButton modalComponent={<UpdateReviewModal reviewId={review.id} user={user}/>} buttonText={'Edit Your Review'}/>: ''}
-                    </div>
+                    <div className='editAndDelete'>
                     <div>
                         {/* {user && review.userId === user.id ? <button className='deleteReview' onClick={() => handleClick(review.id)}>Delete Review</button>: ''} */}
-                        {user && review.userId === user.id ? <OpenModalButton modalComponent={<DeleteReviewModal reviewId={review.id}/>} buttonText={'Delete Review'}/>: ''}
+                        {user && review.userId === user.id ? <OpenModalButton modalComponent={<DeleteReviewModal reviewId={review.id}/>} buttonText={'Delete'}/>: ''}
+                    </div>
+                    <div>
+                        {user && review.userId === user.id ? <OpenModalButton modalComponent={<UpdateReviewModal reviewId={review.id} user={user}/>} buttonText={'Edit'}/>: ''}
+                    </div>
                     </div>
                 </li>) : <div>{user && spot.Owner.id !== user.id ? <p>Be the first to post a review!</p>: ''}</div>}
             </div>

@@ -106,7 +106,8 @@
   .price {
     font-size: 1.5rem;
     font-weight: bold;
-    margin-right: 40px;
+    margin-right: 1em;
+    margin-top: auto;
     border: none;
   }
   .rating {
@@ -116,12 +117,14 @@
     padding: 0.5rem 1rem;
     background-color: red;
     color: #fff;
-
+    width: 20em;
+    height: 3em;
     font-size: 1rem;
   }
   .reserveButton:hover {
     background-color: darkred;
     cursor: pointer;
+    box-shadow: 3px 5px 5px pink;
   }
   
   /* Styles for reviews */
@@ -132,6 +135,7 @@
   .reviews li {
     list-style: none;
     margin-bottom: 15px;
+    margin-left: 1.3em;
   }
 
   .name {
@@ -151,7 +155,7 @@
   }
 
   .dot {
-    margin-left: 1.5em;
+    margin-left: 1em;
     font-weight: bolder;
     font-size: x-large;
   }
@@ -174,7 +178,7 @@
     margin-top: 1em;
     margin-bottom: 1.5em;
     color: purple;
-    /* font-size: xx-large; */
+    font-size: xx-large;
   }
 
   .reviewDate {
@@ -183,4 +187,9 @@
   .textStyling {
     font-size: larger;
     font-weight: bold;
+  }
+
+  .editAndDelete {
+    display: flex;
+    flex-direction: row;
   }
