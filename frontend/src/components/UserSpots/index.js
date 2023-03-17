@@ -39,7 +39,12 @@ export default function UserSpots() {
                     {/* <p>{spot.name}</p> */}
                     <Link to={`/spots/${spot.id}`}>                    
                     <p>
-                        <img src={spot.previewImage} style={{width: 270, height: 250}}/>
+                        <img src={spot.previewImage} style={{width: 270, height: 250}}                
+                             onError={(e) => {
+                            e.target.onerror = null
+                            e.target.src = "https://charlotte.axios.com/wp-content/uploads/2022/11/435-Beaumont-Ave-exterior.jpg"
+                            }}
+                        alt='https://charlotte.axios.com/wp-content/uploads/2022/11/435-Beaumont-Ave-exterior.jpg'/>
                     </p>
                     <div className='locationAndprice'>
                     {/* <p>{spot.address}</p> */}
