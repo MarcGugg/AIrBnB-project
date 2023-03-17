@@ -29,7 +29,12 @@ export default function Spots() {
         {spots && Object.values(spots).map(spot => (<Link key={spot.id} to={`spots/${spot.id}`}>
             <div title={spot.name}>
             <div className='spotCard'>                
-            <img src={spot.previewImage} style={{width: 270, height: 250}}/>
+            <img src={spot.previewImage} style={{width: 270, height: 250}}
+                                onError={(e) => {
+                                    e.target.onerror = null
+                                    e.target.src = "https://charlotte.axios.com/wp-content/uploads/2022/11/435-Beaumont-Ave-exterior.jpg"
+                                }}
+            alt='https://charlotte.axios.com/wp-content/uploads/2022/11/435-Beaumont-Ave-exterior.jpg'/>
             <div className='cityStateRating'>
             <p>{spot.city}, {spot.state}</p>
             <p><FontAwesomeIcon icon={faStar} />{!spot.avgRating ? 'New': (spot.avgRating).toFixed(1)}</p>

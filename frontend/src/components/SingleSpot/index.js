@@ -129,7 +129,7 @@ export default function SingleSpot() {
                 <div className='previewImage'>
                     {/* "https://charlotte.axios.com/wp-content/uploads/2022/11/435-Beaumont-Ave-exterior.jpg" */}
                     {spot.SpotImages.length > 0 ? 
-                    <img src={spot.SpotImages[0].url} style={{width: 700, height: 500}}   
+                    <img src={spot.SpotImages[0].url} style={{width: 700, height: 498}}   
                     onError={(e) => {
                         e.target.onerror = null
                         e.target.src = "https://charlotte.axios.com/wp-content/uploads/2022/11/435-Beaumont-Ave-exterior.jpg"
@@ -140,10 +140,11 @@ export default function SingleSpot() {
                     : ''}
                     
                 </div>
-                {spot.SpotImages.length > 1 ?                 
+                {spot.SpotImages.length > 1 ?
+                <div className='otherImagesParent'>
                 <div className='otherImages'>
                     {spot.SpotImages.slice(1).map(image => (
-                        <img src={image.url} style={{width: 300, height: 240}}
+                        <img src={image.url} style={{width: 300, height: 245}}
                         onError={(e) => {
                             e.target.onerror = null
                             e.target.src = "https://charlotte.axios.com/wp-content/uploads/2022/11/435-Beaumont-Ave-exterior.jpg"
@@ -151,6 +152,7 @@ export default function SingleSpot() {
                         />
                     ))}
                 </div>
+                </div>                 
                 : ''}
             </div>
             <div className='hostDescCallout'>
