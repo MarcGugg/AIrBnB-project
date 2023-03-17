@@ -19,6 +19,7 @@
 }
 
 .profileButton {
+    position: relative;
     height: 20px;
     /* border: 10px solid red; */
     border-radius: 100px;
@@ -63,7 +64,9 @@
 }
 
 .profile-dropdown {
-    list-style: none;
+    right: -3%;
+    top: 160%;
+    position: absolute;
     width: 8.5em;
     border: 3px solid black;
     background-color: white;
