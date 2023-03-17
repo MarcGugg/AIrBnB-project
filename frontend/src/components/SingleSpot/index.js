@@ -127,14 +127,14 @@ export default function SingleSpot() {
             </div> */}
             <div className='allImages'>
                 <div className='previewImage'>
-                    {/* "https://charlotte.axios.com/wp-content/uploads/2022/11/435-Beaumont-Ave-exterior.jpg" */}
+                    {/* "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled.png" */}
                     {spot.SpotImages.length > 0 ? 
                     <img src={spot.SpotImages[0].url} style={{width: 700, height: 498}}   
                     onError={(e) => {
                         e.target.onerror = null
-                        e.target.src = "https://charlotte.axios.com/wp-content/uploads/2022/11/435-Beaumont-Ave-exterior.jpg"
+                        e.target.src = "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled.png"
                     }}
-                    alt="https://charlotte.axios.com/wp-content/uploads/2022/11/435-Beaumont-Ave-exterior.jpg"
+                    alt="https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled.png"
                     />
                     
                     : ''}
@@ -147,7 +147,7 @@ export default function SingleSpot() {
                         <img src={image.url} style={{width: 300, height: 245}}
                         onError={(e) => {
                             e.target.onerror = null
-                            e.target.src = "https://charlotte.axios.com/wp-content/uploads/2022/11/435-Beaumont-Ave-exterior.jpg"
+                            e.target.src = "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled.png"
                         }}
                         />
                     ))}

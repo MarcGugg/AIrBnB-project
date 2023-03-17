@@ -199,13 +199,13 @@ in search results.</h4>
             </label>
             </div>
 
-            <div className='imageURL'>
+            {/* <div className='imageURL'>
                 <h2>Liven up your spot with photos</h2>
                 <h4>Submit a link to at least one photo to publish your spot.</h4>
             <label>
                 <input className='imageURLinput' value={imageURL} onChange={(e) => setImageURL(e.target.value)} type='text'/>
             </label>
-            </div>
+            </div> */}
             
             <div className='submitButtonParent'>
                 <button type='submit' className='submitButton'>Update Spot</button>
