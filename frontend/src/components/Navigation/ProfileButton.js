@@ -65,14 +65,14 @@ function ProfileButton({ user }) {
           {user ? <div>Hello, {user.firstName}</div>: ''}
             <li>{user.email}</li>
           </div>
-            <li className="manageSpotsParent">
+            <div className="manageSpotsParent">
               <button className="manageSpotsButton">
                 <Link to='/spots/current'>Manage Spots</Link>
               </button>
               <button className="manageReviewsButton">
                 <Link to='/reviews/current'>Manage Reviews</Link>
               </button>
-            </li>
+            </div>
             <li className="logoutButtonParent">
               <button onClick={logout} className='logoutButton'>Log Out</button>
             </li>
