@@ -63,7 +63,7 @@ function ProfileButton({ user }) {
           <>
           <div className="greetingAndEmail">
           {user ? <div>Hello, {user.firstName}</div>: ''}
-            <li>{user.email}</li>
+            <p>{user.email}</p>
           </div>
             <div className="manageSpotsParent">
               <button className="manageSpotsButton">
