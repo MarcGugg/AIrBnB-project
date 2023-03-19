@@ -87,6 +87,9 @@
     border-top: 3px solid black;
     margin: 10px 0;
   }
+  .priceCaption {
+    margin-bottom: 0.5em;
+  }
 
   .description {
     border-top: 3px solid black;
@@ -103,4 +106,15 @@
 
   .error {
     color: red;
+  }
+
+  .locationHeader {
+    margin-bottom: 0.3em;
+  }
+  .locationCaption {
+    margin-bottom: 0.5em;
+  }
+
+  .previewImageLabel {
+    margin-top: 0.8em;
   }

@@ -20,8 +20,7 @@ export default function DeleteSpotModal({spotId}) {
     return (
         <>
         <h1 className='header'>Confirm Delete</h1>
-        <h3 className='message'>Are you sure you want to remove this spot 
-        from the listings?</h3>
+        <h3 className='message'>Are you sure you want to remove this spot?</h3>
         <div className='yesNo-buttons'>
         <button className='yes' onClick={handleClick}>{'Yes (Delete Spot)'}</button>
         <button className='no' onClick={closeModal}>{'No (Keep Spot)'}</button>

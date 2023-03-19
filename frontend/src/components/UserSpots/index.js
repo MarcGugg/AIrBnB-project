@@ -30,7 +30,7 @@ export default function UserSpots() {
     return (
         <>
         <div>
-            <h1 className='manageSpots-Header'>Manage Your Spots</h1>
+            <h1 className='manageSpots-Header'>Manage Spots</h1>
             <div>
             {!Object.values(userSpots).length ? <NavLink className='createSpotButton-2' to='/spots'>Create a new Spot</NavLink> : ''}
             </div>
