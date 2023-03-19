@@ -57,6 +57,7 @@ function LoginFormModal() {
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
             required
+            style={{backgroundColor: 'lightblue', height: '2em'}}
           />
         </div>
         <div className="input">
@@ -68,6 +69,7 @@ function LoginFormModal() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            style={{backgroundColor: 'lightblue', height: '2em'}}
           />
         </div>
         <button type="submit" className="loginButton" disabled={credential.length < 4 || password.length < 6}>Log In</button>

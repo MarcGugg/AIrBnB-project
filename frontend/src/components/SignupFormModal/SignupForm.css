@@ -1,6 +1,18 @@
 .signup-allForm {
     display: flex;
     flex-direction: column;
+    width: 20em;
+}
+
+.signup-allForm h1 {
+    display: flex;
+    justify-content: center;
+    margin-right: 1em;
+}
+
+.signup-allForm input {
+    background-color: lightblue;
+    height: 2em;
 }
 
 .input-container {
@@ -12,15 +24,23 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 
 .signup-button {
     margin: 1em;
     padding: 1em;
-    background-color: white;
-    color: gray;
+    background-color: red;
+    color: white;
 }
 .signup-button:hover {
-    background-color: gray;
+    background-color: darkred;
     color: black;
+    cursor: pointer;
+}
+.signup-button:disabled {
+    background-color: white;
+    color: gray;
+    cursor: default;
 }
