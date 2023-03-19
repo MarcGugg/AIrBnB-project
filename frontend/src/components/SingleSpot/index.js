@@ -159,7 +159,7 @@ export default function SingleSpot() {
             <div className='hostAndDesc'>                
             <div className='spotOwner'>
                 <h1>
-            hosted by: {spot.Owner.firstName} {spot.Owner.lastName}
+            Hosted by: {spot.Owner.firstName} {spot.Owner.lastName}
                 </h1>
             </div>
             <div className='spotDescription'>
