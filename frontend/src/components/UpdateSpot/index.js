@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getAllSpots, getSingleSpot, updateSpot } from '../../store/spots';
 
-// import 
+// import '../CreateNewSpot/CreateNewSpot.css'
 
 export default function UpdateSpot() {
     const spot = useSelector((state) => state.spots.singleSpot)
@@ -109,6 +109,9 @@ export default function UpdateSpot() {
     return (
         <div className='formParent'>
         <form onSubmit={handleSubmit} className='form'>
+        <div className='banner'>Update your Spot</div>
+        <h1 className='locationHeader'>Where's your place located?</h1>
+            <h3 className='locationCaption'>Guests will only get your exact address once they booked a reservation.</h3>
             <div className='country'>    
             <label>Country
             <p>
@@ -186,7 +189,8 @@ your place special.</h4>
                 <h2>Set a base price for your spot</h2>
                 <h4>Competitive pricing can help your listing stand out and rank higher
 in search results.</h4>
-            <label>
+            <label className='pricePerNightStyling'>
+                {'Price per night (USD)'}
             <p>
                    {validationErrors.length > 0 ? <p className='error'>
                     {'Price is required'}
@@ -208,7 +212,7 @@ in search results.</h4>
             </div> */}
             
             <div className='submitButtonParent'>
-                <button type='submit' className='submitButton'>Update Spot</button>
+                <button type='submit' className='submitButton'>Update your Spot</button>
             </div>
 
         </form>

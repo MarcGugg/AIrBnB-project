@@ -89,7 +89,9 @@ export default function CreateNewSpot() {
     return (
         <div className='formParent'>
         <form onSubmit={handleSubmit} className='form'>
-            <div className='banner'>Create a spot</div>
+            <div className='banner'>Create a New Spot</div>
+            <h1 className='locationHeader'>Where's your place located?</h1>
+            <h3 className='locationCaption'>Guests will only get your exact address once they booked a reservation.</h3>
             <div className='country'>    
             <label>Country
                 <p>
@@ -165,9 +167,10 @@ your place special.</h4>
 
             <div className='price'>
                 <h2>Set a base price for your spot</h2>
-                <h4>Competitive pricing can help your listing stand out and rank higher
+                <h4 className='priceCaption'>Competitive pricing can help your listing stand out and rank higher
 in search results.</h4>
-            <label>
+            <label className='pricePerNightStyling'>
+                {'Price per night (USD)'}
             <p>
                    {validationErrors.length > 0 ? <p className='error'>
                     {'Price is required'}
@@ -185,11 +188,19 @@ in search results.</h4>
                 <h4>Submit a link to at least one photo to publish your spot.</h4>
             <label>
                 {/* preview iamge */}
+                <h4 className='previewImageLabel'>Preview Image URL</h4>
                 <input className='imageURLinput' value={imageURL} onChange={(e) => setImageURL(e.target.value)} type='text'/> 
-               
+                    
+                <h4 className='imageLabel'>Image URL</h4>
                 <input className='imageURLinput' value={imageOne} onChange={(e) => setImageOne(e.target.value)} type='text'/>
+                
+                <h4 className='imageLabel'>Image URL</h4>
                 <input className='imageURLinput' value={imageTwo} onChange={(e) => setImageTwo(e.target.value)} type='text'/>
+                
+                <h4 className='imageLabel'>Image URL</h4>
                 <input className='imageURLinput' value={imageThree} onChange={(e) => setImageThree(e.target.value)} type='text'/>
+                
+                <h4 className='imageLabel'>Image URL</h4>
                 <input className='imageURLinput' value={imageFour} onChange={(e) => setImageFour(e.target.value)} type='text'/>
             </label>
             </div>
