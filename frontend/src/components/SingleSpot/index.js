@@ -17,6 +17,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
+import PostBookingModal from '../CreateBooking';
+
 export default function SingleSpot() {
     const {spotId} = useParams()
     const spot = useSelector((state) => state.spots.singleSpot)
@@ -196,7 +198,16 @@ export default function SingleSpot() {
             </div>
             </div>
             <div className='reserveButtonParent'>
-                <button className='reserveButton' onClick={handleReserveClick}>Reserve</button>
+                {/* turn this into modal for react datepicker */}
+                {/* turn this into modal for react datepicker */}
+                {/* turn this into modal for react datepicker */}
+                {/* turn this into modal for react datepicker */}
+                {/* turn this into modal for react datepicker */}
+                {/* turn this into modal for react datepicker */}
+                {/* turn this into modal for react datepicker */}
+                {/* turn this into modal for react datepicker */}
+                {/* <button className='reserveButton' onClick={handleReserveClick}>Reserve</button> */}
+                <OpenModalButton modalComponent={<PostBookingModal spot={spot}/>} buttonText={'Reserve'}/>
             </div>
         </div>
         {/* </div> */}
