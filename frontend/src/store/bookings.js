@@ -9,7 +9,7 @@ const actionPostBooking = (booking) => {
     }
 }
 
-export const postBooking = async (newBooking) => {
+export const postBooking =  (newBooking) => async (dispatch) => {
     const res = await csrfFetch(`/api/spots/${newBooking.spotId}/bookings`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
