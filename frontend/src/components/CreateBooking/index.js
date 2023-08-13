@@ -10,6 +10,8 @@ import ReactDatePicker from 'react-datepicker';
 import { useModal } from '../../context/Modal';
 import { postReview } from '../../store/reviews';
 
+import { postBooking } from '../../store/bookings';
+
 const PostBookingModal = ({ spot }) => {
     const history = useHistory()
     const dispatch = useDispatch()
@@ -24,25 +26,25 @@ const PostBookingModal = ({ spot }) => {
     //COMMENT THIS BACK IN
     //COMMENT THIS BACK IN
     //COMMENT THIS BACK IN
-    // const handlePost = (e) => {
-    //     e.preventDefault()
-    //     const newBooking = {
-    //         spotId: spot.id,
-    //         userId,
-    //         startDate,
-    //         endDate
-    //     }
-    //     dispatch(postBooking(newBooking))
-    //     dispatch(fetchBookings())
-    //     closeModal()
-    // }
-    // const handleNoPost = (e) => {
-    //     e.preventDefault()
-    //     closeModal()
-    // }
+    const handlePost = (e) => {
+        e.preventDefault()
+        const newBooking = {
+            spotId: spot.id,
+            userId,
+            startDate,
+            endDate
+        }
+        dispatch(postBooking(newBooking))
+        // dispatch(fetchBookings())
+        closeModal()
+    }
+    const handleNoPost = (e) => {
+        e.preventDefault()
+        closeModal()
+    }
     return (
         <>
-        <h1>Test</h1>
+        {/* <h1>Test</h1> */}
         {/* <div className=‘delete-modal-div’>
             <p className=‘confirm-delete-title confirm-booking’>
                 Confirm Booking
@@ -58,7 +60,19 @@ const PostBookingModal = ({ spot }) => {
             <button onClick={handlePost} className=‘yes-delete-button button white-button’ type=‘button’ >Confirm Booking</button>
             <button onClick={handleNoPost} className=‘no-delete-button button grey-keep’ type=‘button’ >Cancel</button>
         </div> */}
+        <div>
+            <h2>Make a Booking</h2>
+            <div>
+            <p className='confirm-delete-title confirm-booking'>Start Date</p>
         <ReactDatePicker selected={startDate} onChange={(date) => setStartDate(date)}/>
+            </div>
+            <div>
+            <p>End Date</p>
+        <ReactDatePicker selected={endDate} onChange={(date) => setEndDate(date)}/>
+            </div>
+            <button onClick={handlePost}>Confirm</button>
+            <button onClick={handleNoPost}>Cancel</button>
+        </div>
         </>
     );
 };
