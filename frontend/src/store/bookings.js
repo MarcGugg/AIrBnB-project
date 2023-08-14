@@ -62,9 +62,10 @@ export default function bookingsReducer(state=initialState, action) {
             // console.log('USER BOOKINGS', action)
             let newState2 = {allBookings: {...state.allBookings}, userBookings: {...state.userBookings}, spotBookings: {...state.spotBookings}}
             
-            for (let i = 0; i < action.bookings.Bookings.length; i++) {
-                newState2.userBookings[i] = {...action.bookings.Bookings[i]}
-            }
+            // for (let i = 0; i < action.bookings.Bookings.length; i++) {
+            //     newState2.userBookings[i] = {...action.bookings.Bookings[i]}
+            // }
+            action.bookings.Bookings.map(booking => newState2.userBookings[booking.id] = {...booking})
             // newState2.userBookings = [...action.bookings.Bookings]
 
             return newState2
