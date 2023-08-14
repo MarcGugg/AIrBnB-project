@@ -72,6 +72,7 @@ function ProfileButton({ user }) {
               <button className="manageReviewsButton">
                 <Link to='/reviews/current'>Manage Reviews</Link>
               </button>
+              <Link to={`/bookings/${user?.id}`}>Manage Bookings</Link>
             </div>
             <li className="logoutButtonParent">
               <button onClick={logout} className='logoutButton'>Log Out</button>

@@ -1,11 +1,20 @@
 import { csrfFetch } from "./csrf"
 
 const MAKE_BOOKING = 'bookings/Create'
+const USER_BOOKINGS = 'bookings/userBookings'
+
 
 const actionPostBooking = (booking) => {
     return {
         type: MAKE_BOOKING,
         booking
+    }
+}
+
+const actionUserBookings = (bookings) => {
+    return {
+        type: USER_BOOKINGS,
+        bookings
     }
 }
 
@@ -26,6 +35,14 @@ export const postBooking =  (newBooking) => async (dispatch) => {
     }
 }
 
+export const getUserBookings = () => async (dispatch)  => {
+    const res = await csrfFetch(`/api/bookings/current`)
+
+    if (res.ok) {
+        const bookings = await res.json()
+        dispatch(actionUserBookings(bookings))
+    }
+}
 
 let initialState = {
     allBookings: {},
@@ -40,6 +57,17 @@ export default function bookingsReducer(state=initialState, action) {
             newState.spotBookings[action.spotId].bookings[action.userId] = {...action.booking}
 
             return newState
+        }
+        case USER_BOOKINGS: {
+            // console.log('USER BOOKINGS', action)
+            let newState2 = {allBookings: {...state.allBookings}, userBookings: {...state.userBookings}, spotBookings: {...state.spotBookings}}
+            
+            for (let i = 0; i < action.bookings.Bookings.length; i++) {
+                newState2.userBookings[i] = {...action.bookings.Bookings[i]}
+            }
+            // newState2.userBookings = [...action.bookings.Bookings]
+
+            return newState2
         }
         default:
             return state
