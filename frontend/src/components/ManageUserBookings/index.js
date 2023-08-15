@@ -5,12 +5,16 @@ import { useSelector, useDispatch } from "react-redux"
 
 import DeleteBooking from "../DeleteBookingModal"
 import OpenModalButton from "../OpenModalButton"
+import EditBookingModal from "../EditBooking"
 
 import './userBookings.css'
 
 export default function UserBookings() {
     const dispatch = useDispatch()
     // const {userId} = useParams()
+
+    const [show, setShow] = useState(false)
+
     const bookings = useSelector((state) => state.bookings.userBookings)
     const user = useSelector((state) => state.session.user)
 
@@ -36,7 +40,9 @@ export default function UserBookings() {
             <p>Booked On: {booking.createdAt.slice(0, 10)}</p>
             <h3>Price /Night: ${booking.Spot.price}</h3>
             </div>
-            <OpenModalButton modalComponent={<DeleteBooking booking={booking}/>} buttonText={'Delete'}/>    
+            <OpenModalButton modalComponent={<DeleteBooking booking={booking}/>} buttonText={'Delete'}/>
+            <button onClick={() => setShow(!show)}>Edit</button>
+            <EditBookingModal booking={booking} show={show} closeModal={() => setShow(false)}/>    
         </div>
         )
         : <h1>You have not made any bookings</h1>}
