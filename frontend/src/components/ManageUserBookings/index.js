@@ -3,6 +3,9 @@ import { getUserBookings } from "../../store/bookings"
 import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 
+import DeleteBooking from "../DeleteBookingModal"
+import OpenModalButton from "../OpenModalButton"
+
 import './userBookings.css'
 
 export default function UserBookings() {
@@ -23,7 +26,7 @@ export default function UserBookings() {
         <>
         <h1>Your Bookings</h1>
         {bookings && Object.values(bookings).length > 0 ? 
-        Object.values(bookings).map(booking => 
+        Object.values(bookings).reverse().map(booking => 
         <div className="wholeBooking">
             <img src={booking.Spot.previewImage} className="preview"/>
             <div className="bookingInfo">
@@ -33,7 +36,8 @@ export default function UserBookings() {
             <p>Booked On: {booking.createdAt.slice(0, 10)}</p>
             <h3>Price /Night: ${booking.Spot.price}</h3>
             </div>
-        </div>    
+            <OpenModalButton modalComponent={<DeleteBooking booking={booking}/>} buttonText={'Delete'}/>    
+        </div>
         )
         : <h1>You have not made any bookings</h1>}
         </>
