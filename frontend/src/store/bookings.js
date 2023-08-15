@@ -81,7 +81,8 @@ export const editBooking = (booking) => async (dispatch) => {
     })
 
     if (res.ok) {
-        booking = await res.json()
+        const booking = await res.json()
+        console.log('EDITED BOOKING', booking)
         dispatch(actionEditBooking(booking))
     }
 }
