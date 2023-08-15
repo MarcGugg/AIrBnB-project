@@ -31,6 +31,7 @@ export default function UserBookings() {
         <h1>Your Bookings</h1>
         {bookings && Object.values(bookings).length > 0 ? 
         Object.values(bookings).reverse().map(booking => 
+            // maybe render all JSX in a seperate component
         <div className="wholeBooking">
             <img src={booking.Spot.previewImage} className="preview"/>
             <div className="bookingInfo">
