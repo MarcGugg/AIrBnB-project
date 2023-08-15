@@ -1,0 +1,24 @@
+.wholeBooking {
+    display: flex;
+    /* padding-left: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem; */
+    padding: 2rem;
+    /* padding-right: none; */
+    justify-content: center;
+}
+
+.preview {
+    width: 8rem;
+    padding-right: 0.5rem;
+}
+
+.bookingInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+}
