@@ -12,6 +12,8 @@ import { postReview } from '../../store/reviews';
 
 import { postBooking } from '../../store/bookings';
 
+import './createBooking.css'
+
 const PostBookingModal = ({ spot }) => {
     const history = useHistory()
     const dispatch = useDispatch()
@@ -70,8 +72,10 @@ const PostBookingModal = ({ spot }) => {
             <p>End Date</p>
         <ReactDatePicker selected={endDate} onChange={(date) => setEndDate(date)}/>
             </div>
-            <button onClick={handlePost}>Confirm</button>
-            <button onClick={handleNoPost}>Cancel</button>
+            <div className='createBookingModalButtons'>
+                <button onClick={handlePost} className='createBookingConfirmButton'>Confirm</button>
+                <button onClick={handleNoPost} className='createBookingCancelButton'>Cancel</button>                
+            </div>
         </div>
         </>
     );

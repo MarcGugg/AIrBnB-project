@@ -1,0 +1,27 @@
+.createBookingModalButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.createBookingConfirmButton {
+    background-color: rgb(145, 142, 142);
+    color: white;
+    height: 3rem;
+    width: 3.5rem;
+}
+.createBookingConfirmButton:hover {
+    background-color: rgb(116, 113, 113);
+    cursor: pointer;
+}
+
+.createBookingCancelButton {
+    background-color: red;
+    color: white;
+    height: 3rem;
+    width: 3.5rem;
+}
+.createBookingCancelButton:hover {
+    background-color: darkred;
+    cursor: pointer;
+}

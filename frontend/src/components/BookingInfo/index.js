@@ -18,9 +18,13 @@ export default function BookingInfo({booking}) {
             <img src={booking.Spot?.previewImage} className="preview"/>
             <div className="bookingInfo">
             <h2>{booking.Spot?.name}</h2>
-            <p>Start Date: {booking.startDate}</p>
-            <p>End Date: {booking.endDate}</p>
-            <p>Booked On: {booking.createdAt.slice(0, 10)}</p>
+            {/* start and end date objects manipulated as seen below bc new Date() in backend bookiong creation*/}
+            {/* causes the dates to display as one day ahead (bc it changes from local time to UTC) */}
+            {/* this manipulation returns them to normal and displays them in a more readable format*/}
+            <p>Start Date: {new Date(booking.startDate).toString().slice(0, 15)}</p>
+            <p>End Date: {new Date(booking.endDate).toString().slice(0, 15)}</p>
+            {/* <p>Booked On: {booking.createdAt.slice(0, 10)}</p> */}
+            <p>Booked On: {new Date(booking.createdAt).toString().slice(0, 15)}</p>
             <h3>Price /Night: ${booking.Spot?.price}</h3>
             </div>
 
