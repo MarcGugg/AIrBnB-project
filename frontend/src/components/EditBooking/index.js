@@ -17,11 +17,11 @@ export default function EditBookingModal({booking, show, closeModal}) {
     const [currStartDate, setCurrStartDate] = useState(new Date(booking.startDate) || null)
     const [currEndDate, setCurrEndDate] = useState(new Date(booking.endDate) || null)
 
-    useEffect(() => {
-        console.log('booking in modal', booking)
-        console.log('show', show)
-        console.log(currStartDate)
-    })
+    // useEffect(() => {
+    //     console.log('booking in modal', booking)
+    //     console.log('show', show)
+    //     console.log(currStartDate)
+    // })
     
     const handleSubmit = async () => {
         const newBooking = {
@@ -40,13 +40,20 @@ export default function EditBookingModal({booking, show, closeModal}) {
         <>
         <div className='editBookingModalParent'>
             <div className='editBookingContent'>
-                <h1>Edit Booking</h1>
-                <p>Start Date</p>
-                <ReactDatePicker selected={currStartDate} onChange={(date) => setCurrStartDate(date)}/>
-                <p>End Date</p>
-                <ReactDatePicker selected={currEndDate} onChange={(date) => setCurrEndDate(date)}/>
-                <button onClick={handleSubmit}>Update</button>
-                <button onClick={closeModal}>Cancel</button>
+                <div className='editBookingDatePickers'>
+                    <div>
+                        <h1>Edit Booking</h1>
+                        <p>Start Date</p>
+                        <ReactDatePicker selected={currStartDate} onChange={(date) => setCurrStartDate(date)}/>
+                        <p>End Date</p>
+                        <ReactDatePicker selected={currEndDate} onChange={(date) => setCurrEndDate(date)}/>
+                    </div>
+                </div>
+                
+                <div className='editBookingButtons'>
+                    <button onClick={handleSubmit} className='bookingUpdateButton'>Update</button>
+                    <button onClick={closeModal} className='bookingModalCancelButton'>Cancel</button>
+                </div>
             </div>
         </div>
         </>,

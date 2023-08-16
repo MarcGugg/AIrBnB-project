@@ -13,7 +13,49 @@
 }
 
 .editBookingContent {
+    width: 10%;
+    height: 15%;
     background-color: white;
     display: flex;
     flex-direction: column;
+    border: 3px solid black;
+    border-radius: 10px;
+}
+
+.editBookingDatePickers {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    /* flex-direction: column; */
+}
+
+.editBookingButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.bookingUpdateButton {
+    background-color: rgb(165, 163, 163);
+    color: white;
+    height: 3rem;
+    width: 5rem;
+    border-radius: 7px;
+}
+.bookingUpdateButton:hover {
+    background-color: gray;
+    cursor: pointer;
+}
+
+.bookingModalCancelButton {
+    background-color: red;
+    color: white;
+    height: 3rem;
+    width: 5rem;
+    border-radius: 7px;
+}
+.bookingModalCancelButton:hover {
+    background-color: darkred;
+    cursor: pointer;
 }

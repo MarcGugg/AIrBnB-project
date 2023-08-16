@@ -9,6 +9,8 @@ import { postReview } from '../../store/reviews';
 
 import { deleteBooking } from '../../store/bookings';
 
+import './deleteBooking.css'
+
 export default function DeleteBooking({booking}) {
     const dispatch = useDispatch()
     const {closeModal} = useModal()
@@ -21,8 +23,10 @@ export default function DeleteBooking({booking}) {
     return (
         <>
         <h1>Delete Booking?</h1>
-        <button onClick={handleDeleteClick}>Yes</button>
-        <button onClick={closeModal}>No</button>
+        <div className='deleteBookingModalButtons'>
+            <button onClick={handleDeleteClick} className='deleteBookingButton'>Yes</button>
+            <button onClick={closeModal} className='deleteBookingCancelButton'>No</button>
+        </div>
         </>
     )
 }
