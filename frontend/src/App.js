@@ -10,6 +10,7 @@ import CreateNewSpot from "./components/CreateNewSpot";
 import UserSpots from "./components/UserSpots";
 import UpdateSpot from "./components/UpdateSpot";
 import ManageReviews from "./components/ManageReviews";
+import UserBookings from "./components/ManageUserBookings";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +42,9 @@ function App() {
           <Route exact path='/reviews/current'>
             <ManageReviews />
           </Route>
+        <Route exact path='/bookings/:userId'>
+          <UserBookings />
+        </Route>
         </Switch>
       )}
     </>
